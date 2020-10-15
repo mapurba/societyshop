@@ -1,0 +1,44 @@
+<main class="profile-container">
+  <section class="profile">
+    <header class="profile__header">
+      <div class="profile__avatar-container">
+        <img [src]="userDetail?.picture" class="profile__avatar" />
+      </div>
+      <div class="profile__info">
+        <div class="profile__name">
+          <h1 class="profile__title">{{userDetail?.name}}</h1>
+          <i></i>
+        </div>
+        <div class="profile__name">
+          <a (click)="copyToClipboard()" id="share" data-toggle="tooltip" data-placement="right" title="Share your profile Click to Copy"
+            class="profile__button u-fat-text" style="background-color: #e4a1e4;">Share your profile</a>
+          <a (click)="showAddphotos()" style="background-color: #3897f0;" *ngIf="publishPhotoList.size < 1" class="profile__button u-fat-text">Add Photos
+            to Blog</a>
+          <!-- <a (click)="publish()" *ngIf="publishPhotoList.size >= 1" class="profile__button u-fat-text">Publish</a> -->
+        </div>
+
+      </div>
+    </header>
+
+    <div class="profile__pictures">
+
+      <a *ngFor="let item of userPhotos?.data" class="profile-picture">
+        <div class="image">
+          <img [src]='item?.images?.standard_resolution.url' class="profile-picture__picture img" />
+        </div>
+        <div class="profile-picture__overlay">
+          <span class="profile-picture__number">
+            <i class="fa fa-heart"></i> 450
+          </span>
+          <span class="profile-picture__number">
+            <i class="fa fa-comment"></i> 39
+          </span>
+
+        </div>
+      </a>
+
+    </div>
+  </section>
+</main>
+
+<app-post-photos-toblog [userPhotos]="userPhotos?.data"></app-post-photos-toblog>

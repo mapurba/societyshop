@@ -1,0 +1,104 @@
+<main class="admin_main">
+  <div class="row" style="padding-bottom: 5px;">
+    <div class="col-auto mr-auto">
+
+      <h3>{{ hideTable?'Add Product':'Admin Task'}} </h3>
+
+    </div>
+    <div class="col-auto">
+        <button type="button" class="close" *ngIf="hideTable" (click)="toggleView()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-12" *ngIf="!hideTable">
+      <table class="table">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">User</th>
+            <th scope="col">Media Count</th>
+            <th scope="col">Published</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of adminTask">
+            <!-- <th scope="row">1</th> -->
+            <td> 
+                <button class="btn btn-link" (click)="taskDetails(item)" >
+                  <img [src]="item?.user?.profile_picture" style="width: 30px" class="pr-1">
+                  <span>{{item?.user?.full_name}}</span>
+                </button>
+              
+            </td>
+            <td class="table_image_col">
+              {{item?.userMedia?.length}}
+            </td>
+            <td>{{item.published}}</td>
+            <td>{{item.createdAt|date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12" *ngIf="hideTable">
+      <ul class="list-group">
+        <li *ngFor="let medias of selectedTask.userMedia" class="list-group-item d-flex ">
+          <div class="taskimage">
+            <img [src]="medias.url" class="taskimage" />
+
+          </div>
+          <div style="padding-left: 19px;">
+            <p>Add product Link <a class="btn" (click)="openDialog(medias)"><i class="fa fa-plus "></i></a>
+            </p>
+            <div class="photo__info" style="padding: 0px 0px 0px 20px;">
+              <img *ngFor="let product of medias.productLink" src="{{product.image}}" class="profile__avatar tableImage" />
+            </div>
+
+
+          </div>
+        </li>
+      </ul>
+
+      <button type="button" style="margin-top: 10px;" (click)="publish()" class="btn btn-outline-primary">Publish</button>
+    </div>
+  </div>
+
+
+
+</main>
+
+<div class="modal " id="addlikns" tabindex="-1" role="dialog" aria-labelledby="addlikns" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add product link</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="form-group">
+            <label for="productImage">Product Image</label>
+            <input [(ngModel)]="productImage" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productImage" placeholder="Image url">
+          </div>
+          <div class="form-group">
+            <label for="productLink">Link</label>
+            <input [(ngModel)]="productLink" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productLink" placeholder="Link">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="addProductLink()" data-dismiss="modal" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

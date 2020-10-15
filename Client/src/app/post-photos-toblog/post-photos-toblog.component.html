@@ -1,0 +1,47 @@
+<div class="modal modal-md" id="postphotostoblog" tabindex="-1" role="dialog" aria-labelledby="addlikns" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Photos to Blog</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        <div class="profile__pictures">
+
+          <a *ngFor="let item of _userPhotos " class="profile-picture " [ngStyle]="{'border: 2px solid rebeccapurple': true}">
+            <div class="image">
+                <img [src]='item?.images?.standard_resolution.url' class="profile-picture__picture img" />
+            </div>
+            <div class="profile-picture__overlay">
+              <span class="profile-picture__number">
+                <i class="fa fa-heart"></i> 450
+              </span>
+              <span class="profile-picture__number">
+                <i class="fa fa-comment"></i> 39
+              </span>
+    
+            </div>
+            <div class="" >
+              <span class="profile-picture__checkBox">
+                <input type="checkbox" value (click)="addPhotoToList(item,$event)">
+              </span>
+            </div>
+          </a>
+    
+        </div>
+        <span *ngIf="_userPhotos?.length <=0">
+          All Photos are Posted ! 
+        </span>
+        <div clas="">
+
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" [disabled]="publishPhotoList?.size<=0" (click)="publish()" data-dismiss="modal" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
