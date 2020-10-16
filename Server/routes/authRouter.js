@@ -17,7 +17,7 @@ const passport = require('passport');
 
 authRouter.get('/google', passport.authenticate('google',
     {
-        scope: ['profile', 'email', 'https://www.googleapis.com/auth/spreadsheets.readonly'],
+        scope: ['profile', 'email'],
         accessType: 'offline',
         prompt: 'consent'
     }));
