@@ -34,7 +34,7 @@ dotenv.load({ path: '.env.example' });
  * 
  */
 
-const apiRoutes =require('./routes/routeAdmin');
+const apiRoutes = require('./routes/routeAdmin');
 /**
  * Create Express server.
  */

@@ -1,6 +1,4 @@
-
-var express = require('express'),
-    userRouter = express.Router();
+var express = require('express'), userRouter = express.Router();
 
 const userController = require('../controllers/user');
 const homeController = require('../controllers/home');
@@ -8,13 +6,14 @@ const contactController = require('../controllers/contact');
 
 
 /**
-* API keys and Passport configuration.
-*/
-const passportConfig = require('../config/passport');
+ * API keys and Passport configuration.
+ */
+const auth = require('../login/auth');
 
 /**
-* Primary userRouter routes.
-*/
+ *
+ * Primary userRouter routes.
+ */
 
 userRouter.get('/', homeController.index);
 userRouter.get('/login', userController.getLogin);
@@ -33,19 +32,18 @@ userRouter.post('/signup', userController.postSignup);
 userRouter.get('/contact', contactController.getContact);
 userRouter.post('/contact', contactController.postContact);
 
-userRouter.get('/account', passportConfig.isAuthenticated, userController.getAccount);
+userRouter.get('/account', auth.isAuthenticated, userController.getAccount);
 
-userRouter.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
-userRouter.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
-userRouter.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+userRouter.post('/account/profile', auth.isAuthenticated, userController.postUpdateProfile);
+userRouter.post('/account/password', auth.isAuthenticated, userController.postUpdatePassword);
+userRouter.post('/account/delete', auth.isAuthenticated, userController.postDeleteAccount);
 
-userRouter.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+userRouter.get('/account/unlink/:provider', auth.isAuthenticated, userController.getOauthUnlink);
 
 // userRouter.get('/user/photos',passportConfig.isAuthenticated,userController.getUserMedias);
-userRouter.get('/details',passportConfig.isAuthenticated,userController.userDetail);
+userRouter.get('/details', auth.isAuthenticated, userController.userDetail);
 // userRouter.post('/user/postPhotosToBlog',passportConfig.isAuthenticated,userController.postPhotostoBlog);
 // userRouter.get('/user/blogPhotos',userController.getUserBlogPhotos);
-
 
 
 module.exports = userRouter;

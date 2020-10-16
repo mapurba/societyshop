@@ -1,24 +1,23 @@
-var express = require('express');
-// var app 		= express();
-var routerAdmin = express.Router();
+const express = require('express');
+const routerAdmin = express.Router();
+
+
 
 /**
- * import routes
- * 
+ * Import routes
  */
-
 const apiRoutes = require('./apiRoutes');
 const userRoutes = require('./userRouter');
 const authRouter = require('./authRouter');
 const adminRouter = require('./adminRouter');
-const orderRouter = require('./orderRoutes')
+const orderRouter = require('./orderRoutes');
 
-
-// routerAdmin.use('/user', userRoutes);
-// app.use('/api/', apiRoutes);
-// routerAdmin.use('/auth', authRouter);
+/**
+ *  Routing path
+ * */
+routerAdmin.use('/user', userRoutes);
+routerAdmin.use('/auth', authRouter);
 routerAdmin.use('/admin', adminRouter);
-// routerAdmin.use('/orders', orderRouter);
-
+routerAdmin.use('/orders', orderRouter);
 
 module.exports = routerAdmin;

@@ -1,17 +1,12 @@
+const express = require('express'), adminRouter = express.Router();
 
-var express = require('express'),
-    adminRouter = express.Router();
-
+const auth = require('../login/auth');
 /**
-* API keys and Passport configuration.
-*/
-const passport = require('passport');
-const passportConfig = require('../config/passport');
-const adminController=require('../controllers/admin')
+ * API keys and Passport configuration.
+ */
+const adminController = require('../controllers/admin')
 
-
-adminRouter.get('/tasklist',  adminController.getAllTask);
-adminRouter.post('/task/approve',passportConfig.isAuthenticatedAdmin,adminController.approveTask);
-
+adminRouter.get('/tasklist', auth.isAuthenticatedAdmin, adminController.getAllTask);
+adminRouter.post('/task/approve', auth.isAuthenticatedAdmin, adminController.approveTask);
 
 module.exports = adminRouter;
