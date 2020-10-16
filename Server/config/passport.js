@@ -208,7 +208,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
 const googleStrategyConfig = new GoogleStrategy({
   clientID: process.env.GOOGLE_ID,
   clientSecret: process.env.GOOGLE_SECRET,
-  callbackURL: '/auth/google/callback',
+  callbackURL: '/api/auth/google/callback',
   passReqToCallback: true
 }, (req, accessToken, refreshToken, params, profile, done) => {
   if (req.user) {
@@ -291,11 +291,10 @@ exports.isAuthenticated = (req, res, next) => {
 exports.isAuthenticatedAdmin = (req, res, next) => {
   // return next();
 
-  if (req.isAuthenticated()) {
-    if(req.user.isAdmin){
+  if (req.isAuthenticated() && req.user.isAdmin) {  
       console.log('admin User check  user :',req.user.profile.name );
       return next();
-    }
+    // }
    
   } else {
   res.status(401).send({mgs:'unauthorized user'});

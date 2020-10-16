@@ -14,11 +14,11 @@ const adminRouter = require('./adminRouter');
 const orderRouter = require('./orderRoutes')
 
 
-routerAdmin.use('', userRoutes);
+// routerAdmin.use('/user', userRoutes);
 // app.use('/api/', apiRoutes);
-routerAdmin.use('/auth', authRouter);
+// routerAdmin.use('/auth', authRouter);
 routerAdmin.use('/admin', adminRouter);
-routerAdmin.use('/orders', orderRouter);
+// routerAdmin.use('/orders', orderRouter);
 
 
 module.exports = routerAdmin;

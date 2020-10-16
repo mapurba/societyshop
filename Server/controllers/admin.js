@@ -4,9 +4,12 @@ const async = require('async');
 const Orders = require('../models/Orders');
 
 exports.getAllTask = (req, res) => {
-    Orders.find({}).sort('-createdAt').then((result) => {
-        res.status(200).send(result);
-    }).catch((err) => { res.status(489); });
+    res.status(200).send({});
+
+    // Orders.find({}).sort('-createdAt').then((result) => {
+    //     res.status(200).send(result);
+    // }).catch((err) => { res.status(489); });
+    // res.status(200).send({});
 
 };
 

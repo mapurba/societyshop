@@ -10,7 +10,7 @@ const passportConfig = require('../config/passport');
 const adminController=require('../controllers/admin')
 
 
-adminRouter.get('/tasklist', passportConfig.isAuthenticatedAdmin,  adminController.getAllTask);
+adminRouter.get('/tasklist',  adminController.getAllTask);
 adminRouter.post('/task/approve',passportConfig.isAuthenticatedAdmin,adminController.approveTask);
 
 
