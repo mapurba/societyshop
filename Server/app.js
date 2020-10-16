@@ -34,11 +34,7 @@ dotenv.load({ path: '.env.example' });
  * 
  */
 
-const apiRoutes =require('./routes/apiRoutes');
-const userRoutes =require('./routes/userRouter');
-const authRouter =require('./routes/authRouter');
-const adminRouter =require('./routes/adminRouter');
-const orderRouter = require('./routes/orderRoutes')
+const apiRoutes =require('./routes//routeAdmin');
 /**
  * Create Express server.
  */
@@ -135,11 +131,8 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
  * API examples routes.
  */
 
-app.use('/', userRoutes);
 app.use('/api', apiRoutes);
-app.use('/auth', authRouter);
-app.use('/admin', adminRouter);
-app.use('/orders', orderRouter);
+
 
 /**
  * Error Handler.
