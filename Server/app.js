@@ -131,7 +131,7 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
  * API examples routes.
  */
 
-app.use('/api', apiRoutes);
+app.use('/api/', apiRoutes);
 
 
 /**

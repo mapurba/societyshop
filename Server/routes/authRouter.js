@@ -25,8 +25,8 @@ const passport = require('passport');
 // });
 
 
-authRouter.get('/api/google', passport.authenticate('google', { scope: ['profile', 'email', 'https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets.readonly'], accessType: 'offline', prompt: 'consent' }));
-authRouter.get('/api/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email', 'https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets.readonly'], accessType: 'offline', prompt: 'consent' }));
+authRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
     console.log("Ss");  
   res.redirect(req.session.returnTo || '/');
 });
