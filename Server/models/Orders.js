@@ -4,19 +4,35 @@ const mongoose = require('mongoose');
 
 const orderItemSchema = new mongoose.Schema({
     itemCode: {
-        type: Number
+        type: Number, required: true
+    },
+    name: {
+        type: String, required: true
+    },
+    price: {
+        type: Number, required: true
+    },
+    image: {
+        type: String,
+        required: false
+    },
+    discountPercentage: {
+        type: Number,
+        default: 0
     },
     quantity: {
-        type: Number
+        type: Number,
+        default: 0
     }
-});
+}, {timestamps: true});
 
 const orderSchema = new mongoose.Schema({
     /*_id: {
         type: String, unique: true, required: true, dropDups: true
     },*/
     orderItems: {
-        type: [orderItemSchema], required: true
+        type: [orderItemSchema],
+        required: true
     },
     totalAmount: {
         type: Number,

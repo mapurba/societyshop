@@ -1,7 +1,8 @@
-const express = require('express'), apiRouter = express.Router();
+const express = require('express'), orderRouter = express.Router();
 
 const orderController = require('../controllers/order.controller');
 
-apiRouter.get('/create', orderController.createOrder);
+orderRouter.get('/list', orderController.getAllOrders);
+orderRouter.post('/create', orderController.createOrder);
 
-module.exports = apiRouter;
+module.exports = orderRouter;
