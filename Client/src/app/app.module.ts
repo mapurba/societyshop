@@ -11,7 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { APP_BASE_HREF } from '@angular/common';
 import { BlogComponent } from './blog/blog.component';
 import { AdminConsoleComponent } from './admin/admin-console/admin-console.component';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { PostPhotosToblogComponent } from './post-photos-toblog/post-photos-toblog.component';
 import { SignupComponent } from './signup/signup.component';

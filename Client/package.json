@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4300 --proxy-config proxy.config.json",
-    "build": "ng build --prod",
+    "start": "ng serve --port 4300 --prod --proxy-config proxy.config.json",
+    "build": "ng build --prod --base-href ./",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "  ng build --prod && cp -r ./dist/Client/* /var/www/html"
+    "deploy": "ng build --prod && cp -r ./dist/Client/* /var/www/html"
   },
   "private": true,
   "dependencies": {
