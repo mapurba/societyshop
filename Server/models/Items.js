@@ -5,9 +5,9 @@ const UserMedias =require('./UserMedias')
 
 
 const item = new mongoose.Schema({
-    id: {
-        type: 'String', unique: true, required: true, dropDups: true
-    },
+    // _id: {
+    //     type: 'String', unique: true, required: true, dropDups: true
+    // },
     name :{
         type:'String', required:true
     },
@@ -15,7 +15,8 @@ const item = new mongoose.Schema({
         type:Number,required:true
     },
     image:{
-        type:Blob,required:true
+        type:String,
+        required:false
     },
     discountPercentage:{
         type:Number,
