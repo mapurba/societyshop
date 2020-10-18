@@ -33,7 +33,7 @@ const item = new mongoose.Schema({
  * Helper method for getting user's gravatar.
  */
 
-exports.itemSchema = item;
+
 const Item = mongoose.model('item', item);
 
 module.exports = Item;
