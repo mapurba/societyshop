@@ -1,7 +1,7 @@
 const express = require('express'), apiRouter = express.Router();
 
-const apiController = require('../controllers/api');
+const orderController = require('../controllers/order.controller');
 
-apiRouter.get('/', apiController.getApi);
+apiRouter.get('/create', orderController.createOrder);
 
 module.exports = apiRouter;

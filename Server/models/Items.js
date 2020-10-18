@@ -1,32 +1,32 @@
 const bcrypt = require('bcrypt-nodejs');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
-const UserMedias =require('./UserMedias')
+const UserMedias = require('./UserMedias')
 
 
 const item = new mongoose.Schema({
-    // _id: {
-    //     type: 'String', unique: true, required: true, dropDups: true
-    // },
-    name :{
-        type:'String', required:true
+    itemCode: {
+        type: Number, unique: true, required: true
     },
-    price:{
-        type:Number,required:true
+    name: {
+        type: String, required: true
     },
-    image:{
-        type:String,
-        required:false
+    price: {
+        type: Number, required: true
     },
-    discountPercentage:{
-        type:Number,
-        default:0
+    image: {
+        type: String,
+        required: false
     },
-    disc:{
-        type:String
+    discountPercentage: {
+        type: Number,
+        default: 0
+    },
+    disc: {
+        type: String
     }
-       
-}, { timestamps: true });
+
+}, {timestamps: true});
 
 
 /**

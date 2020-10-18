@@ -2,16 +2,27 @@ const bcrypt = require('bcrypt-nodejs');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 
-const orders = new mongoose.Schema({
-    id: {
-        type: 'String', unique: true, required: true, dropDups: true
+const orderItemSchema = new mongoose.Schema({
+    itemCode: {
+        type: Number
     },
-    items: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Item',
+    quantity: {
+        type: Number
+    }
+});
+
+const orderSchema = new mongoose.Schema({
+    /*_id: {
+        type: String, unique: true, required: true, dropDups: true
+    },*/
+    orderItems: {
+        type: [orderItemSchema], required: true
+    },
+    totalAmount: {
+        type: Number,
         required: true
     },
-    totalPrice: {
+    totalAmountAfterDiscount: {
         type: Number,
         required: true
     },
@@ -23,13 +34,13 @@ const orders = new mongoose.Schema({
     paymentStatus: {
         type: String,
         required: false,
-        default:0
+        default: 0
         // 0 - payment penmding , -1 - payment failed , 1 - success , 2 - credit 
     },
     orderStatus: {
         type: String,
         required: false,
-        default:0
+        default: 0
         // order staus o - waitng , 1 - accepted , 2 processing , 3 - delivered
     },
     user: {
@@ -37,7 +48,7 @@ const orders = new mongoose.Schema({
         ref: 'User'
     },
 
-}, { timestamps: true });
+}, {timestamps: true});
 
 
 /**
@@ -45,6 +56,6 @@ const orders = new mongoose.Schema({
  */
 
 
-const Orders = mongoose.model('Orders', orders);
+const Orders = mongoose.model('Orders', orderSchema);
 
 module.exports = Orders;
