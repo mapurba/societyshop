@@ -1,28 +1,36 @@
-<div calss="container">
+<div calss="container" (scroll)="onScroll($event)">
 
 
-<app-nav></app-nav>
-<div class="main mb-2">
-    <router-outlet></router-outlet>
-</div>
-
-<!-- fix this -->
-<br>
-<br>
-
-
-
-<!-- <app-feed></app-feed> -->
-<!-- <app-profile></app-profile> -->
-<footer class=" bg-white" style="border-top:1px solid lightgray;">
-    <div class="container text-center bg-white">
-        <p class="float-left">© 2018 Mylooks.co, Inc. All Rights Reserved</p>
-        <ul class="float-right list-inline">
-            <li class="list-inline-item"><a href="/privacy">Privacy</a></li>
-            <li class="list-inline-item"><a href="/about">About</a></li>
-        </ul>
+    <app-nav></app-nav>
+    <div class="main mb-2">
+        <router-outlet></router-outlet>
     </div>
-</footer>
+
+    <!-- fix this -->
+    <br>
+    <br>
+
+
+    <footer class="nav-footer-main" [hidden]="scrollDirection=='DOWN'">
+        <div class="footer-nav">
+            
+            <div class="menu">
+                <a class="fa fa-home icon" href="/">Home</a>
+            </div>
+
+            <div class="menu">
+                <a class="fa fa-th icon" href="/"> Category</a>
+            </div>
+            <div class="menu">
+                <a class="fa fa-search icon" href="/"> search</a>
+            </div>
+
+            <div class="menu">
+                <a class="fa fa-shopping-cart icon" href="/cart">Cart</a>
+                
+            </div>
+        </div>
+    </footer>
 
 
 </div>
