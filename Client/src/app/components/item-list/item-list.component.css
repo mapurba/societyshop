@@ -1,10 +1,8 @@
 .flex-action-container{
     display: flex;
-    /* background-color: beige; */
 }
 
 .flex-action-container > .flex-right{
-    /* background-color: cadetblue; */
     padding: 5px;
     font-size: 15px;
     margin-left: auto;
@@ -12,13 +10,11 @@
 
 
 .flex-action-container > .flex-left{
-    /* background-color: cadetblue; */
     padding: 10px 5px;
     text-align: center;
     margin-right: auto;
     font-size: 15px;
     font-weight:500;
-
 }
 
 .btn{
@@ -47,10 +43,20 @@
 }
 
 .main-container{
-    padding-bottom: 10px;
     background-color: whitesmoke;
+    /* padding: 0px 0px 10px 0px; */
+
 }
 .list-item{
     background-color: white;
     border-bottom: 1px solid #c5b7b738;
+}
+
+.top-quick-search > .btn{
+    background-color: white;
+}
+
+.top-quick-search{
+    padding: 0px 10px 10px 10px;
+    background-color: #e2dcdc5c;
 }

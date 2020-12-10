@@ -3,14 +3,11 @@
     <div class="product-img">
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgMo9yphqX8wtozYl4lDh65X-5VltvWD2Os-kFjkym1O9scq6D-BGVbD8t&usqp=CAc" />
-
-
-
     </div>
     <div class="product-discp">
-      <p class="brad-name">Vasline</p>
-      <p class="text">Intesive care deep moisture body lotion</p>
-      <div class="rating">
+      <p class="brad-name">{{item.brand}}</p>
+      <p class="text">{{item.name}}</p>
+      <div class="rating" *ngIf="item?.rating">
         <span class="rating-value"
           style="background-color: rgb(227, 235, 218); color: rgb(104, 159, 56);"> 4.3 
           <svg
@@ -21,16 +18,16 @@
           </svg>
           
       </span> 
-      <span class="rating-count"> 207 Ratings</span></div>
+      <span class="rating-count"> {{item?.rating?.totalCount}} Ratings</span></div>
 
-      <select class="btn option">
-        <option>None</option>
+      <select class="btn option" *ngIf="item?.varients?.length > 1">
+        <option *ngFor="let varient of item?.varients"  >{{varient}}</option>
       </select>
-      <div class="price"> $200 <span class="old">$300</span></div>
 
+      <!-- <div class ="text">{{item?.discp}}</div> -->
+      <div class="price" *ngIf="item?.price" > ${{item?.price?.newPrice}} <span class="old">${{item?.price?.oldPrice}}</span></div>
 
     </div>
-
   </div>
   <div class="card-footer-action">
     <div class="sales-batch">
@@ -38,5 +35,4 @@
     </div>
     <button class="btn add-to-cart">Add</button>
   </div>
-
 </div>

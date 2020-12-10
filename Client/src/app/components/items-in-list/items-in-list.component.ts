@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ItemSchema, Price } from 'src/app/schemas/ItemSchema';
+
+
 
 @Component({
   selector: 'items-in-list',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsInListComponent implements OnInit {
 
-  constructor() { }
+  @Input("item") item[]: ItemSchema;
+  constructor() {
+  }
 
   ngOnInit() {
   }

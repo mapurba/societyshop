@@ -1,7 +1,10 @@
 <div class="main-container">
   <div class="top-quick-search">
-
+    <button class="btn"> All </button>
+    <button class="btn"> Makeup</button>
+    <button class="btn"> Skin Care</button>
   </div>
+
   <div class="item-list">
     <div class="flex-action-container">
       <div class="flex-left">
@@ -10,19 +13,11 @@
       <div class="flex-right">
         <button class="btn actn"> Sort </button>
         <button class="btn actn"> Filter</button>
-
       </div>
-
     </div>
     <div class="flex-list-container">
-
-      <div class="list-item">
-        <items-in-list>1</items-in-list>
-        <!-- 1 -->
-      </div>
-
-      <div class="list-item">
-        <items-in-list>2</items-in-list>
+      <div class="list-item" *ngFor="let item of dummylist">
+        <items-in-list [item]=item>1</items-in-list>
       </div>
     </div>
   </div>

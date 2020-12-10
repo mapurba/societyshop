@@ -74,6 +74,8 @@ p{
  .price > .old{
     text-decoration: line-through;
     font-weight: 200;
+    font-size: 12px;
+
 
 }
 .option{
