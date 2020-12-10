@@ -134,3 +134,7 @@ html {
     margin-right: 6px;
   }
   
+
+  * {
+    box-sizing: border-box;
+  }

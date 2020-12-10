@@ -1,0 +1,56 @@
+.flex-action-container{
+    display: flex;
+    /* background-color: beige; */
+}
+
+.flex-action-container > .flex-right{
+    /* background-color: cadetblue; */
+    padding: 5px;
+    font-size: 15px;
+    margin-left: auto;
+}
+
+
+.flex-action-container > .flex-left{
+    /* background-color: cadetblue; */
+    padding: 10px 5px;
+    text-align: center;
+    margin-right: auto;
+    font-size: 15px;
+    font-weight:500;
+
+}
+
+.btn{
+    margin-right: 5px;
+}
+
+
+
+.flex-list-container{
+    display: flex;
+    flex-wrap: wrap;
+    font-size:  30px;
+    text-align: center;
+}
+
+.list-item{
+    /* background-color: dodgerblue; */
+    padding: 10px;
+    flex: 50%;
+}
+
+@media(max-width:800px){
+    .list-item{
+        flex: 100%;
+    }
+}
+
+.main-container{
+    padding-bottom: 10px;
+    background-color: whitesmoke;
+}
+.list-item{
+    background-color: white;
+    border-bottom: 1px solid #c5b7b738;
+}
