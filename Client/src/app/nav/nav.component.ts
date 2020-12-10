@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class NavComponent implements OnInit {
   loggedInUserDetails:any;
   userLoggedin:boolean = false;
   loadingUser:boolean = true;
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,public route:Router) { }
 
   ngOnInit() {
    this.getUserDetail();
