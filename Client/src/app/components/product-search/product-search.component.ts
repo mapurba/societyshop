@@ -13,6 +13,7 @@ export class ProductSearchComponent implements OnInit {
   subject: Subject<any> = new Subject();
   searchQ: string;
   defaultText = "Search all the products";
+  showDowpdown :boolean= false;
   @ViewChild("searchQ") searchQRef: ElementRef;
 
   @Input("showCancleBtn")
@@ -48,7 +49,8 @@ export class ProductSearchComponent implements OnInit {
   }
 
   onBlur(event): void {
-
+    this.showDowpdown=false;
+    this.ShowCancleBtn=false;
     if (event != undefined && event.returnValue) {
       const { target } = event;
       const { innerText } = target;
@@ -60,10 +62,14 @@ export class ProductSearchComponent implements OnInit {
   }
 
   clearText(event) {
+    this._showCancleBtn=true;
     window.getSelection()
       .selectAllChildren(
         this.searchQRef.nativeElement
       );
+
+      this.showDowpdown=true;
+
   }
 
 
