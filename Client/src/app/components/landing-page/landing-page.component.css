@@ -38,8 +38,6 @@
 
 
 
-
-
 .grid-container-three {
     display: grid;
     -ms-grid-columns: auto auto auto;
@@ -79,8 +77,7 @@
   
   
   .item1 {
-    /* grid-column-start: 1;
-    grid-column-end: 2; */
+
   }
   .section-header{
     border: 1px solid red;
@@ -96,7 +93,7 @@
     float: left;
    }
    .right{
-       float:right
+       float:right;
    }
 
    .section-header > .header-text{
