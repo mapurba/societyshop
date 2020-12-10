@@ -7,12 +7,14 @@ import {PrivacyComponent} from "./privacy/privacy.component";
 import {AccountComponent} from "./account/account.component";
 import {SignupComponent} from "./signup/signup.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
+import { ChartComponent } from "./components/chart/chart.component";
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: LandingPageComponent},
   {path: 'admin', pathMatch: 'full', component: AdminConsoleComponent},
   {path: 'land', pathMatch: 'full', component: LandingPageComponent},
   {path: 'list', pathMatch: 'full', component: FeedComponent},
+  {path: 'cart', pathMatch: 'full', component: ChartComponent},
   {path: 'profile', pathMatch: 'full', component: ProfileComponent},
   {
     path: 'blog', pathMatch: 'full', children: [

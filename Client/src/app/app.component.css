@@ -1,3 +1,32 @@
 .main{
     margin-top: 10px;
 }
+
+.footer-nav{
+    display: flex;
+    /* width: 100vw; */
+    padding: 5px;
+    flex-flow: wrap;
+    text-align: center;
+}
+
+.footer-nav > div{
+    flex: 25%;
+    height: 35px;
+}
+.nav-footer-main{
+    width: 100%;
+    background-color: #b09e64eb;
+
+}
+.fa , .icon {
+    font-size: 15px;
+    text-decoration: none;
+    color: unset;
+    display: block;
+}
+
+.icon::before{
+    display: block;
+    font-size: 1.3em;
+}

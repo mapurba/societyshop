@@ -11,10 +11,13 @@ import { ItemSchema, Price } from 'src/app/schemas/ItemSchema';
 export class ItemsInListComponent implements OnInit {
 
   @Input("item") item: ItemSchema;
+  @Input("addMore") addMoreQuatity;
   constructor() {
   }
 
   ngOnInit() {
   }
+
+  // increase the quantaity amount 
 
 }
