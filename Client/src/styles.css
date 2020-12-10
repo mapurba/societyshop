@@ -46,11 +46,14 @@ html {
     margin-bottom: 20px;
     display: block;
     border-bottom: 1px solid lightgray;
+    background-color: #FED656;
   }
   
   .navbar-brand{
-    font-size: 18px;
-    float: left;
+    font-size: 1rem;
+    padding: 0;
+    padding-left: 5px;
+    align-self: center;
   }
   
   .navbar-toggler {
@@ -134,3 +137,7 @@ html {
     margin-right: 6px;
   }
   
+
+  * {
+    box-sizing: border-box;
+  }

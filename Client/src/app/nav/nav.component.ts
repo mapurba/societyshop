@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { UserService } from '../shared/services/user.service';
 export class NavComponent implements OnInit {
 
   loggedInUserDetails:any;
-  constructor(private userService:UserService) { }
+  userLoggedin:boolean = false;
+  loadingUser:boolean = true;
+  constructor(private userService:UserService,public route:Router) { }
 
   ngOnInit() {
    this.getUserDetail();
@@ -22,9 +25,15 @@ export class NavComponent implements OnInit {
   }
 
   getUserDetail(){
+    this.loadingUser=true;
     this.userService.getUserDetailV2().subscribe((res)=>{
+      this.loadingUser=false;
+      this.userLoggedin=true;
       this.loggedInUserDetails=res.user;
       this.userService.getUserDetailV3(res.user);
+    },(err)=>{
+      this.loadingUser=false;
+      this.userLoggedin =false;
     })
   }
 

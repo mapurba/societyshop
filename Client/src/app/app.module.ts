@@ -16,6 +16,9 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { PostPhotosToblogComponent } from './post-photos-toblog/post-photos-toblog.component';
 import { SignupComponent } from './signup/signup.component';
 import { AccountComponent } from './account/account.component';
+import { ItemListComponent } from './components/item-list/item-list.component';
+import { ItemsInListComponent } from './components/items-in-list/items-in-list.component';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { AccountComponent } from './account/account.component';
     PrivacyComponent,
     PostPhotosToblogComponent,
     SignupComponent,
-    AccountComponent
+    AccountComponent,
+    ItemListComponent,
+    ItemsInListComponent,
+    ProductSearchComponent
   ],
   imports: [
     BrowserModule,

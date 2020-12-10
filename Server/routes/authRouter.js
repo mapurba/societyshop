@@ -20,7 +20,9 @@ authRouter.get('/google', passport.authenticate('google',
         scope: ['profile', 'email'],
         accessType: 'offline',
         prompt: 'consent'
-    }));
+    }), (req, res) => {
+        console.log("ss");
+    });
 
 authRouter.get('/google/callback',
     passport.authenticate('google', {failureRedirect: '/login'}),

@@ -1,0 +1,19 @@
+
+<!-- using this search bx for few routes only 
+#todo route bases back callbak to be sent to the apporiate parent comonenetS
+-->
+<div class="search-box">
+<div class="input">
+  <div class="text" contenteditable="true" #searchQ (blur)="onBlur($event)" (click)="clearText($event)" (keyup)="onKeyUp($event)" > 
+    <div class="placeholder">
+      &#128270; Search all the products
+    </div>
+  
+  </div>
+
+</div>
+<div class="action" [hidden]="!_showCancleBtn">
+  <button > Cancle </button>
+</div>
+
+</div>
