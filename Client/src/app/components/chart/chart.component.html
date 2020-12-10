@@ -1,10 +1,5 @@
 <div class="main-container">
-  <!-- <div class="top-quick-search">
-    <button class="btn"> All </button>
-    <button class="btn"> Makeup</button>
-    <button class="btn"> Skin Care</button>
-  </div> -->
-
+ 
   <div class="item-list">
     <div class="flex-action-container">
       <div class="flex-left">
@@ -12,10 +7,10 @@
       </div>
       <div class="flex-right">
   
-        20 items found
+        {{dummylist?.length}} items found
       </div>
     </div>
-    <div class="flex-list-container">
+    <div class="flex-list-container" *ngIf="dummylist?.length>0">
       <div class="list-item" *ngFor="let item of dummylist">
         <items-in-list [item]=item [addMore]="true">1</items-in-list>
       </div>

@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { ComponentStateService } from 'src/app/services/component-state.service';
 
 @Component({
   selector: 'product-search',
@@ -10,18 +11,25 @@ import { debounceTime } from 'rxjs/operators';
 export class ProductSearchComponent implements OnInit {
 
   _showCancleBtn: boolean = false;
-  subject: Subject<any> = new Subject();
   searchQ: string;
-  defaultText = "Search all the products";
-  showDowpdown :boolean= false;
-  @ViewChild("searchQ") searchQRef: ElementRef;
+  defaultText: string = "Search all the products";
+  showDowpdown: boolean = false;
+  subject: Subject<any> = new Subject();
+  _show: boolean = false;
 
+  @ViewChild("searchQ") searchQRef: ElementRef;
+  @Input("show") setShow(val) {
+    this._show = val;
+  }
   @Input("showCancleBtn")
   set ShowCancleBtn(val) {
     this.ShowCancleBtn = val;
+    if (val) {
+      this.searchQRef.nativeElement.click();
+    }
   }
 
-  constructor() { }
+  constructor(private componentStateServie:ComponentStateService) { }
 
   ngOnInit(): void {
 
@@ -37,7 +45,13 @@ export class ProductSearchComponent implements OnInit {
 
 
   ngAfterViewInit() {
+    let stateName = "openSearchBoxState";
 
+    this.componentStateServie.onStateChange('openSearchBoxState').subscribe((res)=>{
+      if(res.id===stateName){
+        this.searchQRef.nativeElement.click();
+      }
+    })
   }
 
   onKeyUp(event): void {
@@ -50,8 +64,8 @@ export class ProductSearchComponent implements OnInit {
 
   onBlur(event): void {
     if (event != undefined && event.returnValue) {
-    this.showDowpdown=false;
-    this.ShowCancleBtn=this.ShowCancleBtn?!this.ShowCancleBtn:this.ShowCancleBtn;
+      this.showDowpdown = false;
+      this.ShowCancleBtn = this.ShowCancleBtn ? !this.ShowCancleBtn : this.ShowCancleBtn;
       const { target } = event;
       const { innerText } = target;
       if (innerText.length <= 1) {
@@ -61,41 +75,26 @@ export class ProductSearchComponent implements OnInit {
 
   }
 
-  touch(){
-    console.log('hi');
+  touch() {
   }
 
-  overlayTouch(event){
-    console.log(event);
+  overlayTouch(event) {
   }
 
-  mouseLeave(event):void{
-    console.log("S");
-    this.showDowpdown=false;
-
-  }
-
-  touchMoving(event){
-    console.log({"moving":event});
-  }
-  touchStart(event){
-    console.log({"start":event});
-
-  }
-  touchEnd(event){
-    console.log({"end":event});
+  mouseLeave(event): void {
+    this.showDowpdown = false;
 
   }
 
 
   clearText(event) {
-    this._showCancleBtn=true;
+    this._showCancleBtn = true;
     window.getSelection()
       .selectAllChildren(
         this.searchQRef.nativeElement
       );
 
-      this.showDowpdown=true;
+    this.showDowpdown = true;
 
   }
 
