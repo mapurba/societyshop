@@ -10,7 +10,7 @@ import { ItemSchema, Price } from 'src/app/schemas/ItemSchema';
 })
 export class ItemsInListComponent implements OnInit {
 
-  @Input("item") item[]: ItemSchema;
+  @Input("item") item: ItemSchema[];
   constructor() {
   }
 
