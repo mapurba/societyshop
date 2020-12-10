@@ -9,6 +9,8 @@ import { UserService } from '../shared/services/user.service';
 export class NavComponent implements OnInit {
 
   loggedInUserDetails:any;
+  userLoggedin:boolean = false;
+  loadingUser:boolean = true;
   constructor(private userService:UserService) { }
 
   ngOnInit() {
@@ -22,9 +24,15 @@ export class NavComponent implements OnInit {
   }
 
   getUserDetail(){
+    this.loadingUser=true;
     this.userService.getUserDetailV2().subscribe((res)=>{
+      this.loadingUser=false;
+      this.userLoggedin=true;
       this.loggedInUserDetails=res.user;
       this.userService.getUserDetailV3(res.user);
+    },(err)=>{
+      this.loadingUser=false;
+      this.userLoggedin =false;
     })
   }
 

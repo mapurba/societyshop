@@ -1,7 +1,35 @@
 .login_avatar{
-  width: 48px;
+  width: 28px;
   border-radius: 50%;
 }
 .profile_menu_image{
   cursor: pointer;
+}
+.humbug > div{
+  width: 21px;
+  height: 2px;
+  background-color: black;
+  margin: 6px 0;
+}
+.menu-bar{
+  display: flex;
+}
+
+.menu-bar > .humbug{
+  flex:10%;
+}
+.menu-bar >.navbar-brand{
+  flex:90%;
+
+}
+.navbar-brand{
+  font-size: 1rem;
+  padding: 0;
+  padding-left: 12px;
+  align-self: center;
+  font-weight: bold;
+
+}
+.container{
+  padding-bottom: 5px;
 }

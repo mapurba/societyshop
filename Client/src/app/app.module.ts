@@ -18,6 +18,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AccountComponent } from './account/account.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { ItemsInListComponent } from './components/items-in-list/items-in-list.component';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ItemsInListComponent } from './components/items-in-list/items-in-list.c
     SignupComponent,
     AccountComponent,
     ItemListComponent,
-    ItemsInListComponent
+    ItemsInListComponent,
+    ProductSearchComponent
   ],
   imports: [
     BrowserModule,
