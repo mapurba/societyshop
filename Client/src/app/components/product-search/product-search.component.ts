@@ -49,9 +49,9 @@ export class ProductSearchComponent implements OnInit {
   }
 
   onBlur(event): void {
-    this.showDowpdown=false;
-    this.ShowCancleBtn=false;
     if (event != undefined && event.returnValue) {
+    this.showDowpdown=false;
+    this.ShowCancleBtn=this.ShowCancleBtn?!this.ShowCancleBtn:this.ShowCancleBtn;
       const { target } = event;
       const { innerText } = target;
       if (innerText.length <= 1) {
@@ -60,6 +60,33 @@ export class ProductSearchComponent implements OnInit {
     }
 
   }
+
+  touch(){
+    console.log('hi');
+  }
+
+  overlayTouch(event){
+    console.log(event);
+  }
+
+  mouseLeave(event):void{
+    console.log("S");
+    this.showDowpdown=false;
+
+  }
+
+  touchMoving(event){
+    console.log({"moving":event});
+  }
+  touchStart(event){
+    console.log({"start":event});
+
+  }
+  touchEnd(event){
+    console.log({"end":event});
+
+  }
+
 
   clearText(event) {
     this._showCancleBtn=true;
