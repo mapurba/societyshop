@@ -28,7 +28,5 @@ export  class ItemSchema{
         this.price=price;
         this.image=image;
         this.brand=brand;
-        console.log(name)
-
     }
   }

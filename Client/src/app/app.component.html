@@ -13,20 +13,20 @@
 
     <footer class="nav-footer-main" [hidden]="scrollDirection=='DOWN'">
         <div class="footer-nav">
-            
+            <!-- change these links to router link -->
             <div class="menu">
-                <a class="fa fa-home icon" href="/">Home</a>
+                <a class="fa fa-home icon" routerLink="">Home</a>
             </div>
 
             <div class="menu">
-                <a class="fa fa-th icon" href="/"> Category</a>
+                <a class="fa fa-th icon" routerLink=""> Category</a>
             </div>
             <div class="menu">
-                <a class="fa fa-search icon" href="/"> search</a>
+                <i class="fa fa-search icon" (click)="openSearch()"> search</i>
             </div>
 
             <div class="menu">
-                <a class="fa fa-shopping-cart icon" href="/cart">Cart</a>
+                <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a>
                 
             </div>
         </div>
