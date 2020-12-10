@@ -4,9 +4,11 @@
 -->
 <div class="search-box">
 <div class="input">
+  <i class="fa fa-search" aria-hidden="true"> </i>
+
   <div class="text" contenteditable="true" #searchQ (blur)="onBlur($event)" (click)="clearText($event)" (keyup)="onKeyUp($event)" > 
     <div class="placeholder">
-      &#128270; Search all the products
+     Search all the products
     </div>
   
   </div>

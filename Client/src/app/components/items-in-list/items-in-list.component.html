@@ -2,14 +2,14 @@
   <div class="content">
     <div class="product-img">
       <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgMo9yphqX8wtozYl4lDh65X-5VltvWD2Os-kFjkym1O9scq6D-BGVbD8t&usqp=CAc" />
+        src="{{item?.image}}" />
     </div>
     <div class="product-discp">
       <p class="brad-name">{{item.brand}}</p>
       <p class="text">{{item.name}}</p>
       <div class="rating" *ngIf="item?.rating">
         <span class="rating-value"
-          style="background-color: rgb(227, 235, 218); color: rgb(104, 159, 56);"> 4.3 
+          style="background-color: rgb(227, 235, 218); color: rgb(104, 159, 56);"> {{item?.rating?.value}}
           <svg
             xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 26 26">
             <path fill="#689f38" fill-rule="nonzero"

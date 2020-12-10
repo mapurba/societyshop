@@ -19,6 +19,7 @@ import { AccountComponent } from './account/account.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { ItemsInListComponent } from './components/items-in-list/items-in-list.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductSearchComponent } from './components/product-search/product-sear
     AccountComponent,
     ItemListComponent,
     ItemsInListComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

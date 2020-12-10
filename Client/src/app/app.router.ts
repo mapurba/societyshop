@@ -6,10 +6,12 @@ import {AdminConsoleComponent} from "./admin/admin-console/admin-console.compone
 import {PrivacyComponent} from "./privacy/privacy.component";
 import {AccountComponent} from "./account/account.component";
 import {SignupComponent} from "./signup/signup.component";
+import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: FeedComponent},
   {path: 'admin', pathMatch: 'full', component: AdminConsoleComponent},
+  {path: 'land', pathMatch: 'full', component: LandingPageComponent},
   {path: 'feed', pathMatch: 'full', component: FeedComponent},
   {path: 'profile', pathMatch: 'full', component: ProfileComponent},
   {
