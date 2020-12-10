@@ -9,10 +9,10 @@ import {SignupComponent} from "./signup/signup.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 
 const appRoutes: Routes = [
-  {path: '', pathMatch: 'full', component: FeedComponent},
+  {path: '', pathMatch: 'full', component: LandingPageComponent},
   {path: 'admin', pathMatch: 'full', component: AdminConsoleComponent},
   {path: 'land', pathMatch: 'full', component: LandingPageComponent},
-  {path: 'feed', pathMatch: 'full', component: FeedComponent},
+  {path: 'list', pathMatch: 'full', component: FeedComponent},
   {path: 'profile', pathMatch: 'full', component: ProfileComponent},
   {
     path: 'blog', pathMatch: 'full', children: [

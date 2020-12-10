@@ -3,6 +3,8 @@
     flex-wrap: wrap;
     font-size:  30px;
     text-align: center;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
  .flex-rows{
@@ -13,6 +15,8 @@
     background-color: white;
     box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
     margin-bottom: 5px;
+    width: inherit;
+
 }
 
 
@@ -68,15 +72,15 @@
     cursor: pointer;
   }
 
-  .grid-container-two > div > img, .grid-container-three > div > img{
+  .grid-container-two > div > a > img, .grid-container-three > div > a >img{
     object-fit: cover;
     width: 100%;
   }
   
   
   .item1 {
-    grid-column-start: 1;
-    grid-column-end: 2;
+    /* grid-column-start: 1;
+    grid-column-end: 2; */
   }
   .section-header{
     border: 1px solid red;
