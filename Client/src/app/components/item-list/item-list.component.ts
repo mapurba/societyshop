@@ -9,8 +9,8 @@ import { ItemSchema } from 'src/app/schemas/ItemSchema';
 export class ItemListComponent implements OnInit {
 
 
-  dummylist[]: ItemSchema;
-  
+  dummylist: ItemSchema[];
+
   constructor() {
 
     this.dummylist = [];
