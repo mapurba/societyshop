@@ -42,8 +42,7 @@ p{
 
 .product-img >img{
     background-color: white;
-    width: 58px;
-
+    width:100%;
 }
 
 .content > .product-discp{
