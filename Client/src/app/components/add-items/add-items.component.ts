@@ -58,7 +58,7 @@ export class AddItemsComponent implements OnInit {
     this.showCreate = !this.showCreate;
   }
   createItem() {
-    console.log(this.createItemForm.controls);
+    this.addNewItem(DummyItem);
   }
   prevent(event) {
     event.stopPropagation();
