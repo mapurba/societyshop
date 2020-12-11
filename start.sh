@@ -1,2 +1,2 @@
-sh ./Client/start.sh
+# sh ./Client/start.sh
 sh ./Server/start.sh

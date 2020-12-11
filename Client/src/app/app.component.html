@@ -1,36 +1,30 @@
 <div calss="container">
+  <app-nav></app-nav>
+  <div class="main mb-2">
+    <router-outlet></router-outlet>
+  </div>
 
+  <!-- fix this -->
+  <br />
+  <br />
 
-    <app-nav></app-nav>
-    <div class="main mb-2">
-        <router-outlet></router-outlet>
+  <footer class="nav-footer-main" [hidden]="scrollDirection == 'DOWN'">
+    <div class="footer-nav">
+      <!-- change these links to router link -->
+      <div class="menu">
+        <a class="fa fa-home icon" routerLink="">Home</a>
+      </div>
+
+      <div class="menu">
+        <a class="fa fa-th icon" routerLink=""> Category</a>
+      </div>
+      <div class="menu">
+        <i class="fa fa-search icon" (click)="openSearch()"> search</i>
+      </div>
+
+      <div class="menu">
+        <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a>
+      </div>
     </div>
-
-    <!-- fix this -->
-    <br>
-    <br>
-
-
-    <footer class="nav-footer-main" [hidden]="scrollDirection=='DOWN'">
-        <div class="footer-nav">
-            <!-- change these links to router link -->
-            <div class="menu">
-                <a class="fa fa-home icon" routerLink="">Home</a>
-            </div>
-
-            <div class="menu">
-                <a class="fa fa-th icon" routerLink=""> Category</a>
-            </div>
-            <div class="menu">
-                <i class="fa fa-search icon" (click)="openSearch()"> search</i>
-            </div>
-
-            <div class="menu">
-                <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a>
-                
-            </div>
-        </div>
-    </footer>
-
-
+  </footer>
 </div>
