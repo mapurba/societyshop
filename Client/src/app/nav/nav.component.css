@@ -37,8 +37,16 @@
   padding-left: 20px;
 }
 
-@media(min-width:700px){
-    .search-box{
-        display: none;
-    }
+@media (min-width: 700px) {
+  .search-box {
+    display: none;
+  }
+}
+.dropdown-item {
+  padding: 5px;
+  font-size: 13px;
+}
+
+.dropdown-menu{
+  min-width: 0;
 }
