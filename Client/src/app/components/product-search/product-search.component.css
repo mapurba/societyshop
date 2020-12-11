@@ -1,74 +1,70 @@
-.search-box{
-    display: flex;
-    width: 100%;
-    /* padding:10px;     */
+.search-box {
+  display: flex;
+  width: 100%;
+  /* padding:10px;     */
+  position: relative;
 }
-.search-box >.input{
-    flex:100%;
-    background-color: white;
-    border-radius: 6px;
-    margin-right: 5px;
-    padding: 3px;
-    position: relative;
-
-}
-
-.search-box > .action{
-    flex:10%;
+.search-box > .input {
+  flex: 100%;
+  background-color: white;
+  border-radius: 6px;
+  margin-right: 5px;
+  padding: 3px;
+  position: relative;
 }
 
-.action > button{
-    border-radius: 12px;
-    box-sizing: border-box;
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    font-weight: 600;
-}
-.text{
-    width: 92%;
-    display: inline-flex;
-    outline-color: transparent;
+.search-box > .action {
+  flex: 10%;
 }
 
-.search-dropdown{
-    display: block;
-    position: absolute;
-    left: 1px;
-    right: 0px;
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
-    height: 100vh;
-    margin-top: 5px;
-    z-index: 3;
-    background-color: aliceblue;
-
-
+.action > button {
+  border-radius: 12px;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
 }
-.search-dropdown > .item{
-    border-bottom: 1px solid #ffe7e7;
-    width: 100%;
-    height: 31px;
-    padding-left: 17px;
-
+.text {
+  width: 92%;
+  display: inline-flex;
+  outline-color: transparent;
 }
 
-.item::after{
-    content: "\f062";
-    float: right;
-    transform: rotate(-45deg);
-    font-size: small;
+.search-dropdown {
+  display: block;
+  position: absolute;
+  background-color: #fdfeff;
+  left: 0;
+}
+.search-dropdown > .item {
+  border-bottom: 1px solid #ffe7e7;
+  width: 100%;
+  height: 31px;
+  padding-left: 17px;
 }
 
-.overlay{
-    width: 100vw;
-    position: absolute;
-    height: 100vh;
-    top: 0;
-    z-index: 0;
-    overflow: scroll ;
-    left: 0;
-    background-color: #f0f8ff00;
+.item::after {
+  content: "\f062";
+  float: right;
+  transform: rotate(-45deg);
+  font-size: small;
+  padding-right: 17px;
 }
 
+.overlay {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  z-index: 0;
+  overflow: scroll;
+  left: 0;
+  background-color: #f0f8ff00;
+}
 
-
+.floating-dropdown {
+  display: block;
+  width: 100vw;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+}
