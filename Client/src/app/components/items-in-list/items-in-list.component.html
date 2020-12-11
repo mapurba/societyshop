@@ -33,6 +33,6 @@
     <div class="sales-batch">
       Super Sale
     </div>
-    <button class="btn add-to-cart" (click)="addToCart(item)">+Add</button>
+    <button class="btn add-to-cart" [disabled]="disableAdd" (click)="addToCart(item)">+Add</button>
   </div>
 </div>

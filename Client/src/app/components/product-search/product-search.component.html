@@ -1,33 +1,39 @@
-
 <!-- using this search bx for few routes only 
 #todo route bases back callbak to be sent to the apporiate parent comonenetS
 -->
 <div class="search-box">
-<div class="input">
-  <i class="fa fa-search" aria-hidden="true"> </i>
-
-  <div class="text" contenteditable="true" #searchQ (click)="clearText($event)" (keyup)="onKeyUp($event)" > 
-    <div class="placeholder">
-     Search all the products
-    </div>  
+  <div class="input">
+    <i class="fa fa-search" aria-hidden="true"> </i>
+    <div
+      class="text"
+      contenteditable="true"
+      #searchQ
+      (click)="clearText($event)"
+      (keyup)="onKeyUp($event)"
+    >
+      <div class="placeholder">Search all the products</div>
+    </div>
   </div>
- 
-
-</div>
-<div class="action" [hidden]="!_showCancleBtn">
-  <button (click)="onBlur($event)" > Cancle </button>
-</div>
-
+  <div class="action" [hidden]="!_showCancleBtn">
+    <button (click)="onBlur($event)">Cancle</button>
+  </div>
+  <span></span>
+  
 </div>
 
-
-<div class="search-dropdown" *ngIf="showDowpdown" (mouseleave)="mouseLeave($event)">
-  <div class="fa item" (touch)="touch()"> Potato </div>
-  <div class="fa item"> Potato </div>
-  <div class="fa item"> Potato </div>
-  <div class="fa item"> Potato </div>
-  <div class="fa item"> Potato </div>
-  <div class="fa item"> Potato </div>
-  <div class="fa item"> Potato </div>
-  <div class="fa item"> Potato </div>
-</div>
+<div class="floating-dropdown">
+    <div
+      class="search-dropdown"
+      *ngIf="showDowpdown"
+      (mouseleave)="mouseLeave($event)"
+    >
+      <div class="fa item" (touch)="touch()">Potato</div>
+      <div class="fa item">Potato</div>
+      <div class="fa item">Potato</div>
+      <div class="fa item">Potato</div>
+      <div class="fa item">Potato</div>
+      <div class="fa item">Potato</div>
+      <div class="fa item">Potato</div>
+      <div class="fa item">Potato</div>
+    </div>
+  </div>

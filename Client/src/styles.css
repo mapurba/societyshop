@@ -1,18 +1,19 @@
-@import '/assets/css/style.css';
+/* @import '/assets/css/style.css'; */
 
 body{
     background-color:#f2eaea!important;
 }
 
 html {
-    position: relative;
-    min-height: 100%;
+    /* position: relative;
+    min-height: 100%; */
   }
   
   body {
     padding-top: 80px;
     margin-bottom: 75px;
     font-size: 14px;
+    line-height: 1;
   }
   
   footer {

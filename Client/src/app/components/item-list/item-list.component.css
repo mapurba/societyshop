@@ -33,14 +33,10 @@
 .list-item{
     /* background-color: dodgerblue; */
     padding: 10px;
-    flex: 50%;
+    /* flex: auto; */
 }
 
-@media(max-width:800px){
-    .list-item{
-        flex: 100%;
-    }
-}
+
 
 .main-container{
     background-color: whitesmoke;
