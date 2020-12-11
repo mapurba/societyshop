@@ -1,15 +1,14 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
-import { ComponentStateService } from 'src/app/services/component-state.service';
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { Subject } from "rxjs";
+import { debounceTime } from "rxjs/operators";
+import { ComponentStateService } from "src/app/services/component-state.service";
 
 @Component({
-  selector: 'product-search',
-  templateUrl: './product-search.component.html',
-  styleUrls: ['./product-search.component.css']
+  selector: "product-search",
+  templateUrl: "./product-search.component.html",
+  styleUrls: ["./product-search.component.css"],
 })
 export class ProductSearchComponent implements OnInit {
-
   _showCancleBtn: boolean = false;
   searchQ: string;
   defaultText: string = "Search all the products";
@@ -29,29 +28,26 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
-  constructor(private componentStateServie:ComponentStateService) { }
+  constructor(private componentStateServie: ComponentStateService) {}
 
   ngOnInit(): void {
-
-    this.subject
-      .pipe(debounceTime(500))
-      .subscribe((res) => {
-        this.searchQ = res;
-        // get the search result from this object
-        console.log(this.searchQ);
-      }
-      );
+    this.subject.pipe(debounceTime(500)).subscribe((res) => {
+      this.searchQ = res;
+      // get the search result from this object
+      console.log(this.searchQ);
+    });
   }
-
 
   ngAfterViewInit() {
     let stateName = "openSearchBoxState";
 
-    this.componentStateServie.onStateChange('openSearchBoxState').subscribe((res)=>{
-      if(res.id===stateName){
-        this.searchQRef.nativeElement.click();
-      }
-    })
+    this.componentStateServie
+      .onStateChange("openSearchBoxState")
+      .subscribe((res) => {
+        if (res.id === stateName) {
+          this.searchQRef.nativeElement.click();
+        }
+      });
   }
 
   onKeyUp(event): void {
@@ -65,39 +61,30 @@ export class ProductSearchComponent implements OnInit {
   onBlur(event): void {
     if (event != undefined && event.returnValue) {
       this.showDowpdown = false;
-      this.ShowCancleBtn = this.ShowCancleBtn ? !this.ShowCancleBtn : this.ShowCancleBtn;
+      console.log("S");
       const { target } = event;
       const { innerText } = target;
       if (innerText.length <= 1) {
         this.searchQRef.nativeElement.innerText = this.defaultText;
       }
     }
-
+    this._showCancleBtn = false;
   }
 
-  touch() {
-  }
+  touch() {}
 
-  overlayTouch(event) {
-  }
+  overlayTouch(event) {}
 
   mouseLeave(event): void {
     this.showDowpdown = false;
+    this._showCancleBtn = false;
 
   }
-
 
   clearText(event) {
     this._showCancleBtn = true;
-    window.getSelection()
-      .selectAllChildren(
-        this.searchQRef.nativeElement
-      );
+    window.getSelection().selectAllChildren(this.searchQRef.nativeElement);
 
     this.showDowpdown = true;
-
   }
-
-
-
 }
