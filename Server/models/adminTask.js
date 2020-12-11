@@ -4,12 +4,7 @@ const mongoose = require('mongoose');
 // const InstagramPhotos = require('./BlogPhotos');
 const User = require('../models/User');
 
-const adminTask = new mongoose.Schema({
-
-    user: {type: {}, required: true},
-    userMedia:{type:[],required:true},
-    published:{type:Boolean,required:false,default:false}
-},{ timestamps: true });
+const adminTask = new mongoose.Schema();
 
 
 /**

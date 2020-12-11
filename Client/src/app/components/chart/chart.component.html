@@ -1,20 +1,13 @@
 <div class="main-container">
- 
   <div class="item-list">
     <div class="flex-action-container">
-      <div class="flex-left">
-        Group items ( Cart )
-      </div>
-      <div class="flex-right">
-  
-        {{dummylist?.length}} items found
-      </div>
+      <div class="flex-left">Group items ( Cart )</div>
+      <div class="flex-right">{{ dummylist?.length }} items found</div>
     </div>
-    <div class="flex-list-container" *ngIf="dummylist?.length>0">
+    <div class="flex-list-container" *ngIf="dummylist?.length > 0">
       <div class="list-item" *ngFor="let item of dummylist">
-        <items-in-list [item]=item [addMore]="true">1</items-in-list>
+        <items-in-list [item]="item" [addMore]="true">1</items-in-list>
       </div>
     </div>
   </div>
-
 </div>

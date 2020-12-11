@@ -1,32 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { State } from 'src/app/schemas/componentStateSchema';
-import { ItemSchema } from 'src/app/schemas/ItemSchema';
-import { ComponentStateService } from 'src/app/services/component-state.service';
+import { Component, OnInit } from "@angular/core";
+import { State } from "src/app/schemas/componentStateSchema";
+import { ItemSchema } from "src/app/schemas/ItemSchema";
+import { ComponentStateService } from "src/app/services/component-state.service";
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  selector: "app-chart",
+  templateUrl: "./chart.component.html",
+  styleUrls: ["./chart.component.css"],
 })
 export class ChartComponent implements OnInit {
-
- 
-
   dummylist: ItemSchema[];
 
-  addToCartState:string = "addToCart";
+  addToCartState: string = "addToCart";
 
+  constructor(private component̥StateService: ComponentStateService) {}
 
-  constructor(private componentStateService:ComponentStateService) {
-
-  }
-
-  ngAfterViewInit(){
-    
-  }
+  ngAfterViewInit() {}
 
   ngOnInit() {
-    const state =this.componentStateService.getStateByStateName(this.addToCartState) as State;
-    this.dummylist = state?state.value:[];
+    const state = this.component̥StateService.getStateByStateName(
+      this.addToCartState
+    ) as State;
+    this.dummylist = state ? state.value : [];
   }
 }
