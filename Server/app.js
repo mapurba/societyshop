@@ -1,46 +1,43 @@
 /**
  * Module dependencies.
  */
-const express = require('express');
-const compression = require('compression');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const logger = require('morgan');
-const chalk = require('chalk');
-const errorHandler = require('errorhandler');
-const lusca = require('lusca');
+const express = require("express");
+const compression = require("compression");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const chalk = require("chalk");
+const errorHandler = require("errorhandler");
+const lusca = require("lusca");
 // @ts-ignore
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 // @ts-ignore
-const MongoStore = require('connect-mongo')(session);
-const flash = require('express-flash');
-const path = require('path');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const expressValidator = require('express-validator');
-const expressStatusMonitor = require('express-status-monitor');
-const sass = require('node-sass-middleware');
-
-
+const MongoStore = require("connect-mongo")(session);
+const flash = require("express-flash");
+const path = require("path");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const expressValidator = require("express-validator");
+const expressStatusMonitor = require("express-status-monitor");
+const sass = require("node-sass-middleware");
+const autoIncrement = require("mongoose-auto-increment");
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.load({ path: '.env.example' });
-
-
-
+dotenv.load({ path: ".env.example" });
 
 /**
  * import routes
- * 
+ *
  */
 
-const apiRoutes = require('./routes/routeAdmin');
+const apiRoutes = require("./routes/routeAdmin");
+const { collection } = require("./models/User");
 /**
  * Create Express server.
  */
-const  app = express();
+const app = express();
 
 /**
  * Connect to MongoDB.
@@ -77,6 +74,10 @@ try {
   console.log(err);
 }
 
+
+
+
+
 mongoose.connection.on("error", (err) => {
   console.error(err);
   console.log(
@@ -90,17 +91,19 @@ mongoose.connection.on("error", (err) => {
 /**
  * Express configuration.
  */
-app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
-app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8089);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set("host", process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0");
+app.set("port", process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8089);
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 app.use(expressStatusMonitor());
 app.use(compression());
-app.use(sass({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public')
-}));
-app.use(logger('dev'));
+app.use(
+  sass({
+    src: path.join(__dirname, "public"),
+    dest: path.join(__dirname, "public"),
+  })
+);
+app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
@@ -127,9 +130,9 @@ app.use(flash());
 //     lusca.csrf()(req, res, next);
 //   }
 // });
-app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
-app.disable('x-powered-by');
+app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
@@ -137,26 +140,29 @@ app.use((req, res, next) => {
 // @ts-ignore
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
-  if (!req.user
-    && req.path !== '/login'
-    && req.path !== '/signup'
-    && !req.path.match(/^\/auth/)
-    && !req.path.match(/\./)) {
-      // @ts-ignore
-      req.session.returnTo = req.originalUrl;
-    } else if (req.user
-    && (req.path === '/account' || req.path.match(/^\/api/))) {
-      // @ts-ignore
-      req.session.returnTo = req.originalUrl;
-    }
+  if (
+    !req.user &&
+    req.path !== "/login" &&
+    req.path !== "/signup" &&
+    !req.path.match(/^\/auth/) &&
+    !req.path.match(/\./)
+  ) {
+    // @ts-ignore
+    req.session.returnTo = req.originalUrl;
+  } else if (
+    req.user &&
+    (req.path === "/account" || req.path.match(/^\/api/))
+  ) {
+    // @ts-ignore
+    req.session.returnTo = req.originalUrl;
+  }
   next();
 });
 // @ts-ignore
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   // res.header('Content-Type', 'application/json');
   next();
 });
-
 
 /* #todo
  remove all the server side rendereing code so all the routes from the server is hedden
@@ -167,18 +173,16 @@ app.use(function(req, res, next) {
 // app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
 // app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), { maxAge: 31557600000 }));
 
-
 /**
  * API examples routes.
  */
 
-app.use('/api/', apiRoutes);
-
+app.use("/api/", apiRoutes);
 
 /**
  * Error Handler.
  */
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === "development") {
   // only use in development
   app.use(errorHandler());
 } else {
@@ -192,7 +196,7 @@ if (process.env.NODE_ENV === 'development') {
 /**
  * Start Express server.
  */
-app.listen(app.get('port'), () => {
+app.listen(app.get("port"), () => {
   // @ts-ignore
   console.log(
     "%s App is running at http://localhost:%d in %s mode",
