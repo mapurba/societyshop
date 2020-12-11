@@ -21,6 +21,7 @@ import { ItemsInListComponent } from './components/items-in-list/items-in-list.c
 import { ProductSearchComponent } from './components/product-search/product-search.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { AddItemsComponent } from './components/add-items/add-items.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ChartComponent } from './components/chart/chart.component';
     ProductSearchComponent,
     LandingPageComponent,
     ChartComponent,
+    AddItemsComponent,
   ],
   imports: [
     BrowserModule,
