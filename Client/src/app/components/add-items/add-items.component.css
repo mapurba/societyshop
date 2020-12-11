@@ -33,14 +33,16 @@
 .list-item{
     /* background-color: dodgerblue; */
     padding: 10px;
-    flex: 50%;
+    flex: 20%;
 }
 
-@media(max-width:800px){
+@media(max-width:600px){
     .list-item{
-        flex: 100%;
+        flex:100%;
     }
 }
+
+
 
 .main-container{
     background-color: whitesmoke;
@@ -108,3 +110,6 @@
     width: 75%;
 }
 
+.sticky-header{
+    text-align: center;
+}

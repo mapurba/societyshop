@@ -12,6 +12,7 @@ export class ItemsInListComponent implements OnInit {
   @Input("item") item: ItemSchema;
   @Input("addMore") addMoreQuatity;
 
+  @Input("disabled") disableAdd?: boolean = false; //only enable it in the end user mode
   stateName: string = "addToCart";
   constructor(private componentStateService: ComponentStateService) {}
 
