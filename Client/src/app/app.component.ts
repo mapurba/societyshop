@@ -46,7 +46,14 @@ export class AppComponent {
     this.componentStateServie.onStateChange("addToCart").subscribe((res) => {
       if (res.id === stateName) {
         // this.searchQRef.nativeElement.click();
-        console.log(res);
+        console.log(res.value.get("addToCart").value);
+
+        // #Todo cleanup
+        ///store item to local storage if needed
+        localStorage.setItem(
+          "cartValue",
+          JSON.stringify(res.value.get("addToCart").value)
+        );
       }
     });
   }
