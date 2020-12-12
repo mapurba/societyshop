@@ -34,9 +34,9 @@
   padding-bottom: 5px;
 }
 
-.p-l-r-20 {
-  padding-right: 20px;
-  padding-left: 20px;
+.p-l-r-9 {
+  padding-right: 9px;
+  padding-left: 9px;
 }
 
 @media (min-width: 700px) {
