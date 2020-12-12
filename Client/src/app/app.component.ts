@@ -40,7 +40,7 @@ export class AppComponent {
     this.scroller = setTimeout(() => {
       console.log("scroll stopped...");
       this.isScrolling = false;
-      this.fullscreenmodes();
+      // this.fullscreenmodes();
     }, 200);
     console.log("scrolling");
     this.isScrolling = true;
