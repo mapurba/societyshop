@@ -36,6 +36,7 @@
   position: absolute;
   background-color: #fdfeff;
   left: 0;
+  height: 100vh;
 }
 .search-dropdown > .item {
   border-bottom: 1px solid #ffe7e7;
@@ -66,5 +67,6 @@
 .floating-dropdown {
   display: block;
   width: 100vw;
+  margin-top: 2px;
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
 }
