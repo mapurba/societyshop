@@ -18,6 +18,19 @@ export class ItemsInListComponent implements OnInit {
 
   ngOnInit() {}
 
+  retriveItemFromLocalStore(id): any[] {
+    let lastValue = localStorage.getItem(id);
+    if (lastValue && lastValue.length > 0) {
+      try {
+        return JSON.parse(localStorage.getItem(id));
+      } catch (e) {
+        console.error("JSon parse failed");
+        return [];
+      }
+    }
+    return [];
+  }
+
   addToCart(item: ItemSchema) {
     if (this.componentStateService.getStateByStateName(this.stateName)) {
       let cart = this.componentStateService.getStateByStateName(
@@ -27,7 +40,13 @@ export class ItemsInListComponent implements OnInit {
       let newState = new State(this.stateName, cart.value);
       this.componentStateService.setState(newState);
     } else {
-      let newState = new State(this.stateName, [item]);
+      //creating empty state is not exist in the datastore
+      //right time to add the items of local storage to the datastore
+
+      let newState = new State(
+        this.stateName,
+        [...this.retriveItemFromLocalStore("cartValue"),item]
+      );
       this.componentStateService.setState(newState);
     }
   }
