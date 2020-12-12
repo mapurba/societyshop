@@ -23,14 +23,6 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    // this.dummylist = this.retriveItemFromLocalStore();
-    //  const state = this.component̥StateService.getStateByStateName(
-    //    this.addToCartState
-    //  ) as State;
-    //  this.dummylist = state ? state.value : this.retriveItemFromLocalStore("cartValue");
-
-    // this.dummylist=
   }
   ngDoCheck() {
     // this.dummylist = this.retriveItemFromLocalStore();

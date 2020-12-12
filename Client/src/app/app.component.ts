@@ -1,7 +1,8 @@
 import { Component, HostListener, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/platform-browser";
-import { State } from "./schemas/componentStateSchema";
+import { State, StateNames, UserSession } from "./schemas/componentStateSchema";
 import { ComponentStateService } from "./services/component-state.service";
+import { SessionService } from "./services/session.service";
 
 @Component({
   selector: "app-root",
@@ -19,7 +20,8 @@ export class AppComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private componentStateServie: ComponentStateService
+    private componentStateServie: ComponentStateService,
+    private sessionService:SessionService
   ) {}
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -30,34 +32,61 @@ export class AppComponent {
     this.scrollDirection = this.getScrollDirection(scrollX, scrollY);
   }
 
-  // scrollToTop() {
-  //   (function smoothscroll() {
-  //     var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-  //     if (currentScroll > 0) {
-  //       window.requestAnimationFrame(smoothscroll);
-  //       window.scrollTo(0, currentScroll - (currentScroll / 8));
-  //     }
-  //   })();
-  // }
-
   ngOnInit() {
-    let stateName = "addToCart";
+    this.componentStateServie
+      .onStateChange(StateNames.addToCart)
+      .subscribe((res) => {
+        if (res.id === StateNames.addToCart) {
+          // this.searchQRef.nativeElement.click();
+          console.log(res.value.get(StateNames.addToCart).value);
 
-    this.componentStateServie.onStateChange("addToCart").subscribe((res) => {
-      if (res.id === stateName) {
-        // this.searchQRef.nativeElement.click();
-        console.log(res.value.get("addToCart").value);
+          // #Todo cleanup
+          ///store item to local storage if needed
+          // update session store
+          
+          //update local store
+          localStorage.setItem(
+            "cartValue",
+            JSON.stringify(res.value.get(StateNames.addToCart).value)
+          );
+          setTimeout(() => {
+            console.log("....update serrion.");
+            this.updateSessionStateByProperty(
+              "cartValue",
+              res.value.get(StateNames.addToCart).value
+            );
+          }, 4000);
+        }
+      });
+    this.componentStateServie
+      .onStateChange(StateNames.UserSession)
+      .subscribe((res) => {
+        if (res.id === StateNames.UserSession) {
+          // this.searchQRef.nativeElement.click();
+          let userSession = res.value.get(StateNames.UserSession).value as UserSession;
+          console.log(userSession);
 
-        // #Todo cleanup
-        ///store item to local storage if needed
-        localStorage.setItem(
-          "cartValue",
-          JSON.stringify(res.value.get("addToCart").value)
-        );
-      }
-    });
+          // use session service to persist the date to db
+          this.sessionService.updateStateTodb(userSession);
+
+          console.info(
+            "user session uodate need to send these to server from here"
+          );
+          // #Todo cleanup
+          ///store item to local storage if needed
+          // localStorage.setItem(
+          //   "UserSession",
+          //   JSON.stringify(res.value.get("UserSession").value)
+          // );
+        }
+      });
   }
 
+  updateSessionStateByProperty(propsName, value: any,) {
+    let session = new UserSession();
+    session.cartValue = value;
+    this.sessionService.updateUserSession(session);
+  };
   getScrollDirection(scrollX, scrollY) {
     // var directionX = !scrollX ? "NONE" : scrollX > 0 ? "LEFT" : "RIGHT";
     var directionY = !scrollY ? "NONE" : scrollY > 0 ? "UP" : "DOWN";
@@ -66,7 +95,12 @@ export class AppComponent {
 
   openSearch() {
     this.openSearchSwitch = true;
-    let newState = new State("openSearchBoxState", true);
+    let newState = new State(StateNames.OpenSearchBoxState, true);
     this.componentStateServie.setState(newState);
+  }
+
+
+  getStateFromDbAndSetToComponentState() {
+    
   }
 }

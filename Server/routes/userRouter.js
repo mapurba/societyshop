@@ -45,5 +45,7 @@ userRouter.get('/details', auth.isAuthenticated, userController.userDetail);
 // userRouter.post('/user/postPhotosToBlog',passportConfig.isAuthenticated,userController.postPhotostoBlog);
 // userRouter.get('/user/blogPhotos',userController.getUserBlogPhotos);
 
+userRouter.post("/session", auth.isAuthenticated, userController.updateSession);
+
 
 module.exports = userRouter;

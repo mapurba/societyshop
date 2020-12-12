@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { State } from "src/app/schemas/componentStateSchema";
-import { ItemSchema, Price } from "src/app/schemas/ItemSchema";
+import { State, StateNames } from "src/app/schemas/componentStateSchema";
+import { ItemSchema, Price, retriveItemFromLocalStore } from "src/app/schemas/ItemSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
 
 @Component({
@@ -14,42 +14,30 @@ export class ItemsInListComponent implements OnInit {
 
   @Input("disabled") disableAdd?: boolean = false; //only enable it in the end user mode
   stateName: string = "addToCart";
-  constructor(private componentStateService: ComponentStateService) {}
+  constructor(private componentStateService: ComponentStateService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  retriveItemFromLocalStore(id): any[] {
-    let lastValue = localStorage.getItem(id);
-    if (lastValue && lastValue.length > 0) {
-      try {
-        return JSON.parse(localStorage.getItem(id));
-      } catch (e) {
-        console.error("JSon parse failed");
-        return [];
-      }
-    }
-    return [];
-  }
+
 
   addToCart(item: ItemSchema) {
-    if (this.componentStateService.getStateByStateName(this.stateName)) {
+    if (this.componentStateService.getStateByStateName(StateNames.addToCart)) {
       let cart = this.componentStateService.getStateByStateName(
-        this.stateName
+        StateNames.addToCart
       ) as State;
       cart.value.push(item);
-      let newState = new State(this.stateName, cart.value);
+      let newState = new State(StateNames.addToCart, cart.value);
       this.componentStateService.setState(newState);
     } else {
       //creating empty state is not exist in the datastore
       //right time to add the items of local storage to the datastore
 
-      let newState = new State(
-        this.stateName,
-        [...this.retriveItemFromLocalStore("cartValue"),item]
-      );
+      let newState = new State(StateNames.addToCart, [
+        ...retriveItemFromLocalStore("cartValue"),
+        item,
+      ]);
       this.componentStateService.setState(newState);
     }
   }
 
-  // increase the quantaity amount
 }
