@@ -61,4 +61,5 @@
 
 .dropdown {
   flex: 1;
+  text-align: end;
 }

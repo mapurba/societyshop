@@ -69,39 +69,6 @@ textarea {
   font-size: 16px;
 }
 
-/* 
-  * Solves Bootstrap 4 issue
-  * https://github.com/twbs/bootstrap/issues/25654
-  */
-/* Styles in sm disposition and up */
-@media (min-width: 576px) and (max-width: 767px) {
-  /* Solves bs4 bug */
-  .navbar-expand-md > .container,
-  .navbar-expand-lg > .container,
-  .navbar-expand-xl > .container {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-  }
-}
-
-/* Styles in md disposition and up */
-@media (min-width: 768px) and (max-width: 991px) {
-  /* Solves bs4 bug */
-  .navbar-expand-lg > .container,
-  .navbar-expand-xl > .container {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-  }
-}
-
-/* Styles in lg disposition and up */
-@media (min-width: 992px) and (max-width: 1199px) {
-  /* Solves bs4 bug */
-  .navbar-expand-xl > .container {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-  }
-}
 
 .alert {
   margin-top: 20px;
