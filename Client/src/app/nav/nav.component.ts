@@ -56,28 +56,22 @@ export class NavComponent implements OnInit {
   }
 
   UpdateCartfromSession(itemsOfCart: ItemSchema[]) {
-    // itemsOfCart.forEach((item) => {
-    console.log("S");
-      if (
-        this.componentStateService.getStateByStateName(StateNames.addToCart)
-      ) {
-        let cart = this.componentStateService.getStateByStateName(
-          StateNames.addToCart
-        ) as State;
-        cart.value.push(itemsOfCart);
-        let newState = new State(StateNames.addToCart, cart.value);
-        this.componentStateService.setState(newState);
-      } else {
-        //creating empty state is not exist in the datastore
-        //right time to add the items of local storage to the datastore
+    if (this.componentStateService.getStateByStateName(StateNames.addToCart)) {
+      let cart = this.componentStateService.getStateByStateName(
+        StateNames.addToCart
+      ) as State;
+      cart.value.push(itemsOfCart);
+      let newState = new State(StateNames.addToCart, cart.value);
+      this.componentStateService.setState(newState);
+    } else {
+      //creating empty state is not exist in the datastore
+      //right time to add the items of local storage to the datastore
 
-        let newState = new State(StateNames.addToCart, [
-          // ...retriveItemFromLocalStore("cartValue"),//do we need this here ???
-          ...itemsOfCart,
-        ]);
-        this.componentStateService.setState(newState);
-      }
-    // });
-    
+      let newState = new State(StateNames.addToCart, [
+        // ...retriveItemFromLocalStore("cartValue"),//do we need this here ???
+        ...itemsOfCart,
+      ]);
+      this.componentStateService.setState(newState);
+    }
   }
 }
