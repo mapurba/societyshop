@@ -1,8 +1,11 @@
+// @ts-ignore
 const mongoose = require("mongoose");
+// @ts-ignore
 const Item = require("../models/Items");
 const Products = require("../models/Items");
 
 /* Helper Methods */
+// @ts-ignore
 _getProductsByIds = (ids) => {
   return new Promise((resolve, reject) => {
     return Products.find()
@@ -16,6 +19,7 @@ _getProductsByIds = (ids) => {
 };
 
 /* APIs */
+// @ts-ignore
 exports.getAllProducts = (req, res) => {
   // res.status(200).send({})
 
@@ -26,10 +30,12 @@ exports.getAllProducts = (req, res) => {
 
 exports.getProductsByIds = (req, res) => {
   const ids = req.body.ids;
+  // @ts-ignore
   _getProductsByIds(ids)
     .then((items) => {
       res.status(200).send(items);
     })
+    // @ts-ignore
     .catch((e) => res.status(404));
 };
 
@@ -39,10 +45,12 @@ exports.addProduct = async (req, res) => {
     ...payload,
   };
   let productCount = new Products();
+  // @ts-ignore
   productCount.nextCount((err, cnt) => {
     newItem.itemCode = cnt;
     const product = new Products({ ...newItem });
     product.save(
+      // @ts-ignore
       (done) => {
         res.status(200).send({ success: true, itemCode: cnt });
       },
@@ -51,33 +59,7 @@ exports.addProduct = async (req, res) => {
       }
     );
   });
+};
 
-  //     newItem.itemCode = 0;
-
-  //   for (let index = 0; index < payload.length; index++) {
-  //     const item = payload[index];
-
-  //
-  //       let products = new Products({ ...newItem });
-  //       let count = 0;
-  //     await products.nextCount((err, cnt) => {
-  //       //  products
-  //         count = cnt
-  //     console.log(count);
-
-  //    });
-
-  //     console.log(count);
-
-  //   }
-  //   res.status(489).send({});
-
-  // Products.insertMany(payload).then((result) => {
-  //     res.status(200).send(result);
-
-  // }).catch((err) => {
-  //     res.status(489).send(err);
-  // });
-};;
-
+// @ts-ignore
 exports._getProductsByIds = _getProductsByIds;

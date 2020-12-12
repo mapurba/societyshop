@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
+import { StateNames } from "src/app/schemas/componentStateSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
 
 @Component({
@@ -28,7 +29,7 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
-  constructor(private componentStateServie: ComponentStateService) {}
+  constructor(private componentStateServie: ComponentStateService) { }
 
   ngOnInit(): void {
     this.subject.pipe(debounceTime(500)).subscribe((res) => {
@@ -39,12 +40,10 @@ export class ProductSearchComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    let stateName = "openSearchBoxState";
-
     this.componentStateServie
-      .onStateChange("openSearchBoxState")
+      .onStateChange(StateNames.OpenSearchBoxState)
       .subscribe((res) => {
-        if (res.id === stateName) {
+        if (res.id === StateNames.OpenSearchBoxState) {
           this.searchQRef.nativeElement.click();
         }
       });
@@ -78,9 +77,9 @@ export class ProductSearchComponent implements OnInit {
     this._showCancleBtn = false;
   }
 
-  touch() {}
+  touch() { }
 
-  overlayTouch(event) {}
+  overlayTouch(event) { }
 
   mouseLeave(event): void {
     this.showDowpdown = false;

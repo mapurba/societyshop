@@ -42,3 +42,16 @@ export const DummyItem = new ItemSchema({
     "https://www.bigbasket.com/media/uploads/p/m/40018854_4-himalaya-purifying-neem-face-wash.jpg",
   brand: "Kent",
 });
+
+export function retriveItemFromLocalStore(id): any[] {
+  let lastValue = localStorage.getItem(id);
+  if (lastValue && lastValue.length > 0) {
+    try {
+      return JSON.parse(localStorage.getItem(id));
+    } catch (e) {
+      console.error("JSon parse failed");
+      return [];
+    }
+  }
+  return [];
+}

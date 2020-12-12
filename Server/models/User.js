@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt-nodejs");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
+const UserSession = {
+  cartValue: [],
+};
 
 const userSchema = new mongoose.Schema(
   {
@@ -19,7 +22,11 @@ const userSchema = new mongoose.Schema(
     linkedin: String,
     steam: String,
     tokens: Array,
-
+    session: {
+      type: UserSession,
+      required: false,
+      default: UserSession,
+    },
     profile: {
       name: String,
       gender: String,
