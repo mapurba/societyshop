@@ -58,16 +58,23 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
-  onBlur(event): void {
+  onBlur(event, cancle?: boolean): void {
+    if (cancle) {
+      this._showCancleBtn = false;
+      this.showDowpdown = false;
+      this.searchQRef.nativeElement.innerText = this.defaultText;
+
+      return;
+    }
     if (event != undefined && event.returnValue) {
       this.showDowpdown = false;
-      console.log("S");
       const { target } = event;
       const { innerText } = target;
       if (innerText.length <= 1) {
         this.searchQRef.nativeElement.innerText = this.defaultText;
       }
     }
+
     this._showCancleBtn = false;
   }
 
@@ -78,7 +85,6 @@ export class ProductSearchComponent implements OnInit {
   mouseLeave(event): void {
     this.showDowpdown = false;
     this._showCancleBtn = false;
-
   }
 
   clearText(event) {
