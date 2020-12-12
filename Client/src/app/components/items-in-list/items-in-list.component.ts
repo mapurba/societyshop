@@ -3,6 +3,8 @@ import { State, StateNames } from "src/app/schemas/componentStateSchema";
 import { ItemSchema, Price, retriveItemFromLocalStore } from "src/app/schemas/ItemSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
 
+
+
 @Component({
   selector: "items-in-list",
   templateUrl: "./items-in-list.component.html",

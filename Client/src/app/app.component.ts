@@ -40,11 +40,30 @@ export class AppComponent {
     this.scroller = setTimeout(() => {
       console.log("scroll stopped...");
       this.isScrolling = false;
+      this.fullscreenmodes();
     }, 200);
     console.log("scrolling");
     this.isScrolling = true;
   }
 
+  elem: any;
+  isFullScreen: boolean;
+  @HostListener("document:fullscreenchange", ["$event"])
+  @HostListener("document:webkitfullscreenchange", ["$event"])
+  @HostListener("document:mozfullscreenchange", ["$event"])
+  @HostListener("document:MSFullscreenChange", ["$event"])
+  fullscreenmodes(event) {
+    this.chkScreenMode();
+  }
+  chkScreenMode() {
+    if (document.fullscreenElement) {
+      //fullscreen
+      this.isFullScreen = true;
+    } else {
+      //not in full screen
+      this.isFullScreen = false;
+    }
+  }
   ngOnInit() {
     this.componentStateServie
       .onStateChange(StateNames.addToCart)
@@ -94,6 +113,7 @@ export class AppComponent {
           // );
         }
       });
+    // this.autofullscreen();
   }
 
   updateSessionStateByProperty(propsName, value: any) {
@@ -116,13 +136,19 @@ export class AppComponent {
 
   getStateFromDbAndSetToComponentState() {}
 
-  // scrollEnd(callback, timeout) {
-  //   $(this).scroll(function () {
-  //     var $this = $(this);
-  //     if ($this.data("scrollTimeout")) {
-  //       clearTimeout($this.data("scrollTimeout"));
-  //     }
-  //     $this.data("scrollTimeout", setTimeout(callback, timeout));
-  //   });
+  // autofullscreen() {
+  //   const element = this.document.querySelector("body");
+  //   // make the element go to full-screen mode
+  //   console.log("funncreen error");
+
+  //   element
+  //     .requestFullscreen()
+  //     .then(function () {
+  //       console.log("element has entered fullscreen mode successfully");
+  //     })
+  //     .catch(function (error) {
+  //       // element could not enter fullscreen mode
+  //       console.log("funncreen error");
+  //     });
   // }
 }

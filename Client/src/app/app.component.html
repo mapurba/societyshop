@@ -1,4 +1,4 @@
-<div calss="container">
+<div calss="container" (click)="fullscreenmodes($event)">
   <app-nav [hidden]="scrollDirection == 'DOWN' && isScrolling"></app-nav>
   <div class="main mb-2 container">
     <router-outlet></router-outlet>

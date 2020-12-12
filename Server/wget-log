@@ -1,0 +1,6 @@
+--2020-12-12 19:56:46--  https://www.bigbasket.com/productservice/autocomplete/?term=grocery
+Resolving www.bigbasket.com (www.bigbasket.com)... 184.25.163.126, 2600:140f:b:1a7::12d9, 2600:140f:b:1b0::12d9
+Connecting to www.bigbasket.com (www.bigbasket.com)|184.25.163.126|:443... connected.
+HTTP request sent, awaiting response... 500 Internal Server Error
+2020-12-12 19:56:46 ERROR 500: Internal Server Error.
+

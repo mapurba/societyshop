@@ -22,6 +22,7 @@ import { ProductSearchComponent } from './components/product-search/product-sear
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { AddItemsComponent } from './components/add-items/add-items.component';
+import { SanitizemePipe } from './pipes/sanitizeme.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AddItemsComponent } from './components/add-items/add-items.component';
     LandingPageComponent,
     ChartComponent,
     AddItemsComponent,
+    SanitizemePipe,
   ],
   imports: [
     BrowserModule,
