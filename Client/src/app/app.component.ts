@@ -17,11 +17,13 @@ export class AppComponent {
   currentXPos;
   currentYpos;
   openSearchSwitch: boolean = false;
+  isScrolling: boolean = false;
+  scroller: any;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private componentStateServie: ComponentStateService,
-    private sessionService:SessionService
+    private sessionService: SessionService
   ) {}
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -30,6 +32,17 @@ export class AppComponent {
     this.currentXPos = window.pageXOffset;
     this.currentYpos = window.pageYOffset;
     this.scrollDirection = this.getScrollDirection(scrollX, scrollY);
+
+    //this code checks if the user is scrolling
+    if (this.scroller) {
+      clearTimeout(this.scroller);
+    }
+    this.scroller = setTimeout(() => {
+      console.log("scroll stopped...");
+      this.isScrolling = false;
+    }, 200);
+    console.log("scrolling");
+    this.isScrolling = true;
   }
 
   ngOnInit() {
@@ -43,7 +56,7 @@ export class AppComponent {
           // #Todo cleanup
           ///store item to local storage if needed
           // update session store
-          
+
           //update local store
           localStorage.setItem(
             "cartValue",
@@ -63,7 +76,8 @@ export class AppComponent {
       .subscribe((res) => {
         if (res.id === StateNames.UserSession) {
           // this.searchQRef.nativeElement.click();
-          let userSession = res.value.get(StateNames.UserSession).value as UserSession;
+          let userSession = res.value.get(StateNames.UserSession)
+            .value as UserSession;
           console.log(userSession);
 
           // use session service to persist the date to db
@@ -82,11 +96,11 @@ export class AppComponent {
       });
   }
 
-  updateSessionStateByProperty(propsName, value: any,) {
+  updateSessionStateByProperty(propsName, value: any) {
     let session = new UserSession();
     session.cartValue = value;
     this.sessionService.updateUserSession(session);
-  };
+  }
   getScrollDirection(scrollX, scrollY) {
     // var directionX = !scrollX ? "NONE" : scrollX > 0 ? "LEFT" : "RIGHT";
     var directionY = !scrollY ? "NONE" : scrollY > 0 ? "UP" : "DOWN";
@@ -97,10 +111,18 @@ export class AppComponent {
     this.openSearchSwitch = true;
     let newState = new State(StateNames.OpenSearchBoxState, true);
     this.componentStateServie.setState(newState);
+    window.scroll(this.currentXPos, this.currentYpos - 1);
   }
 
+  getStateFromDbAndSetToComponentState() {}
 
-  getStateFromDbAndSetToComponentState() {
-    
-  }
+  // scrollEnd(callback, timeout) {
+  //   $(this).scroll(function () {
+  //     var $this = $(this);
+  //     if ($this.data("scrollTimeout")) {
+  //       clearTimeout($this.data("scrollTimeout"));
+  //     }
+  //     $this.data("scrollTimeout", setTimeout(callback, timeout));
+  //   });
+  // }
 }

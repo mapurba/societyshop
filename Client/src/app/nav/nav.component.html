@@ -10,40 +10,21 @@
         <!-- <a class="navbar-brand" href="#">S</a> -->
       </div>
     </div>
-    <div class="humbug center-text" >
+    <div class="humbug center-text">
       <a class="navbar-brand" href="#">your local store</a>
     </div>
     <div class="dropdown show">
-      <a
-        id="dropdownMenuButton"
-        class="profile_menu_image"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-        (click)="hideProfileDropDown = !hideProfileDropDown"
-      >
-        <img
-          class="login_avatar"
-          *ngIf="userLoggedin && !loadingUser"
-          [src]="loggedInUserDetails?.profile?.picture"
-        />
+      <a id="dropdownMenuButton" class="profile_menu_image" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false" (click)="hideProfileDropDown = !hideProfileDropDown">
+        <img class="login_avatar" *ngIf="userLoggedin && !loadingUser" [src]="loggedInUserDetails?.profile?.picture" />
       </a>
       <span class="profile_menu_image" *ngIf="loadingUser">...</span>
-      <a
-        class="btn btn-md btn-sm instagram-login-button"
-        *ngIf="!userLoggedin && !loadingUser"
-        role="button"
-        href="/api/auth/google"
-      >
-        Login</a
-      >
+      <a class="btn btn-md btn-sm instagram-login-button" *ngIf="!userLoggedin && !loadingUser" role="button"
+        href="/api/auth/google">
+        Login</a>
 
-      <div
-        class="dropdown-menu dropdown-menu-right"
-        [hidden]="hideProfileDropDown"
-        (mouseleave)="hideProfileDropDown = !hideProfileDropDown"
-        style="display: block"
-      >
+      <div class="dropdown-menu dropdown-menu-right" [hidden]="hideProfileDropDown"
+        (mouseleave)="hideProfileDropDown = !hideProfileDropDown" style="display: block">
         <a class="dropdown-item" routerLink="/account">Account</a>
         <a class="dropdown-item" routerLink="/logout">Logout</a>
       </div>

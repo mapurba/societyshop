@@ -1,5 +1,5 @@
 <div calss="container">
-  <app-nav></app-nav>
+  <app-nav [hidden]="scrollDirection == 'DOWN' && isScrolling"></app-nav>
   <div class="main mb-2 container">
     <router-outlet></router-outlet>
   </div>
@@ -8,7 +8,7 @@
   <br />
   <br />
 
-  <footer class="nav-footer-main" [hidden]="scrollDirection == 'DOWN'">
+  <footer class="nav-footer-main">
     <div class="footer-nav">
       <!-- change these links to router link -->
       <div class="menu">
