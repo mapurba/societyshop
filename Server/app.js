@@ -21,7 +21,7 @@ const expressValidator = require("express-validator");
 const expressStatusMonitor = require("express-status-monitor");
 const sass = require("node-sass-middleware");
 const autoIncrement = require("mongoose-auto-increment");
-
+const http = require("https");
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -133,6 +133,15 @@ app.use(flash());
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
 app.disable("x-powered-by");
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
@@ -178,6 +187,52 @@ app.use(function (req, res, next) {
  */
 
 app.use("/api/", apiRoutes);
+
+  
+app.get("/api/data", function (req, res) {
+  // console.log(req.query)
+
+  var params = "";
+  var q = req.query;
+
+  for (let i of Object.keys(q)) {
+    console.log(i);
+    params += i;
+    params += "=";
+    params += q[i];
+    params += "&";
+  }
+
+  let apiparms = {
+    app_id: "5f582589",
+    app_key: "b439aeba063d17fb6cd92cfd41670443",
+    // "ingr":
+  };
+
+  for (let i of Object.keys(apiparms)) {
+    console.log(i);
+    params += i;
+    params += "=";
+    params += apiparms[i];
+    params += "&";
+  }
+  console.log(params);
+  http.get(
+    "https://api.edamam.com/api/food-database/v2/parser?" + params,
+    (resp) => {
+      var body = { data: "" };
+
+      resp.on("data", function (chunk) {
+        body.data += chunk;
+      });
+
+      resp.on("end", function () {
+        body.data = JSON.parse(body.data);
+        res.send({ body }).status(200);
+      });
+    }
+  );
+});
 
 /**
  * Error Handler.

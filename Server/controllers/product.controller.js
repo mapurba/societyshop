@@ -44,6 +44,7 @@ exports.addProduct = async (req, res) => {
   let newItem = {
     ...payload,
   };
+  console.log(req.body);
   let productCount = new Products();
   // @ts-ignore
   productCount.nextCount((err, cnt) => {

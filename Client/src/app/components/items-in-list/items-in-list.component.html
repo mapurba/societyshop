@@ -5,7 +5,7 @@
     </div>
     <div class="product-discp">
       <p class="brad-name">{{item.brand}} <span style="font-size: 10px;"> {{item?.itemCode}}</span></p>
-      <p class="text">{{item.name}}</p>
+      <p class="text">{{item.name|sanitizeme}}</p>
       <div class="rating" *ngIf="item?.rating">
         <span class="rating-value" style="background-color: rgb(227, 235, 218); color: rgb(104, 159, 56);">
           {{item?.rating?.value}}
@@ -18,7 +18,7 @@
         </span>
         <span class="rating-count"> {{item?.rating?.totalCount}} Ratings</span></div>
 
-      <select class="btn option" *ngIf="item?.varients?.length > 1">
+      <select class="btn option" *ngIf="item?.varients?.length > 0">
         <option *ngFor="let varient of item?.varients">{{varient}}</option>
       </select>
 
