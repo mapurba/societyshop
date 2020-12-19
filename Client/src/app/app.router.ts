@@ -11,6 +11,10 @@ import { ChartComponent } from "./components/chart/chart.component";
 import { AddItemsComponent } from "./components/add-items/add-items.component";
 import { PaymentComponent } from "./components/payment/payment.component";
 
+
+
+// important need to complete lazy loading of the routes
+
 const appRoutes: Routes = [
   { path: "", pathMatch: "full", component: LandingPageComponent },
   { path: "admin", pathMatch: "full", component: AdminConsoleComponent },

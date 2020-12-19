@@ -25,7 +25,7 @@
       </tr>
     </table>
     <table>
-       <tr>
+      <tr>
         <td class="dynamicContentForm"></td>
       </tr>
       <div class="radioBttns">
@@ -54,18 +54,8 @@
         <button class="btn action" [disabled]="isOrderCreating" (click)="createOrderAndToPayment()">{{ !isOrderCreating ? "Order Now" : "...." }} </button>
         <button type="submit" class="btn" id="payBtn" [hidden]="!enablePayment">Pay Later</button>
         <div class="preloader" [hidden]="!isloading()">
-        <!-- <iframe src="https://www.payumoney.com/invoicing/invoice/7319607/INVl2d6t3o4r5j201216#/" class="payment-iframe" title="payuPayment"></iframe> -->
         </div>
       </tr>
-      <!-- <tr>
-        <td colspan="2">
-          <button type="submit" id="payBtn">Pay Cashfree</button>
-        </td>
-      </tr> -->
     </table>
   </form>
-</div>
-
-<div>
- 
 </div>
