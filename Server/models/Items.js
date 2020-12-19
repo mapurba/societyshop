@@ -45,6 +45,10 @@ let item = new mongoose.Schema(
     brand: {
       type: String,
     },
+    quantity: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

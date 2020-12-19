@@ -7,6 +7,15 @@
     "pathRewrite": {
       "^/api": "/api"
     }
+  },
+   "/calculateSecretKey.": {
+    "target": "https://us-central1-societystore.cloudfunctions.net/moduleExports/",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/calculateSecretKey.": "/calculateSecretKey."
+    }
   }
 }
 

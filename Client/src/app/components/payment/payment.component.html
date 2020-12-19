@@ -1,0 +1,61 @@
+<!-- <p>payment works!</p> -->
+
+<div class="floating-paymentform">
+  <form id="seamlessBasic" style="position: relative">
+    <table class="mainForm">
+      <tr>
+        <td>order id</td>
+        <td><input type="text" name="orderId" [ngModel]="orderId" /></td>
+      </tr>
+      <tr>
+        <td>order amount</td>
+        <td><input type="text" name="orderAmount" value="2" /></td>
+      </tr>
+      <tr>
+        <td>customer name</td>
+        <td><input type="text" name="customerName" value="a" /></td>
+      </tr>
+      <tr>
+        <td>customer email</td>
+        <td><input type="text" name="customerEmail" value="a@a.com" /></td>
+      </tr>
+      <tr>
+        <td>customer phone</td>
+        <td><input type="text" name="customerPhone" value="1234512345" /></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td class="dynamicContentForm"></td>
+      </tr>
+      <div class="radioBttns">
+        <tr>
+          <td>
+            <input class="btn" class="paymentRadioInput" type="radio" id="card" name="paymentOption" value="card"
+              checked />
+            <label disabled for="card">card</label>
+          </td>
+          <td>
+            <input class="btn" class="paymentRadioInput" type="radio" id="nb" name="paymentOption" value="nb" />
+            <label for="netBanking">net banking</label>
+          </td>
+          <td>
+            <input class="btn" class="paymentRadioInput" type="radio" id="wallet" name="paymentOption" value="wallet" />
+            <label for="wallets">wallets</label>
+          </td>
+          <td>
+            <input class="btn" class="paymentRadioInput" type="radio" id="upi" name="paymentOption" value="upi" />
+            <label for="upi">upi</label>
+          </td>
+        </tr>
+      </div>
+      <tr>
+        <button class="btn action" routerLink="/payment">Cancle</button>
+        <button class="btn action" [disabled]="isOrderCreating" (click)="createOrderAndToPayment()">{{ !isOrderCreating ? "Order Now" : "...." }} </button>
+        <button type="submit" class="btn" id="payBtn" [hidden]="!enablePayment">Pay Later</button>
+        <div class="preloader" [hidden]="!isloading()">
+        </div>
+      </tr>
+    </table>
+  </form>
+</div>

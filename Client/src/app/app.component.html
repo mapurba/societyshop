@@ -1,5 +1,8 @@
 <div calss="container" (click)="fullscreenmodes($event)">
-  <app-nav [hidden]="scrollDirection == 'DOWN' && isScrolling"></app-nav>
+  <div class="main mb-2 container">
+
+  <app-nav [isScrolling]="scrollStop"></app-nav>
+  </div>
   <div class="main mb-2 container">
     <router-outlet></router-outlet>
   </div>
@@ -8,7 +11,8 @@
   <br />
   <br />
 
-  <footer class="nav-footer-main">
+  <footer class="nav-footer-main"
+  >
     <div class="footer-nav">
       <!-- change these links to router link -->
       <div class="menu">

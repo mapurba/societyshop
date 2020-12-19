@@ -9,6 +9,11 @@ import {SignupComponent} from "./signup/signup.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { ChartComponent } from "./components/chart/chart.component";
 import { AddItemsComponent } from "./components/add-items/add-items.component";
+import { PaymentComponent } from "./components/payment/payment.component";
+
+
+
+// important need to complete lazy loading of the routes
 
 const appRoutes: Routes = [
   { path: "", pathMatch: "full", component: LandingPageComponent },
@@ -18,6 +23,8 @@ const appRoutes: Routes = [
   { path: "cart", pathMatch: "full", component: ChartComponent },
   { path: "add-items", pathMatch: "full", component: AddItemsComponent },
   { path: "profile", pathMatch: "full", component: ProfileComponent },
+  { path: "payment", pathMatch: "full", component: PaymentComponent },
+
   {
     path: "blog",
     pathMatch: "full",

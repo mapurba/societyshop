@@ -1,7 +1,6 @@
 {
   "index": "/index.html",
-  "dataGroups":
-  [
+  "dataGroups": [
     {
       "name": "api",
       "urls": ["/api"],
@@ -10,26 +9,32 @@
         "maxAge": "0u",
         "strategy": "freshness"
       }
-    }],
-  "assetGroups": [{
-    "name": "app",
-    "installMode": "prefetch",
-    "resources": {
-      "files": [
-        "/favicon.ico",
-        "/index.html",
-        "/*.css",
-        "/*.js"
-      ]
+    },
+    {
+      "name": "api",
+      "urls": ["/calculateSecretKey."],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
     }
-  }, {
-    "name": "assets",
-    "installMode": "lazy",
-    "updateMode": "prefetch",
-    "resources": {
-      "files": [
-        "/assets/**"
-      ]
+  ],
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/favicon.ico", "/index.html", "/*.css", "/*.js"]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/assets/**"]
+      }
     }
-  }]
+  ]
 }
