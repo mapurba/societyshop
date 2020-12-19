@@ -34,7 +34,37 @@
   body{
     font-size: 12px !important;
   }
+  .container{
+    margin: 0;
+    padding: 0 !important;
+  }
 }
 .container{
   padding:4px;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fed6;
+  
+  margin-top: 80px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: yellowr;
+
+  border-radius: 30px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border-radius: 30px;
 }

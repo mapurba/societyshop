@@ -9,8 +9,8 @@
   background-color: white;
   border-radius: 6px;
   margin-right: 5px;
-  padding: 3px;
   position: relative;
+  padding: 0px 6px;
 }
 
 .search-box > .action {
@@ -26,9 +26,10 @@
   font-weight: 600;
 }
 .text {
-  width: 92%;
   display: inline-flex;
   outline-color: transparent;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 .search-dropdown {
@@ -37,6 +38,8 @@
   background-color: #fdfefff2;
   left: 0;
   border-radius: 4px;
+  width: 83vw;
+  margin-left: -18px;
 
   /* height: 100vh; */
 }
@@ -76,4 +79,8 @@
 .item.last {
   height: 100vh !important;
   background-color: #000000de;
+}
+
+.placeholder {
+  font-size: 11px;
 }

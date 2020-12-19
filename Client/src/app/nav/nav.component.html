@@ -1,34 +1,149 @@
-<div class="navbar navbar-light fixed-top navbar-expand-lg">
-  <div class="container p-l-r-9">
-    <div class="menu-bar">
-      <div class="humbug">
-        <div></div>
-        <div></div>
-        <div></div>
+<!-- <div class="navbar navbar-light fixed-top navbar-expand-lg">
+    <div class="container p-l-r-9">
+      <div class="menu-bar">
+        <div class="humbug">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="humbug">
+        </div>
       </div>
-      <div class="humbug">
-        <!-- <a class="navbar-brand" href="#">S</a> -->
+      <div class="humbug center-text">
+        <a class="navbar-brand" href="#">your local store</a>
       </div>
-    </div>
-    <div class="humbug center-text">
-      <a class="navbar-brand" href="#">your local store</a>
-    </div>
-    <div class="dropdown show">
-      <a id="dropdownMenuButton" class="profile_menu_image" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false" (click)="hideProfileDropDown = !hideProfileDropDown">
-        <img class="login_avatar" *ngIf="userLoggedin && !loadingUser" [src]="loggedInUserDetails?.profile?.picture" />
-      </a>
-      <span class="profile_menu_image" *ngIf="loadingUser">...</span>
-      <a class="btn btn-md btn-sm instagram-login-button" *ngIf="!userLoggedin && !loadingUser" role="button"
-        href="/api/auth/google">
-        Login</a>
+      <div class="dropdown show">
+        <a id="dropdownMenuButton" class="profile_menu_image" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" (click)="hideProfileDropDown = !hideProfileDropDown">
+          <img class="login_avatar" *ngIf="userLoggedin && !loadingUser" [src]="loggedInUserDetails?.profile?.picture" />
+        </a>
+        <span class="profile_menu_image" *ngIf="loadingUser">...</span>
+        <a class="btn btn-md btn-sm instagram-login-button" *ngIf="!userLoggedin && !loadingUser" role="button"
+          href="/api/auth/google">
+          Login</a>
 
-      <div class="dropdown-menu dropdown-menu-right" [hidden]="hideProfileDropDown"
-        (mouseleave)="hideProfileDropDown = !hideProfileDropDown" style="display: block">
-        <a class="dropdown-item" routerLink="/account">Account</a>
-        <a class="dropdown-item" routerLink="/logout">Logout</a>
+        <div class="dropdown-menu dropdown-menu-right" [hidden]="hideProfileDropDown"
+          (mouseleave)="hideProfileDropDown = !hideProfileDropDown" style="display: block">
+          <a class="dropdown-item" routerLink="/account">Account</a>
+          <a class="dropdown-item" routerLink="/logout">Logout</a>
+        </div>
       </div>
     </div>
+    <product-search class="container search-box"></product-search>
+  </div> -->
+
+<header>
+  <div class="main-header">
+    <!-- ........................Level1 Header Content Begins Here.....................  -->
+    <div class="row m-0 level1-header">
+      <!-- BSC Logo Image -->
+
+      <!-- <div class="logo-profile"> -->
+      <div class="logo-image col-10">
+        <div _ngcontent-c1="" class="humbug">
+          <div _ngcontent-c1=""></div>
+          <div _ngcontent-c1=""></div>
+          <div _ngcontent-c1=""></div>
+        </div>
+
+        <a href="#" class="main-twxt-portion" [hidden]="!hideProfileDropDown||hideLogo">
+          <!-- <img src="assets/images/bsc_logo.gif" alt="BSC Logo" /> -->
+          Your Local Store
+        </a>
+        <product-search class="container col-10 search-box"></product-search>
+      </div>
+
+      <div
+        class="col-2 text-right top-menu-right navigation-container header profile-dropdown"
+      >
+        <div class="dropdown avatar">
+          <img
+            *ngIf="userLoggedin && !loadingUser"
+            [src]="loggedInUserDetails?.profile?.picture"
+            alt="Avatar"
+          />
+          <span class="profile_menu_image" *ngIf="loadingUser">...</span>
+          <a
+            class="btn btn-md btn-sm instagram-login-button"
+            *ngIf="!userLoggedin && !loadingUser"
+            role="button"
+            href="/api/auth/google"
+          >
+            Login</a
+          >
+          <div class="dropdown-content profile-dropdown-content">
+            <a href="#"><span (click)="logout($event)">Sign Out</span></a>
+            <a href="/bsca/bsc/mysite/employer/auth/contactUs" target="_blank">
+              Contact Us</a
+            >
+            <a href="/bsca/website-help/compatible-browsers.sp" target="_blank"
+              >Site Help</a
+            >
+            <a href="javascript:void(0);">
+              <img src="assets/images/oo_icon.gif" alt="Feedback" />
+              Feedback</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <div class="col-8 text-right top-menu-user">
+        <!-- <span *ngIf="currentUser && currentUser.name"
+        ><strong>{{ currentUser.name }}</strong></span
+      > -->
+      </div>
+    </div>
+    <!-- ........................Level1 Header Content Ends Here.....................   -->
+
+    <!-- Level 2 Navigation menu begins here-->
+    <!--   <div class="navigation-container mobile">
+      <div class="dropdown">
+        <a
+          href="/bsca/bsc/mysite/employer/cwsSSORedirector?FromCWS=true&sectionName=memberSearch&groupID"
+          class="dropbtn"
+        >
+          <em> home </em>
+        </a>
+      </div>
+     
+      <div class="dropdown">
+        <a
+          href="/bsca/bsc/mysite/employer/auth/settings/manageusers"
+          class="dropbtn"
+        >
+          <em> settings </em>
+        </a>
+        <div class="dropdown-content">
+          <a href="/bsca/bsc/mysite/employer/auth/settings/manageusers"
+            >Manage Users</a
+          >
+          <a href="/bsca/bsc/mysite/employer/auth/settings/preference"
+            >My Profile & Preferences</a
+          >
+        </div>
+      </div>
+
+      
+      <div class="dropdown last spacer"></div>
+      <div class="dropdown last spacer"></div>
+    </div> -->
+    <!-- Level 2 Navigation menu ends here-->
+
+    <!-- Level 3 Sub Menu Begins here-->
+    <div class="sub_menu">
+      <div class="sub_menu_pos">
+        <nav>
+          <!-- <a routerLink="/roster" routerLinkActive="activeTab"
+            >Member Roster / Search</a
+          > -->
+
+          <a href="/bsca/bsc/mysite/employer/auth/planadmin/yourPlans">
+            ...Raj is our delivery partner</a
+          >
+        </nav>
+      </div>
+    </div>
+    <!-- Level 3 Sub Menu Ends here-->
   </div>
-  <product-search class="container search-box"></product-search>
-</div>
+</header>

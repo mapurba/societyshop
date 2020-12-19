@@ -1,6 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { State, StateNames, UserSession } from "../schemas/componentStateSchema";
+import {
+  State,
+  StateNames,
+  UserSession,
+} from "../schemas/componentStateSchema";
 import { ItemSchema, retriveItemFromLocalStore } from "../schemas/ItemSchema";
 import { ComponentStateService } from "../services/component-state.service";
 import { SessionService } from "../services/session.service";
@@ -14,8 +18,10 @@ import { UserService } from "../shared/services/user.service";
 export class NavComponent implements OnInit {
   loggedInUserDetails: any;
   userLoggedin: boolean = false;
+  hideLogo: boolean = false;
   loadingUser: boolean = true;
   public hideProfileDropDown: boolean = true;
+  @Input() isScrolling = false;
   constructor(
     private userService: UserService,
     public route: Router,
@@ -27,6 +33,15 @@ export class NavComponent implements OnInit {
     this.getUserDetail();
   }
 
+  ngAfterViewInit() {
+    this.componentStateService
+      .onStateChange(StateNames.OpenSearchBoxState)
+      .subscribe((res) => {
+        if (res.id === StateNames.OpenSearchBoxState) {
+          this.hideLogo = true;
+        }
+      });
+  }
   public isloggedin() {
     // console.log(this.userService.isLogedinUser());
     return this.userService.isLogedinUser();
@@ -74,4 +89,6 @@ export class NavComponent implements OnInit {
       this.componentStateService.setState(newState);
     }
   }
+
+  logout(event) {}
 }

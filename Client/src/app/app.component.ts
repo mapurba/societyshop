@@ -1,5 +1,6 @@
 import { Component, HostListener, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 import { State, StateNames, UserSession } from "./schemas/componentStateSchema";
 import { ComponentStateService } from "./services/component-state.service";
 import { SessionService } from "./services/session.service";
@@ -18,13 +19,24 @@ export class AppComponent {
   currentYpos;
   openSearchSwitch: boolean = false;
   isScrolling: boolean = false;
+  scrollStop: boolean = true;
   scroller: any;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private componentStateServie: ComponentStateService,
-    private sessionService: SessionService
-  ) {}
+    private sessionService: SessionService,
+    public route: Router
+  ) {
+    console.log(route.url);
+  }
+
+  getScrollDirection(scrollX, scrollY) {
+    // var directionX = !scrollX ? "NONE" : scrollX > 0 ? "LEFT" : "RIGHT";
+    var directionY = !scrollY ? "NONE" : scrollY > 0 ? "UP" : "DOWN";
+    return directionY;
+  }
+
   @HostListener("window:scroll", [])
   onWindowScroll() {
     let scrollX = (this.currentXPos || window.pageXOffset) - window.pageXOffset;
@@ -40,9 +52,11 @@ export class AppComponent {
     this.scroller = setTimeout(() => {
       console.log("scroll stopped...");
       this.isScrolling = false;
+      this.scrollStop = true;
       // this.fullscreenmodes();
     }, 200);
     console.log("scrolling");
+    this.scrollStop = false;
     this.isScrolling = true;
   }
 
@@ -121,12 +135,6 @@ export class AppComponent {
     session.cartValue = value;
     this.sessionService.updateUserSession(session);
   }
-  getScrollDirection(scrollX, scrollY) {
-    // var directionX = !scrollX ? "NONE" : scrollX > 0 ? "LEFT" : "RIGHT";
-    var directionY = !scrollY ? "NONE" : scrollY > 0 ? "UP" : "DOWN";
-    return directionY;
-  }
-
   openSearch() {
     this.openSearchSwitch = true;
     let newState = new State(StateNames.OpenSearchBoxState, true);

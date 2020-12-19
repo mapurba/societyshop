@@ -29,7 +29,7 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
-  constructor(private componentStateServie: ComponentStateService) { }
+  constructor(private componentStateServie: ComponentStateService) {}
 
   ngOnInit(): void {
     this.subject.pipe(debounceTime(500)).subscribe((res) => {
@@ -77,9 +77,9 @@ export class ProductSearchComponent implements OnInit {
     this._showCancleBtn = false;
   }
 
-  touch() { }
+  touch() {}
 
-  overlayTouch(event) { }
+  overlayTouch(event) {}
 
   mouseLeave(event): void {
     this.showDowpdown = false;
@@ -89,7 +89,6 @@ export class ProductSearchComponent implements OnInit {
   clearText(event) {
     this._showCancleBtn = true;
     window.getSelection().selectAllChildren(this.searchQRef.nativeElement);
-
     this.showDowpdown = true;
   }
 }

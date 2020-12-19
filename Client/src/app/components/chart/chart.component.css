@@ -56,3 +56,19 @@
   padding: 0px 10px 10px 10px;
   background-color: #e2dcdc5c;
 }
+
+
+.checkout > div {
+  flex: 25%;
+}
+.nav-footer-main.checkout {
+  width: 100%;
+  background-color: #b09e64eb;
+  z-index: 2;
+}
+.footer-nav.checkout{
+  display: flex;
+  padding: 5px; 
+  flex-flow: wrap;
+  text-align: end;
+}

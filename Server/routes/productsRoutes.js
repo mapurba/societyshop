@@ -4,7 +4,7 @@ const productController = require('../controllers/product.controller');
 
 
 productRouter.post("",productController.addProduct);
-productRouter.get('/list', productController.getAllProducts);
+productRouter.get("/list", productController.getAllProducts);
 
 productRouter.get('/id', productController.getProductsByIds);
 
