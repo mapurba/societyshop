@@ -57,7 +57,6 @@
   background-color: #e2dcdc5c;
 }
 
-
 .checkout > div {
   flex: 25%;
 }
@@ -65,10 +64,13 @@
   width: 100%;
   background-color: #b09e64eb;
   z-index: 2;
+  width: 100%;
+  background-color: #ffffff2e;
+  z-index: 1;
 }
-.footer-nav.checkout{
+.footer-nav.checkout {
   display: flex;
-  padding: 5px; 
+  padding: 5px;
   flex-flow: wrap;
   text-align: end;
 }
