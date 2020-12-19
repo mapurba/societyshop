@@ -16,7 +16,9 @@ export class PaymentComponent implements OnInit {
   dummylist: ItemSchema[];
   state: any;
   addToCartState: string = "addToCart";
-  orderId = Number;
+  orderId: any = null;
+
+  orderCreationFailed = true;
 
   isOrderCreating = false;
 
@@ -66,17 +68,23 @@ export class PaymentComponent implements OnInit {
   }
   createOrderAndToPayment() {
     this.isOrderCreating = true;
-    this.http
-      .post("/api/orders/create", { items: this.state.value })
-      .subscribe((res: any) => {
+    this.http.post("/api/orders/create", { items: this.state.value }).subscribe(
+      (res: any) => {
         console.log({ "order created......": res });
         // this.paymentRedirection(res);
         // this.clearCurrentCart();
         this.isOrderCreating = false;
         this.orderId = res.respos._id;
-
         this.enablePayment = true;
-      });
+        this.orderCreationFailed = false;
+      },
+      (err) => {
+        this.isOrderCreating = false;
+        this.orderCreationFailed = true;
+        this.orderId = 1;
+        this.enablePayment = false;
+      }
+    );
   }
 
   paymentRedirection(orderDetail) {
@@ -117,5 +125,23 @@ export class PaymentComponent implements OnInit {
         { ...data }
       )
       .subscribe((res) => {});
+  }
+
+  changePaymentMode(id): any {
+    console.log("opening form ....");
+
+    try {
+      let _paymentMode = window["paymentOptions"];
+
+      console.log({ id, _paymentMode });
+
+      if (id === "walet") {
+        console.log("something else");
+        return;
+      }
+      window["displayFormElement"](_paymentMode[id]);
+    } catch (e) {
+      console.log("payment script not. loaded");
+    }
   }
 }
