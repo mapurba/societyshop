@@ -39,7 +39,9 @@
   left: 0;
   border-radius: 4px;
   width: 83vw;
-  margin-left: -18px;
+  overflow: scroll;
+  margin-left: -2px;
+  max-height: 73vh;
 
   /* height: 100vh; */
 }
@@ -83,4 +85,11 @@
 
 .placeholder {
   font-size: 11px;
+}
+
+.search-bar > img {
+  vertical-align: middle;
+  max-width: 44px;
+  max-height: 29px;
+  border-style: none;
 }

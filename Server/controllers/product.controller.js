@@ -23,7 +23,6 @@ _getProductsByIds = async (ids) => {
 // @ts-ignore
 exports.getAllProducts = (req, res) => {
   // res.status(200).send({})
-
   Products.find({}).then((result) => {
     res.status(200).send(result);
   });

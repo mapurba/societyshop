@@ -18,22 +18,23 @@ export class ItemsInListComponent implements OnInit {
   @Input("id") id: string;
   @Input("disabled") disableAdd?: boolean = false; //only enable it in the end user mode
   stateName: string = "addToCart";
-  constructor(private componentStateService: ComponentStateService) { }
+  constructor(private componentStateService: ComponentStateService) {}
 
   ngOnInit() {
     // console.log(this.item);
-    
-
   }
 
+  //state create update
   addToCart(item: ItemSchema) {
-    this.item.quantity++;
+    // this.item.quantity++;
     if (this.componentStateService.getStateByStateName(StateNames.addToCart)) {
       let cart = this.componentStateService.getStateByStateName(
         StateNames.addToCart
       ) as State;
       /////
-      cart.value.push(item.quantity - 1);
+      // item.quantity++;
+      const newitem = Object.assign({},  item);
+      cart.value.push(newitem);
 
       // ...this..
       let newState = new State(StateNames.addToCart, cart.value);
@@ -54,5 +55,4 @@ export class ItemsInListComponent implements OnInit {
     this.item.quantity--;
     // updatestate()
   }
-
 }

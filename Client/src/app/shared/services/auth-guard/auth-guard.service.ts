@@ -21,13 +21,9 @@ export class AuthGuardService implements CanActivate {
     console.log("user static");
 
     console.log(this.userDetail.getCurrentUserStatic());
-    if (this.userDetail.getCurrentUserStatic() == undefined)
-      return false;
+    if (this.userDetail.getCurrentUserStatic() == undefined) return false;
     else if (this.userDetail.getCurrentUserStatic().isMer) {
       return true;
-    } 
-    else
-      return true;
-      
+    } else return true;
   }
 }

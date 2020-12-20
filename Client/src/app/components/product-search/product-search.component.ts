@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
@@ -16,6 +17,7 @@ export class ProductSearchComponent implements OnInit {
   showDowpdown: boolean = false;
   subject: Subject<any> = new Subject();
   _show: boolean = false;
+  dropdownsearchResul = [];
 
   @ViewChild("searchQ") searchQRef: ElementRef;
   @Input("show") setShow(val) {
@@ -29,14 +31,26 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
-  constructor(private componentStateServie: ComponentStateService) {}
+  constructor(
+    private componentStateServie: ComponentStateService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.subject.pipe(debounceTime(500)).subscribe((res) => {
       this.searchQ = res;
       // get the search result from this object
       console.log(this.searchQ);
+
+      this.fetchsearchResult(this.searchQ).subscribe((res:    any) => {
+        // console.log(res);
+        this.dropdownsearchResul = res.data;
+      });
     });
+  }
+
+  fetchsearchResult(Q) {
+    return this.http.get("/api/search/ac?ed=3&q=" + Q + "&");
   }
 
   ngAfterViewInit() {
