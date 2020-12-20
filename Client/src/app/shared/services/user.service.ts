@@ -11,8 +11,15 @@ export class UserService {
   private userDetail = new BehaviorSubject(null);
   currentUserDetail = this.userDetail.asObservable();
 
+  private currentUserStatic: any;
 
-  constructor(private http: HttpClient,private cookieService: CookieService) { }
+
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    
+    this.getUserDetailV2().subscribe((res) => {
+      this.currentUserStatic = res.user;
+    });
+   }
 
 
   getAllUnSubmitedPhotos(): Observable<any> {
@@ -33,8 +40,11 @@ export class UserService {
   }
   getUserDetailV3(userDetails){
     
-      this.userDetail.next(userDetails);
+     return this.userDetail.next(userDetails);
     
+  }
+  getCurrentUserStatic(){
+    return this.currentUserStatic;
   }
 
 

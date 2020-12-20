@@ -24,6 +24,10 @@ import { ChartComponent } from './components/chart/chart.component';
 import { AddItemsComponent } from './components/add-items/add-items.component';
 import { SanitizemePipe } from './pipes/sanitizeme.pipe';
 import { PaymentComponent } from './components/payment/payment.component';
+import { MerchantHomeComponent } from './components/merchant-home/merchant-home.component';
+import { MerchantOrdersComponent } from './components/merchant-orders/merchant-orders.component';
+import { MerchantTodayTotalComponent } from './components/merchant-today-total/merchant-today-total.component';
+import { MerchantPendingPaymentComponent } from './components/merchant-pending-payment/merchant-pending-payment.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { PaymentComponent } from './components/payment/payment.component';
     AddItemsComponent,
     SanitizemePipe,
     PaymentComponent,
+    MerchantHomeComponent,
+    MerchantOrdersComponent,
+    MerchantTodayTotalComponent,
+    MerchantPendingPaymentComponent,
   ],
   imports: [
     BrowserModule,

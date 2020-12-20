@@ -1,7 +1,6 @@
 <div calss="container" (click)="fullscreenmodes($event)">
   <div class="main mb-2 container">
-
-  <app-nav [isScrolling]="scrollStop"></app-nav>
+    <app-nav [isScrolling]="scrollStop"></app-nav>
   </div>
   <div class="main mb-2 container">
     <router-outlet></router-outlet>
@@ -11,9 +10,11 @@
   <br />
   <br />
 
-  <footer class="nav-footer-main"
-  >
-    <div class="footer-nav">
+  <h1 style="text-align: center">welcome you your personal store</h1>
+  <p style="text-align: center;text-transform: capitalize;">{{ user?.profile?.name }}</p>
+
+  <footer class="nav-footer-main">
+    <div class="footer-nav" *ngIf="!user?.isMer">
       <!-- change these links to router link -->
       <div class="menu">
         <a class="fa fa-home icon" routerLink="">Home</a>
@@ -28,6 +29,28 @@
 
       <div class="menu">
         <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a>
+      </div>
+    </div>
+
+    <div class="footer-nav" *ngIf="user?.isMer">
+      <!-- change these links to router link -->
+      <div class="menu">
+        <a class="fa fa-home icon" routerLink="merchantHome">Home</a>
+      </div>
+
+      <div class="menu">
+        <a class="fa fa-th icon" routerLink="merchantOrder">My Orders</a>
+      </div>
+      <div class="menu">
+        <i class="fa fa-search icon" routerLink="merchantPendingPayment"
+          >Payment Pending
+        </i>
+      </div>
+
+      <div class="menu">
+        <a class="fa fa-shopping-cart icon" routerLink="merchantTodayTotal"
+          >Todays Total</a
+        >
       </div>
     </div>
   </footer>

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { State, StateNames, UserSession } from "./schemas/componentStateSchema";
 import { ComponentStateService } from "./services/component-state.service";
 import { SessionService } from "./services/session.service";
+import { UserService } from "./shared/services/user.service";
 
 @Component({
   selector: "app-root",
@@ -21,12 +22,14 @@ export class AppComponent {
   isScrolling: boolean = false;
   scrollStop: boolean = true;
   scroller: any;
+  user: any;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private componentStateServie: ComponentStateService,
     private sessionService: SessionService,
-    public route: Router
+    public route: Router,
+    private userDetail: UserService
   ) {
     console.log(route.url);
   }
@@ -131,6 +134,10 @@ export class AppComponent {
           // );
         }
       });
+
+    this.userDetail.getUserDetailV2().subscribe((res) => {
+      this.user = res.user;
+    });
     // this.autofullscreen();
   }
 
