@@ -38,6 +38,9 @@
     margin: 0;
     padding: 0 !important;
   }
+  .main{
+    margin-top: 20px;
+  }
 }
 .container{
   padding:4px;

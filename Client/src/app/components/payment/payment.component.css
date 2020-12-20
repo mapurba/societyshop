@@ -30,6 +30,15 @@ table {
   flex-direction: row-reverse;
 }
 
+.btn.action {
+  cursor: pointer;
+  width: 25%;
+  font-size: 17px;
+  margin-right: 5px;
+  background-color: #ff7600;
+  color: white;
+}
+
 .btn {
   margin: 2px;
 }

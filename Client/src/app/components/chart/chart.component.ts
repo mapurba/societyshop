@@ -58,9 +58,14 @@ export class ChartComponent implements OnInit {
     this.state = this.component̥StateService.getStateByStateName(
       this.addToCartState
     ) as State;
-    this.dummylist = this.state
-      ? this.state.value
-      : this.retriveItemFromLocalStore("cartValue");
+    try {
+      this.dummylist = this.state
+        ? this.state.value
+        : this.retriveItemFromLocalStore("cartValue");
+    } catch (e) {
+      console.error("JSon parse failed");
+      this.dummylist = [];
+    }
   }
 
   retriveItemFromLocalStore(id): any[] {
@@ -101,7 +106,7 @@ export class ChartComponent implements OnInit {
 
   clearCurrentCart() {
     let newCart = new State(StateNames.addToCart, []);
-    // this.component̥StateService.setState(newCart);
+    this.component̥StateService.setState(newCart);
   }
 
   initiatePayment(orderDetails) {}

@@ -1,9 +1,14 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { State } from "src/app/schemas/componentStateSchema";
 import { ItemSchema } from "src/app/schemas/ItemSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
+
+export enum paymentComponentMode {
+  buttonOnly = 0,
+  fullPage = 1,
+}
 
 @Component({
   selector: "payment",
@@ -23,6 +28,11 @@ export class PaymentComponent implements OnInit {
   isOrderCreating = false;
 
   enablePayment = false;
+  // _setDisplayMode = 0;
+
+  componentMode = paymentComponentMode.fullPage;
+
+  @Input("setDisplayMode") _setDisplayMode = 0;
 
   isloading() {
     return this.loading;
@@ -35,6 +45,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
     // this.loadPaymentRelatedJs();
+    console.log(this._setDisplayMode);
   }
 
   ngAfterViewInit() {
@@ -52,6 +63,8 @@ export class PaymentComponent implements OnInit {
     this.dummylist = this.state
       ? this.state.value
       : this.retriveItemFromLocalStore("cartValue");
+
+    this.componentMode = this._setDisplayMode;
   }
 
   retriveItemFromLocalStore(id): any[] {
