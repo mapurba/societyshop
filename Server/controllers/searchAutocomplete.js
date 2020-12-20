@@ -1,5 +1,7 @@
 const wget = require("node-wget");
 const https = require("http");
+const Items = require("../models/Items");
+const { Mongoose } = require("mongoose");
 
 const options = {
   protocol: "https",
@@ -14,34 +16,15 @@ options.proxy.port = 1337;
 options.proxy.proxyAuth = "{basic auth}";
 options.proxy.headers = { "User-Agent": "Node" };
 
-// req.end();
-// req.on("error", function (err) {
-//   console.log(err);
-// });
+// const limit = 10;
+const maxTimeMS = 20;
 
-//get auto complete search list
 exports.getSearchItem = async (req, res) => {
-  var params = "";
-  var q = req.query;
-
-  for (let i of Object.keys(q)) {
-    console.log(i);
-    params += i;
-    params += "=";
-    params += q[i];
-    params += "&";
-  }
-
-  https.get("https://api.spacexdata.com/v3/launches?" + params, (resp) => {
-    var body = { data: "" };
-
-    resp.on("data", function (chunk) {
-      body.data += chunk;
-    });
-
-    resp.on("end", function () {
-      body.data = JSON.parse(body.data);
-      res.send(body);
-    });
+  const q = req.query;
+  let Q = new RegExp(q.q, "i");
+  Items.find({ name: { $regex: Q } }, function (err, data) {
+    if (err) return handleError(err);
+    data = data.slice(0, 10);
+    res.send({ data }).status(200);
   });
 };

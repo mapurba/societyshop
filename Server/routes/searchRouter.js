@@ -3,6 +3,6 @@ const express = require("express"),
 
 const searchController = require("../controllers/searchAutocomplete");
 
-searchRouter.get("/ac", searchController.getSearchItem);
+searchRouter.use("/ac", searchController.getSearchItem);
 
 module.exports = searchRouter;
