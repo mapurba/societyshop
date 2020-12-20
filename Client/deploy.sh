@@ -1,0 +1,1 @@
+sudo scp -i /home/mapurba/.ssh/gcpinstance  -r ./dist/Client/* mapurba@societystore.co:/opt/societyshop/source/societyshop/Client/dist/Client/

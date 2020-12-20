@@ -1,17 +1,43 @@
 <div class="container">
-
   <!-- selevety time alert component -->
   <div class="flex-rows">
     <div class="delivery-slot-alert">
       <div class="info">
-        <div class="text">Your next available slot <i class="fa  fa-bell-o"></i> </div>
+        <div class="text btn" style="   
+            display: inline-block;
+            width: 49%;
+            padding: 0px 10px;
+            background-color: #dac61b;
+        " >
+          <i class="fa fa-truck"></i> Seller Signup
+        </div>
+        <div  (click)="userSignup()"   class="next-slot btn" style=" 
+              display: inline-block;
+              width: 49%;
+              padding: 0px 10px;
+              background-color: #e2cf2bd1;
+              margin: 0px 3px;
+            " >
+          <i class="fa fa-bell-o" ></i>
+          <span class="time"> User Signup</span>
+        </div>
       </div>
-      <div class="next-slot">
-        <span class="  fa fa-truck"></span>
-        <span class="time"> Today 5:00PM - 7:00PM</span></div>
     </div>
   </div>
 
+  <div class="flex-rows">
+    <div class="delivery-slot-alert">
+      <div class="info">
+        <div class="text">
+          Your next available slot <i class="fa fa-bell-o"></i>
+        </div>
+      </div>
+      <div class="next-slot">
+        <span class="fa fa-truck"></span>
+        <span class="time"> Today 5:00PM - 7:00PM</span>
+      </div>
+    </div>
+  </div>
 
   <!-- shop by category component -->
 
@@ -24,7 +50,6 @@
 
       <img class="banner-art right"
         src="https://th.bing.com/th/id/OIP.rKFw0gbtsUaSys1i7QY_MQHaHa?w=179&h=180&c=7&o=5&dpr=1.25&pid=1.7" />
-
     </div>
     <div class="grid-container-two">
       <div class="item1">
@@ -41,18 +66,15 @@
       </div>
     </div>
 
-
     <div class="grid-container-three">
       <div class="item1">
         <a routerLink="list">
-
           <img
             src="https://www.bigbasket.com/media/uploads/section_item/images/hdpi/NLI_SBC_FnV_448x480_1_10thAug.jpg" />
         </a>
       </div>
       <div class="item2">
         <a routerLink="list">
-
           <img
             src="https://www.bigbasket.com/media/uploads/section_item/images/hdpi/NLI_SBC_FnV_448x480_1_10thAug.jpg" />
         </a>
@@ -62,25 +84,21 @@
           <img
             src="https://www.bigbasket.com/media/uploads/section_item/images/hdpi/NLI_SBC_FOM_448x480_3_10thAug.jpg" />
         </a>
-
       </div>
       <div>
         <a routerLink="list">
-
           <img
             src="https://www.bigbasket.com/media/uploads/section_item/images/hdpi/NLI_SBC_BCD_448x480_4_10thAug.jpg" />
         </a>
       </div>
       <div>
         <a routerLink="list">
-
           <img
             src="https://www.bigbasket.com/media/uploads/section_item/images/hdpi/NLI_SBC_CHH_448x480_9_10thAug.jpg" />
         </a>
       </div>
       <div>
         <a routerLink="list">
-
           <img
             src="https://www.bigbasket.com/media/uploads/section_item/images/hdpi/NLI_SBC_BabyCare_448x480_11_10thAug.jpg" />
         </a>
@@ -98,6 +116,5 @@
         </a>
       </div>
     </div>
-
   </div>
 </div>
