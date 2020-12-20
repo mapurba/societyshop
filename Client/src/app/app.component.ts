@@ -114,8 +114,7 @@ export class AppComponent {
       .subscribe((res) => {
         if (res.id === StateNames.UserSession) {
           // this.searchQRef.nativeElement.click();
-          let userSession = res.value.get(StateNames.UserSession)
-            .value as UserSession;
+          let userSession = res.value.get(StateNames.UserSession);
           console.log(userSession);
 
           // use session service to persist the date to db

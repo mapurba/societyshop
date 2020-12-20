@@ -41,16 +41,24 @@ export class SessionService {
     }
   }
 
-  updateStateTodb(currentState: UserSession) {
-    this.http
-      .post("/api/user/session", { data: JSON.stringify(currentState) })
-      .subscribe(
-        (done) => {
-          console.info("...state updated");
-        },
-        (err) => {
-          console.info("!..unable to save state");
-        }
-      );
+  updateStateTodb(currentState) {
+    if (
+      currentState != undefined &&
+      currentState != null
+      // &$ currentState.length > 0
+    ) {
+      this.http
+        .post("/api/user/session", {
+          data: JSON.stringify(currentState.value || currentState),
+        })
+        .subscribe(
+          (done) => {
+            console.info("...state updated");
+          },
+          (err) => {
+            console.info("!..unable to save state");
+          }
+        );
+    }
   }
 }

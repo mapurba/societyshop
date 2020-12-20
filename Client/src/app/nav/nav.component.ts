@@ -90,5 +90,7 @@ export class NavComponent implements OnInit {
     }
   }
 
-  logout(event) {}
+  logout(event) {
+    localStorage.clear();
+  }
 }

@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { State, StateNames } from "src/app/schemas/componentStateSchema";
-import { ItemSchema, Price, retriveItemFromLocalStore } from "src/app/schemas/ItemSchema";
+import {
+  ItemSchema,
+  Price,
+  retriveItemFromLocalStore,
+} from "src/app/schemas/ItemSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
-
-
 
 @Component({
   selector: "items-in-list",
@@ -13,21 +15,27 @@ import { ComponentStateService } from "src/app/services/component-state.service"
 export class ItemsInListComponent implements OnInit {
   @Input("item") item: ItemSchema;
   @Input("addMore") addMoreQuatity;
-
+  @Input("id") id: string;
   @Input("disabled") disableAdd?: boolean = false; //only enable it in the end user mode
   stateName: string = "addToCart";
   constructor(private componentStateService: ComponentStateService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // console.log(this.item);
+    
 
-
+  }
 
   addToCart(item: ItemSchema) {
+    this.item.quantity++;
     if (this.componentStateService.getStateByStateName(StateNames.addToCart)) {
       let cart = this.componentStateService.getStateByStateName(
         StateNames.addToCart
       ) as State;
-      cart.value.push(item);
+      /////
+      cart.value.push(item.quantity - 1);
+
+      // ...this..
       let newState = new State(StateNames.addToCart, cart.value);
       this.componentStateService.setState(newState);
     } else {
@@ -40,6 +48,11 @@ export class ItemsInListComponent implements OnInit {
       ]);
       this.componentStateService.setState(newState);
     }
+  }
+
+  removeOneItem(item: ItemSchema) {
+    this.item.quantity--;
+    // updatestate()
   }
 
 }

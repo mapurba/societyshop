@@ -18,9 +18,10 @@ export class ItemSchema {
   rating: Rating;
   image: string;
   brand: string;
+  quantity: number = 0;
 
   constructor(...args) {
-    const { name, id, discp, price, varients, rating, image, brand } = args[0];
+    const { name, id, discp, price, varients, rating, image, brand, } = args[0];
     this.name = name;
     this.id = id;
     this.discp = discp;
@@ -29,6 +30,7 @@ export class ItemSchema {
     this.price = price;
     this.image = image;
     this.brand = brand;
+    this.quantity = 0;
   }
 }
 

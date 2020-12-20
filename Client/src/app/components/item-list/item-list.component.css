@@ -18,6 +18,7 @@
 
 .btn {
   margin-right: 5px;
+  text-transform: capitalize;
 }
 
 .flex-list-container {
@@ -51,4 +52,10 @@
 .top-quick-search {
   padding: 0px 10px 10px 10px;
   background-color: #e2dcdc5c;
+}
+
+
+
+#item_0 {
+  margin-bottom: -123px;
 }

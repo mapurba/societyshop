@@ -1,5 +1,6 @@
 import { Observable, Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
+import { ItemSchema } from "./ItemSchema";
 
 export class State {
   id: string;
@@ -39,9 +40,47 @@ export class StateDB {
 
   setState(val) {
     let { id, value } = val;
+
+    /* 
+      only map unique object to the store based on the object code.
+    */
+    var result = [];
+    if (id === StateNames.addToCart) {
+      // value.fo
+      var helper = {};
+      result = value.reduce(function (r, o: ItemSchema) {
+        var key = o.itemCode;
+        if (!helper[key]) {
+          helper[key] = Object.assign({}, o); // create a copy of o
+          r.push(helper[key]);
+        } else {
+          helper[key].quantity += 1;
+          // helper[key].total += o.instances;
+        }
+
+        return r;
+      }, []);
+      let newState = new State(id, result);
+      this._states.delete(id);
+      this._states.set(id, newState);
+      this.subject.next({ id: id, value: this._states });
+      return;
+    }
+
+    console.log(
+      "###$$ stateName update",
+      id + "size ( ",
+      result,
+      ") old value : ",
+      this._states.get(id)
+    );
+
     let newState = new State(id, value);
+    this._states.delete(id);
     this._states.set(id, newState);
     this.subject.next({ id: id, value: this._states });
+
+    
   }
 
   getState(id) {

@@ -735,7 +735,6 @@ exports.updateSession = (req, res, next) => {
         return next(err);
       }
       user.session = data;
-      // user.session.cartValue = cartValue;
       user.save((err) => {
         if (err) {
           return next(err);

@@ -19,6 +19,7 @@
 .btn {
   margin-right: 5px;
   background-color: rgb(239, 239, 239);
+  text-transform: capitalize;
 }
 
 .flex-list-container {
