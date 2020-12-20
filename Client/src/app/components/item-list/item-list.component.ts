@@ -12,7 +12,9 @@ export class ItemListComponent implements OnInit {
   _list: any[];
 
   @Input("list") setlist(val) {
-    this._list = val;
+    setTimeout(() => {
+      this._list = val;
+    }, 700);
   }
 
   get list() {
@@ -25,14 +27,14 @@ export class ItemListComponent implements OnInit {
     this._list = [];
     this._list.push(
       new ItemSchema({
-        name: "kent Ro Purifier Mineral RO water Purifier",
-        price: { new: 9000, old: 12000 },
-        discp: "Minaral RO water Purifier",
-        varients: ["RO", "Ro + UV "],
-        rating: { value: "4.2", totalCount: "200" },
+        name: "",
+        price: "" /*  { new: 9000, old: 12000 } */,
+        discp: "",
+        varients: "" /* ["RO", "Ro + UV "] */,
+        rating: "" /*  { value: "4.2", totalCount: "200" }, */,
         image:
-          "https://www.bigbasket.com/media/uploads/p/m/40018854_4-himalaya-purifying-neem-face-wash.jpg",
-        brand: "Kent",
+          "" /* "https://www.bigbasket.com/media/uploads/p/m/40018854_4-himalaya-purifying-neem-face-wash.jpg", */,
+        brand: "",
       })
     );
   }

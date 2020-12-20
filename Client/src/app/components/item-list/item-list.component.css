@@ -28,10 +28,10 @@
 }
 
 .list-item {
-  /* background-color: dodgerblue; */
   padding: 10px;
-
-  /* flex: auto; */
+  flex: 30%;
+  width: 100%;
+  min-width: 278px;
 }
 
 .main-container {

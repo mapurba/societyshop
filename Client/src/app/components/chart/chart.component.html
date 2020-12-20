@@ -2,8 +2,10 @@
   <div class="item-list">
     <div class="flex-action-container">
       <div class="flex-left">Group items ( Cart )</div>
+      <button class="btn" (click)="clearCurrentCart()"> Clear Cart</button>
       <div class="flex-right">{{ dummylist?.length }} items found</div>
     </div>
+    
     <div class="flex-list-container" *ngIf="dummylist?.length > 0">
       <div class="list-item" *ngFor="let item of dummylist">
         <items-in-list [item]="item" [addMore]="true">1</items-in-list>
@@ -15,7 +17,7 @@
 <footer class="nav-footer-main checkout" *ngIf="dummylist?.length > 0">
   <div class="footer-nav checkout">
     <div class="menu">
-      <payment ></payment>
+      <payment [setDisplayMode]=1 ></payment>
     </div>
   </div>
 </footer>

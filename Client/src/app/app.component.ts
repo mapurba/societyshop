@@ -91,10 +91,15 @@ export class AppComponent {
           // update session store
 
           //update local store
-          localStorage.setItem(
-            "cartValue",
-            JSON.stringify(res.value.get(StateNames.addToCart).value)
-          );
+          try {
+            localStorage.setItem(
+              "cartValue",
+              JSON.stringify(res.value.get(StateNames.addToCart).value)
+            );
+          } catch (e) {
+            console.log("localStorage save error");
+          }
+
           setTimeout(() => {
             console.log("....update serrion.");
             this.updateSessionStateByProperty(

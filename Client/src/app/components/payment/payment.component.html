@@ -1,66 +1,137 @@
 <!-- <p>payment works!</p> -->
+<br />
 
-<div class="floating-paymentform">
-  <form id="seamlessBasic" style="position: relative">
-    <table class="mainForm">
-      <tr>
-        <td>order id</td>
-        <td><input type="text" name="orderId" [ngModel]="orderId" /></td>
-      </tr>
-      <tr>
-        <td>order amount</td>
-        <td><input type="text" name="orderAmount" value="2" /></td>
-      </tr>
-      <tr>
-        <td>customer name</td>
-        <td><input type="text" name="customerName" value="a" /></td>
-      </tr>
-      <tr>
-        <td>customer email</td>
-        <td><input type="text" name="customerEmail" value="a@a.com" /></td>
-      </tr>
-      <tr>
-        <td>customer phone</td>
-        <td><input type="text" name="customerPhone" value="1234512345" /></td>
-      </tr>
-    </table>
-    <table>
-      <tr style="background-color: #0000006b" [hidden]="orderId == null">
-        <td class="dynamicContentForm"></td>
-      </tr>
-      <div class="radioBttns" [hidden]="orderId == null">
+<div class="main" [hidden]="componentMode">
+  <div class="content">
+    <div class="preloader" [hidden]="!isloading()"></div>
+    payment works ....... are goes the call bal url and the paymet success
+    screen. if needed remove loader.
+  </div>
+</div>
+{{ componentMode }}
+<div class="payment-card" [hidden]="!componentMode">
+  <div class="floating-paymentform">
+    <form id="seamlessBasic" style="position: relative">
+      <table class="mainForm">
         <tr>
-          <td>
-            <input class="btn" class="paymentRadioInput" type="radio" id="upi" checked name="paymentOption" value="upi"  />
-            <div  class="btn" disabled for="upi"  (click)="changePaymentMode('upi')" >upi</div>
-          </td>
-          <td>
-            <input class="btn" class="paymentRadioInput" type="radio" id="card" name="paymentOption" value="card" />
-            <div  class="btn" for="card"  (click)="changePaymentMode('card')">card</div>
-          </td>
-          <td>
-            <input class="btn" class="paymentRadioInput" type="radio" id="nb" name="paymentOption" value="nb" />
-            <div  class="btn" for="netBanking"  (click)="changePaymentMode('nb')" >net banking</div>
-          </td>
-          <td>
-            <input  class="paymentRadioInput" type="radio" id="wallets" name="paymentOption" value="wallets" />
-            <div  class="btn" (click)="changePaymentMode('wallets')">wallets</div>
-          </td>
-
+          <td>order id</td>
+          <td><input type="text" name="orderId" [ngModel]="orderId" /></td>
         </tr>
-      </div>
-      <tr>
-        <div class="action-btns">
-          <button class="btn action" routerLink="/payment">Cancle</button>
-          <button class="btn action" [disabled]="isOrderCreating" (click)="createOrderAndToPayment()">
-            {{ !isOrderCreating ? "Order Now" : "...." }}
-          </button>
-          <button type="submit" class="btn" id="payBtn" [hidden]="!enablePayment">
-            Pay Later
-          </button>
-          <div class="preloader" [hidden]="!isloading()"></div>
+        <tr>
+          <td>order amount</td>
+          <td><input type="text" name="orderAmount" value="2" /></td>
+        </tr>
+        <tr>
+          <td>customer name</td>
+          <td><input type="text" name="customerName" value="a" /></td>
+        </tr>
+        <tr>
+          <td>customer email</td>
+          <td><input type="text" name="customerEmail" value="a@a.com" /></td>
+        </tr>
+        <tr>
+          <td>customer phone</td>
+          <td><input type="text" name="customerPhone" value="1234512345" /></td>
+        </tr>
+      </table>
+      <table>
+        <tr style="background-color: #0000006b" [hidden]="orderId == null">
+          <td class="dynamicContentForm"></td>
+        </tr>
+        <div class="radioBttns" [hidden]="orderId == null">
+          <tr>
+            <td>
+              <input
+                class="btn"
+                class="paymentRadioInput"
+                type="radio"
+                id="upi"
+                checked
+                name="paymentOption"
+                value="upi"
+              />
+              <div
+                class="btn"
+                disabled
+                for="upi"
+                (click)="changePaymentMode('upi')"
+              >
+                upi
+              </div>
+            </td>
+            <td>
+              <input
+                class="btn"
+                class="paymentRadioInput"
+                type="radio"
+                id="card"
+                name="paymentOption"
+                value="card"
+              />
+              <div class="btn" for="card" (click)="changePaymentMode('card')">
+                card
+              </div>
+            </td>
+            <td>
+              <input
+                class="btn"
+                class="paymentRadioInput"
+                type="radio"
+                id="nb"
+                name="paymentOption"
+                value="nb"
+              />
+              <div
+                class="btn"
+                for="netBanking"
+                (click)="changePaymentMode('nb')"
+              >
+                net banking
+              </div>
+            </td>
+            <td>
+              <input
+                class="paymentRadioInput"
+                type="radio"
+                id="wallets"
+                name="paymentOption"
+                value="wallets"
+              />
+              <div class="btn" (click)="changePaymentMode('wallets')">
+                wallets
+              </div>
+            </td>
+          </tr>
         </div>
-      </tr>
-    </table>
-  </form>
+        <tr>
+          <div class="action-btns">
+            <button class="btn action" routerLink="/payment">Cancle</button>
+            <button
+              class="btn action"
+              [disabled]="isOrderCreating"
+              [hidden]="enablePayment"
+              (click)="createOrderAndToPayment()"
+            >
+              {{ !isOrderCreating ? "Order Now" : "...." }}
+            </button>
+            <button
+              type="submit"
+              class="btn"
+              id="payBtn"
+              [hidden]="!enablePayment"
+            >
+              Pay Later
+              <!-- if the user clicks here than first it will fo to payment page .. -->
+              <!-- user should be re directed from the card form -->
+            </button>
+            <button class="btn action" routerLink="/">Category</button>
+            <a class="fa fa-home icon btn action" routerlink="" href="/"
+              >Home</a
+            >
+            <!-- <button class="btn action" routerLink="/">Home</button> -->
+          </div>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>

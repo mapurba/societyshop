@@ -4,9 +4,10 @@
       <img src="{{item?.image}}" />
     </div>
     <div class="product-discp">
-      <p class="brad-name">{{item.brand}} <span style="font-size: 10px;"> {{item?.itemCode}}</span></p>
-      <p class="text">{{item.name|sanitizeme}}</p>
-      <div class="rating" *ngIf="item?.rating">
+      <p class="brad-name" [ngClass]="item.brand?'':'noloader'">{{item.brand}}</p>
+      <span style="font-size: 10px;"> {{item?.itemCode}}</span>
+      <p class="text" [ngClass]="(item.name|sanitizeme)?'':'noloader'" >{{item.name|sanitizeme}}</p>
+      <div class="rating" [ngClass]="(item.rating)?'':'noloader'"   *ngIf="item?.rating?.value">
         <span class="rating-value" style="background-color: rgb(227, 235, 218); color: rgb(104, 159, 56);">
           {{item?.rating?.value}}
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 26 26">
@@ -16,21 +17,25 @@
           </svg>
 
         </span>
-        <span class="rating-count"> {{item?.rating?.totalCount}} Ratings</span></div>
+        <span class="rating-count" > {{item?.rating?.totalCount}} Ratings</span></div>
 
-      <select class="btn option" *ngIf="item?.varients?.length > 0">
+      <select class="btn option" [ngClass]="(item.varients.length>0)?'':'noloader'"   *ngIf="item?.varients?.length > 0" >
+        <div>
         <option *ngFor="let varient of item?.varients">{{varient}}</option>
+        </div>
       </select>
 
       <!-- <div class ="text">{{item?.discp}}</div> -->
-      <div class="price" *ngIf="item?.price"> ${{item?.price?.new}} <span class="old">${{item?.price?.old}}</span></div>
+      <div class="price" [ngClass]="(item.price)?'ee':'noloader'" > ${{item?.price?.new}} <span class="old">${{item?.price?.old}}</span></div>
 
     </div>
   </div>
   <div class="card-footer-action">
-    <div class="sales-batch">
+    <div class="sales-batch noloader">
       Super Sale
     </div>
     <button class="btn add-to-cart" [disabled]="disableAdd" (click)="addToCart(item)">+Add</button>
   </div>
 </div>
+
+
