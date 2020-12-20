@@ -1,41 +1,49 @@
-<div class="main-container">
+<div class="main-container"  id="sss{{item?.itemCode}}" >
   <div class="content">
     <div class="product-img">
-      <img src="{{item?.image}}" />
+      <img src="{{ item?.image }}" />
     </div>
     <div class="product-discp">
-      <p class="brad-name" [ngClass]="item.brand?'':'noloader'">{{item.brand}}</p>
-      <span style="font-size: 10px;"> {{item?.itemCode}}</span>
-      <p class="text" [ngClass]="(item.name|sanitizeme)?'':'noloader'" >{{item.name|sanitizeme}}</p>
-      <div class="rating" [ngClass]="(item.rating)?'':'noloader'"   *ngIf="item?.rating?.value">
-        <span class="rating-value" style="background-color: rgb(227, 235, 218); color: rgb(104, 159, 56);">
-          {{item?.rating?.value}}
+      <p class="brad-name" [ngClass]="item?.brand? '' : 'noloader'">
+        {{ item.brand }}
+      </p>
+      <span style="font-size: 10px"> {{ item?.itemCode }}</span>
+      <p class="text" [ngClass]="item?.itemCode? '' : 'noloader'">
+        {{ item.name|| '' | sanitizeme }}
+      </p>
+      <div class="rating" [ngClass]="item.rating ? '' : 'noloader'" *ngIf="item?.rating?.value">
+        <span class="rating-value" style="background-color: rgb(227, 235, 218); color: rgb(104, 159, 56)">
+          {{ item?.rating?.value }}
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 26 26">
-            <path fill="#689f38" fill-rule="nonzero"
+            <path f    ill="#689f38" fill-rule="nonzero"
               d="M19.72 16.183l.9 5.254a2 2 0 0 1-2.902 2.108l-4.485-2.358a.5.5 0 0 0-.466 0l-4.485 2.358a2 2 0 0 1-2.902-2.108l.9-5.254-3.816-3.72A2 2 0 0 1 3.572 9.05l5.275-.767 2.36-4.78a2 2 0 0 1 3.586 0l2.36 4.78 5.275.767a2 2 0 0 1 1.108 3.411l-3.817 3.721z">
             </path>
           </svg>
-
         </span>
-        <span class="rating-count" > {{item?.rating?.totalCount}} Ratings</span></div>
+        <span class="rating-count">
+          {{ item?.rating?.totalCount }} Ratings</span>
+      </div>
 
-      <select class="btn option" [ngClass]="(item.varients.length>0)?'':'noloader'"   *ngIf="item?.varients?.length > 0" >
+      <select class="btn option" [ngClass]="item.varients.length > 0 ? '' : 'noloader'"
+        *ngIf="item?.varients?.length > 0">
         <div>
-        <option *ngFor="let varient of item?.varients">{{varient}}</option>
+          <option *ngFor="let varient of item?.varients">{{ varient }}</option>
         </div>
       </select>
 
       <!-- <div class ="text">{{item?.discp}}</div> -->
-      <div class="price" [ngClass]="(item.price)?'ee':'noloader'" > ${{item?.price?.new}} <span class="old">${{item?.price?.old}}</span></div>
-
+      <div class="price" [ngClass]="item.price ? 'ee' : 'noloader'">
+        <span class="new" *ngIf="item?.price"> ${{ item?.price?.new }} </span>
+        <span class="old" *ngIf="item?.price"> ${{ item?.price?.old }} </span>
+      </div>
     </div>
   </div>
-  <div class="card-footer-action">
-    <div class="sales-batch noloader">
-      Super Sale
-    </div>
-    <button class="btn add-to-cart" [disabled]="disableAdd" (click)="addToCart(item)">+Add</button>
+  <div class="card-footer-action" *ngIf="item && item?.itemCode">
+    <div class="sales-batch noloader">Super Sale</div>
+    <button class="btn add-to-cart" *ngIf="item.quantity > 0"  (click)="addToCart(item)" >+</button>
+    <button class="btn add-to-cart" [disabled]="disableAdd" (click)="addToCart(item)" style="width: 20%;">
+      {{ item.quantity > 0 ? item.quantity : "ADD" }}
+    </button>
+    <button class="btn add-to-cart" *ngIf="item.quantity > 0" (click)="removeOneItem(item)">-</button>
   </div>
 </div>
-
-

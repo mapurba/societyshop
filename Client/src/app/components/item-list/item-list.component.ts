@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { State, StateNames } from "src/app/schemas/componentStateSchema";
 import { ItemSchema } from "src/app/schemas/ItemSchema";
+import { ComponentStateService } from "src/app/services/component-state.service";
 import { ItemsService } from "src/app/services/items.service";
 
 @Component({
@@ -23,7 +25,10 @@ export class ItemListComponent implements OnInit {
   set list(val) {
     this._list = val;
   }
-  constructor(private itemService: ItemsService) {
+  constructor(
+    private itemService: ItemsService,
+    private componentStateService: ComponentStateService
+  ) {
     this._list = [];
     this._list.push(
       new ItemSchema({
@@ -35,17 +40,33 @@ export class ItemListComponent implements OnInit {
         image:
           "" /* "https://www.bigbasket.com/media/uploads/p/m/40018854_4-himalaya-purifying-neem-face-wash.jpg", */,
         brand: "",
+        
       })
     );
   }
 
   getAllItem() {
+
+    //// this has to be paginated ...... based on the query pararms ....
     this.itemService.getAllItems({}).subscribe((res) => {
+      // for each current list update the quantatio for the referance of the user ..
+
+      // just change the current lis details
+
+      const items: State = this.componentStateService.getStateByStateName(
+        StateNames.addToCart
+      ) as State;
+      items.value.map((item) => {
+      });
       this._list = res;
     });
   }
 
   ngOnInit() {
     this.getAllItem();
+  }
+
+  ngDestroy() {
+    // this.componentStateService.
   }
 }
