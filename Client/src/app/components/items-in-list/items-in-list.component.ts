@@ -1,5 +1,4 @@
 import { Component, Inject, Input, OnInit } from "@angular/core";
-import { INTERSECTION_OBSERVER_SUPPORT } from "@ng-web-apis/intersection-observer";
 import { State, StateNames } from "src/app/schemas/componentStateSchema";
 import {
   ItemSchema,
@@ -23,7 +22,6 @@ export class ItemsInListComponent implements OnInit {
   @Input("viewOnly") viewOnly: boolean = false;
   constructor(
     private componentStateService: ComponentStateService,
-    @Inject(INTERSECTION_OBSERVER_SUPPORT) readonly support: boolean
   ) { }
 
   ngOnInit() {
