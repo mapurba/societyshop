@@ -61,6 +61,12 @@
 .content > .product-img {
   padding: 6px;
   display: inline-block;
+  flex: 42%;
+  margin-right: 15px;
+  /* max-height: 68px; */
+  background-color: #ffffff52;
+  flex-direction: column;
+  align-self: center;
 }
 
 .content > .add-to-inventory {
@@ -86,9 +92,16 @@
   margin-bottom: 10px;
 }
 
-.input-group > .btn{
+.input-group > .btn {
   line-height: 1;
   padding: 0px;
 }
 
+.main-container {
+  padding: 5px;
+  margin: 0;
+}
 
+.btn.actn{
+  line-height: 1;
+}
