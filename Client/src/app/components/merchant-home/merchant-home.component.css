@@ -61,9 +61,7 @@
 .content > .product-img {
   padding: 6px;
   display: inline-block;
-  flex: 42%;
-  margin-right: 15px;
-  /* max-height: 68px; */
+  flex: 31%;
   background-color: #ffffff52;
   flex-direction: column;
   align-self: center;
@@ -71,11 +69,12 @@
 
 .content > .add-to-inventory {
   display: inline-block;
+  flex: 28%;
+  padding: 10px 10px 10px 0px;
 }
 
 .content > .product-img > img {
   width: 112px;
-  height: 127px;
   vertical-align: baseline;
 }
 
@@ -102,6 +101,12 @@
   margin: 0;
 }
 
-.btn.actn{
+.btn.actn {
   line-height: 1;
+}
+
+.content {
+  display: flex;
+  flex: 28%;
+  padding: 11px 0px;
 }

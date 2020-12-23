@@ -1,25 +1,48 @@
 <div class="main-container">
   <div class="top-quick-search">
-    <button class="btn"> All </button>
-    <button class="btn"> Makeup</button>
-    <button class="btn"> Skin Care</button>
+    <button class="btn">All</button>
+    <button class="btn">Makeup</button>
+    <button class="btn">Skin Care</button>
   </div>
 
   <div class="item-list">
     <div class="flex-action-container">
-      <div class="flex-left">
-        {{_list?.length}} items found
-      </div>
+      <div class="flex-left">{{ _list?.length }} items found</div>
       <div class="flex-right">
-        <button class="btn actn"> Sort </button>
-        <button class="btn actn"> Filter</button>
+        <button class="btn actn">Sort</button>
+        <button class="btn actn">Filter</button>
       </div>
     </div>
     <div class="flex-list-container">
-      <div class="list-item" *ngFor="let item of _list;let id = index;" asd="index" id="{{'ptem_'+id}}">
-        <items-in-list  [id]="'item_'+id" [item]=item></items-in-list>
+      <div
+        class="list-item"
+        *ngFor="let item of _list; let id = index"
+        asd="index"
+        id="{{ 'ptem_' + id }}"
+      >
+        <items-in-list [id]="'item_' + id" [item]="item"></items-in-list>
       </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="50"
+        height="50"
+        viewBox="0 0 50 50"
+        style="margin: 26px 38%"
+      >
+        <path
+          fill="#d8c93d"
+          d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 25 25"
+            to="360 25 25"
+            dur="0.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </svg>
     </div>
   </div>
-
 </div>
