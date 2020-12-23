@@ -19,13 +19,46 @@ import { MerchantPendingPaymentComponent } from "./components/merchant-pending-p
 // important need to complete lazy loading of the routes
 
 const appRoutes: Routes = [
-  { path: "", pathMatch: "full", component: LandingPageComponent },
-  { path: "admin", pathMatch: "full", component: AdminConsoleComponent },
-  { path: "land", pathMatch: "full", component: LandingPageComponent },
-  { path: "list", pathMatch: "full", component: FeedComponent },
-  { path: "cart", pathMatch: "full", component: ChartComponent },
-  { path: "add-items", pathMatch: "full", component: AddItemsComponent },
-  { path: "profile", pathMatch: "full", component: ProfileComponent },
+  {
+    path: "",
+    pathMatch: "full",
+    component: LandingPageComponent,
+  },
+  {
+    path: "admin",
+    pathMatch: "full",
+    component: AdminConsoleComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: "land",
+    pathMatch: "full",
+    component: LandingPageComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: "list",
+    pathMatch: "full",
+    component: FeedComponent,
+    canActivate: [],
+  },
+  {
+    path: "cart",
+    pathMatch: "full",
+    component: ChartComponent,
+    canActivate: [],
+  },
+  {
+    path: "add-items",
+    pathMatch: "full",
+    component: AddItemsComponent,
+    canActivate: [],
+  },
+  {
+    path: "profile",
+    pathMatch: "full",
+    component: ProfileComponent,
+  },
   { path: "payment", pathMatch: "full", component: PaymentComponent },
   {
     path: "merchant",

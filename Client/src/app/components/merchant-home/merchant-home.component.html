@@ -1,6 +1,69 @@
-<div class="container">
+<div class="container main-container">
+  <product-search [isFlat]="true" (searchResult)="populateItemList($event)"></product-search>
 
-<p>
-  merchant-home works!
-</p>
+  <!-- <item-list [list]="_list"></item-list> -->
+  <div class="item-list">
+    <div class="flex-action-container">
+      <div class="flex-left">{{ _list?.length }} items found</div>
+      <div class="flex-right">
+        <button class="btn actn">Sort</button>
+        <button class="btn actn">Filter</button>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-item" *ngFor="let item of _list; let id = index">
+        <items-in-list [id]="'item_' + id" [item]="item" (click)="openConfirmation(item)" [viewOnly]="true">
+        </items-in-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" (click)="hideOverlay($event)" *ngIf="hideOverLay">
+  <div class="Content" (click)="prevent($event)">
+    <div class="modal">
+      <div class="content">
+        <div class="product-img">
+          <img
+            data-src="{{newInventoryItem?.image}}" />
+        </div>
+        <div class="add-to-inventory">
+          <form [formGroup]="inventoryForm" (ngSubmit)="addToInvontory()">
+            <div class="input-group">
+              <label> Quantity</label>
+              <select formControlName="quantity">
+                <option>1</option>
+                <option>2</option>
+                <option>5</option>
+                <option>10</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label> Price</label>
+              <select formControlName="pricePerQuantity">
+                <option *ngFor="
+                    let price of numSequence(newInventoryItem?.price?.new, -1)
+                  ">
+                  {{ price }}
+                </option>
+                <option selected value="{{ newInventoryItem?.price?.new }}">
+                  {{ newInventoryItem?.price?.new }}
+                </option>
+                <option *ngFor="
+                    let price of numSequence(newInventoryItem?.price?.new, 1)
+                  ">
+                  {{ price }}
+                </option>
+              </select>
+            </div>
+            <div class="input-group">
+              <button class="btn" [disabled]="isSubmited">
+                Add To Inventory
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

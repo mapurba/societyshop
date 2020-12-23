@@ -51,7 +51,7 @@ export class InterceptService implements HttpInterceptor {
             console.log(this.route.url);
           }
           else{
-            this.route.navigate(['/login']);
+            this.route.navigate(["/"]);
             console.error('not logged in');
           }
           

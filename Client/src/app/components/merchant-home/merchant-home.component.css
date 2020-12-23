@@ -1,0 +1,94 @@
+.grid-container {
+  display: grid;
+  /* flex-direction: row; */
+  grid-template-columns: auto auto auto;
+  font-size: 30px;
+  /* text-align: center; */
+  /* margin-top: 10px; */
+  grid-row-gap: 4px;
+  grid-column-gap: 5px;
+}
+
+.grid-item {
+  /* background-color: dodgerblue; */
+  background-color: white;
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 800px) {
+  .grid-container {
+    /* flex-direction: column; */
+    grid-template-columns: auto auto;
+  }
+}
+
+.flex-action-container {
+  display: flex;
+}
+
+.flex-action-container > .flex-right {
+  padding: 5px;
+  font-size: 15px;
+  margin-left: auto;
+}
+
+.flex-action-container > .flex-left {
+  padding: 10px;
+  text-align: center;
+  margin-right: auto;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.overlay {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  background-color: #ffff0042;
+}
+
+.overlay > .Content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+}
+
+.content > .product-img {
+  padding: 6px;
+  display: inline-block;
+}
+
+.content > .add-to-inventory {
+  display: inline-block;
+}
+
+.content > .product-img > img {
+  width: 112px;
+  height: 127px;
+  vertical-align: baseline;
+}
+
+.Content > .modal {
+  /* min-height: 239px; */
+  width: 75%;
+  background-color: white;
+  position: relative;
+  display: flex;
+}
+
+.input-group > select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.input-group > .btn{
+  line-height: 1;
+  padding: 0px;
+}
+
+
