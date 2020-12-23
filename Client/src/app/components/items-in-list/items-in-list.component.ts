@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Inject, Input, OnInit } from "@angular/core";
+import { INTERSECTION_OBSERVER_SUPPORT } from "@ng-web-apis/intersection-observer";
 import { State, StateNames } from "src/app/schemas/componentStateSchema";
 import {
   ItemSchema,
@@ -18,7 +19,12 @@ export class ItemsInListComponent implements OnInit {
   @Input("id") id: string;
   @Input("disabled") disableAdd?: boolean = false; //only enable it in the end user mode
   stateName: string = "addToCart";
-  constructor(private componentStateService: ComponentStateService) {}
+
+  @Input("viewOnly") viewOnly: boolean = false;
+  constructor(
+    private componentStateService: ComponentStateService,
+    @Inject(INTERSECTION_OBSERVER_SUPPORT) readonly support: boolean
+  ) { }
 
   ngOnInit() {
     // console.log(this.item);
@@ -26,15 +32,19 @@ export class ItemsInListComponent implements OnInit {
 
   //state create update
   addToCart(item: ItemSchema) {
-    // this.item.quantity++;
+    // item.quantity = 1;
+    item.quantity = item.quantity == 0 ? 1 : ++item.quantity;
+    this.item = item;
     if (this.componentStateService.getStateByStateName(StateNames.addToCart)) {
       let cart = this.componentStateService.getStateByStateName(
         StateNames.addToCart
       ) as State;
       /////
       // item.quantity++;
-      const newitem = Object.assign({},  item);
+
+      const newitem = Object.assign({}, item);
       cart.value.push(newitem);
+      console.log("###$$%", newitem);
 
       // ...this..
       let newState = new State(StateNames.addToCart, cart.value);
@@ -55,4 +65,5 @@ export class ItemsInListComponent implements OnInit {
     this.item.quantity--;
     // updatestate()
   }
+
 }

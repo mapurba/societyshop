@@ -1,7 +1,7 @@
-<div class="main-container"  id="sss{{item?.itemCode}}" >
-  <div class="content">
+<div class="main-container"  id="sss{{item?.itemCode}}"  >
+  <div class="content" >
     <div class="product-img">
-      <img src="{{ item?.image }}" />
+      <img data-src="{{ item?.image }}"   />
     </div>
     <div class="product-discp">
       <p class="brad-name" [ngClass]="item?.brand? '' : 'noloader'">
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  <div class="card-footer-action" *ngIf="item && item?.itemCode">
+  <div class="card-footer-action" *ngIf="item && item?.itemCode && !viewOnly" >
     <div class="sales-batch noloader">Super Sale</div>
     <button class="btn add-to-cart" *ngIf="item.quantity > 0"  (click)="addToCart(item)" >+</button>
     <button class="btn add-to-cart" [disabled]="disableAdd" (click)="addToCart(item)" style="width: 20%;">

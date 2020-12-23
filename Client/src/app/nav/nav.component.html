@@ -50,7 +50,7 @@
           <!-- <img src="assets/images/bsc_logo.gif" alt="BSC Logo" /> -->
           Your Local Store
         </a>
-        <product-search class="container col-10 search-box"></product-search>
+        <product-search class="container col-10 search-box" *ngIf="!loggedInUserDetails?.isMer"></product-search>
       </div>
 
       <div

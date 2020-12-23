@@ -1,5 +1,13 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  EventEmitter,
+} from "@angular/core";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import { StateNames } from "src/app/schemas/componentStateSchema";
@@ -19,6 +27,8 @@ export class ProductSearchComponent implements OnInit {
   _show: boolean = false;
   dropdownsearchResul = [];
 
+  @Input("isFlat") isFalt: boolean = false;
+
   @ViewChild("searchQ") searchQRef: ElementRef;
   @Input("show") setShow(val) {
     this._show = val;
@@ -31,6 +41,8 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
+  @Output("searchResult") searchResult? :EventEmitter<any> = new EventEmitter<any>();
+
   constructor(
     private componentStateServie: ComponentStateService,
     private http: HttpClient
@@ -40,13 +52,15 @@ export class ProductSearchComponent implements OnInit {
     this.subject.pipe(debounceTime(500)).subscribe((res) => {
       this.searchQ = res;
       // get the search result from this object
-      console.log(this.searchQ);
+      // console.log(this.searchQ);
 
-      this.fetchsearchResult(this.searchQ).subscribe((res:    any) => {
+      this.fetchsearchResult(this.searchQ||'').subscribe((res: any) => {
         // console.log(res);
         this.dropdownsearchResul = res.data;
+        this.searchResult.emit(this.dropdownsearchResul);
       });
     });
+    this.subject.next("");
   }
 
   fetchsearchResult(Q) {
