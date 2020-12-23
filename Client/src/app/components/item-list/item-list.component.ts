@@ -30,19 +30,19 @@ export class ItemListComponent implements OnInit {
     private componentStateService: ComponentStateService
   ) {
     this._list = [];
-    this._list.push(
-      new ItemSchema({
-        name: "",
-        price: "" /*  { new: 9000, old: 12000 } */,
-        discp: "",
-        varients: "" /* ["RO", "Ro + UV "] */,
-        rating: "" /*  { value: "4.2", totalCount: "200" }, */,
-        image:
-          "" /* "https://www.bigbasket.com/media/uploads/p/m/40018854_4-himalaya-purifying-neem-face-wash.jpg", */,
-        brand: "",
+    // this._list.push(
+    //   new ItemSchema({
+    //     name: "",
+    //     price: "" /*  { new: 9000, old: 12000 } */,
+    //     discp: "",
+    //     varients: "" /* ["RO", "Ro + UV "] */,
+    //     rating: "" /*  { value: "4.2", totalCount: "200" }, */,
+    //     image:
+    //       "" /* "https://www.bigbasket.com/media/uploads/p/m/40018854_4-himalaya-purifying-neem-face-wash.jpg", */,
+    //     brand: "",
         
-      })
-    );
+    //   })
+    // );
   }
 
   getAllItem() {

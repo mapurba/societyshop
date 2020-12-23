@@ -1,5 +1,6 @@
 .flex-action-container {
   display: flex;
+  background-color: whitesmoke;
 }
 
 .flex-action-container > .flex-right {
@@ -36,7 +37,6 @@
 }
 
 .main-container {
-  background-color: whitesmoke;
   /* padding: 0px 0px 10px 0px; */
 }
 .list-item {
