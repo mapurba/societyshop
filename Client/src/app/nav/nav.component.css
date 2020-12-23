@@ -190,7 +190,6 @@ header .sub_menu .sub_menu_pos .activeTab {
   height: auto;
   max-width: 48px;
   border-right: none !important;
-  height: 100px;
 }
 .avatar > img {
   border-radius: 50%;
