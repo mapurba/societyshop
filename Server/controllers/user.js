@@ -596,7 +596,7 @@ exports.getForgot = (req, res) => {
 exports.userDetail = (req, res, next) => {
   if (req.query["id"] != undefined && req.query["id"] != "null") {
     const q = req.query["id"];
-    let Q = new RegExp(q.q, "i");
+    let Q = new RegExp(q, "i");
     User.find(
       {
         $or: [{ email: { $regex: Q } }, { "profile.name": { $regex: Q } }],
@@ -605,7 +605,6 @@ exports.userDetail = (req, res, next) => {
         if (err) {
           res.status(489).send(err);
         }
-
         const userList = result.map((user) => {
           user.tokens = [];
           user.session = {};
@@ -613,6 +612,7 @@ exports.userDetail = (req, res, next) => {
           user.updatedAt = "";
           return user;
         });
+        console.log(userList.length);
         res.status(200).send(userList);
       }
     );
