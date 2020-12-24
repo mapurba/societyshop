@@ -46,6 +46,13 @@ userRouter.get('/details', auth.isAuthenticated, userController.userDetail);
 // userRouter.get('/user/blogPhotos',userController.getUserBlogPhotos);
 
 userRouter.post("/session", auth.isAuthenticated, userController.updateSession);
+userRouter.post(
+  "/merchant/addToInventory",
+  auth.isAuthenticated,
+  userController.addtoInventory
+);
+
+
 
 
 module.exports = userRouter;

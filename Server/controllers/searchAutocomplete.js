@@ -21,7 +21,7 @@ exports.getSearchItem = async (req, res) => {
     },
     function (err, data) {
       if (err) return handleError(err);
-      data = data.slice(0, 10);
+      // data = data.slice(0, 10);
       res.send({ data }).status(200);
     }
   );

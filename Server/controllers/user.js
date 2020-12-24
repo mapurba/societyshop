@@ -6,7 +6,6 @@ const _ = require("lodash");
 const validator = require("validator");
 // const mailChecker = require('mailchecker');
 const User = require("../models/User");
-const { session } = require("passport");
 
 const randomBytesAsync = promisify(crypto.randomBytes);
 
@@ -596,12 +595,31 @@ exports.getForgot = (req, res) => {
 
 exports.userDetail = (req, res, next) => {
   if (req.query["id"] != undefined && req.query["id"] != "null") {
-    User.find({ "profile.username": req.query["id"] }, (err, result) => {
-      if (err) {
-        res.status(489).send(err);
+    const q = req.query["id"];
+    let Q = new RegExp(q.q, "i");
+    User.find(
+      {
+        $or: [
+          { "profile.username": { $regex: Q } },
+          { "profile.name": { $regex: Q } },
+          { email: { $regex: Q } },
+        ],
+      },
+      (err, result) => {
+        if (err) {
+          res.status(489).send(err);
+        }
+
+        const userList = result.map((user) => {
+          user.tokens = [];
+          user.session = {};
+          user.createdAt = "";
+          user.updatedAt = "";
+          return user;
+        });
+        res.status(200).send(userList);
       }
-      res.status(200).send(result);
-    });
+    );
   } else if (
     req.user &&
     req.query["id"] == undefined &&
@@ -740,8 +758,55 @@ exports.updateSession = (req, res, next) => {
           return next(err);
         }
         req.flash("success", { msg: "user session updated." });
-        res.send({ success :true}).status(200);
+        res.send({ success: true }).status(200);
       });
     });
   }
+};
+
+exports.addtoInventory = (req, res, next) => {
+  console.log("adding item to merchant list ... " + req.user.id);
+  // if (!req.user.isMer) {
+  //   res.send({}).status(489);
+  // }
+  User.findById(req.user.id, (err, user) => {
+    const inventory = { data: {} };
+
+    if (err) {
+      res.send({}).status(489);
+    }
+
+    if (user.inventory && user.inventory.length > 0) {
+      console.log(user.inventory.get("3254"));
+      inventory.data = user.inventory.get(req.body.itemCode);
+    }
+
+    if (user.isMer == true && user.inventory) {
+      let item = user.inventory.get(req.body.itemCode);
+
+      if (!item) {
+        console.log(item);
+      }
+    }
+
+    if (!user.inventory) {
+      user.inventory = new Map();
+      user.inventory.set(req.body.itemCode.toString(), JSON.stringify(item));
+    }
+
+    user.inventory.set(
+      req.body.itemCode.toString(),
+      JSON.stringify(inventory.data)
+    );
+
+    console.log("user ", inventory.data);
+
+    user.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      // req.flash("success", { msg: "user session updated." });
+      res.send({ success: true }).status(200);
+    });
+  });
 };

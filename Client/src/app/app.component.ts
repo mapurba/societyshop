@@ -115,7 +115,7 @@ export class AppComponent {
     this.componentStateServie
       .onStateChange(StateNames.UserSession)
       .subscribe((res) => {
-        if (res.id === StateNames.UserSession) {
+        if (res.id === StateNames.UserSession) {  
           // this.searchQRef.nativeElement.click();
           let userSession = res.value.get(StateNames.UserSession);
           console.log(userSession);

@@ -1,0 +1,56 @@
+<div class="user-add-new-merhant">
+  <product-search [isFlat]="true" (isLoading)="searchFinished($event)" (searchResult)="merchentUsers($event)"
+    [placeholder]="'Search Sellers'" [Qurl]="'/api/user/details?id='"></product-search>
+
+  <div class="item-list userLists">
+    <div class="flex-action-container">
+      <div class="flex-left">{{ MerUserList?.length }} Sellers found</div>
+    </div>
+    <div class="flex-list-container">
+      <div class="list-item" *ngFor="let muser of this.MerUserList; let id = index" id="{{ 'ptem_' + id }}"
+        (click)="openConfirmation(muser)">
+        <div class="main-container" id="{{id}}">
+          <div class="content">
+            <div class="product-img">
+              <img src="{{muser?.profile?.picture}}" />
+            </div>
+            <div class="product-discp">
+              <p class="brad-name" ng-reflect-klass="brad-name">
+                {{muser?.profile?.name}} <button class="btn">Subscribe</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg *ngIf="isListLoading" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        style="margin: 26px 38%">
+        <path fill="#d8c93d"
+          d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z">
+          <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.5s"
+            repeatCount="indefinite" />
+        </path>
+      </svg>
+    </div>
+  </div>
+</div>
+<div class="overlay" (click)="setShowOverLay($event)" *ngIf="showOverLay">
+  <div class="content" (click)="prevent($event)">
+    <div class="modal">
+      <div class="content">
+
+
+        <img data-src="{{slectedUser?.profile?.picture}}" />
+        <p>{{slectedUser?.profile?.name}}</p>
+        <div>
+          <p>
+            Store @
+            Ncc Nagarjuna Maple Heights,
+            Banagalore
+          </p>
+          <button class="btn" (click)="subscribeSeller(slectedUser)" style="margin-bottom: 7px;"> Check Stock</button>
+          <button class="btn" (click)="subscribeSeller(slectedUser)"> * Add to Favourite </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
