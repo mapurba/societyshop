@@ -9,7 +9,7 @@ export class SubscribeMerchantComponent implements OnInit {
 
   constructor(private ref: ChangeDetectorRef) { }
 
-  MerUserList: [];
+  MerUserList: any;
 
   showOverLay = false;
 
@@ -52,8 +52,5 @@ export class SubscribeMerchantComponent implements OnInit {
   subscribeSeller(seller) {
     console.log(seller);
   }
-
-
-
 
 }
