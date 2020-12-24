@@ -1,5 +1,5 @@
+import { DOCUMENT } from "@angular/common";
 import { Component, HostListener, Inject } from "@angular/core";
-import { DOCUMENT } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { State, StateNames, UserSession } from "./schemas/componentStateSchema";
 import { ComponentStateService } from "./services/component-state.service";

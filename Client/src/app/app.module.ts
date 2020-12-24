@@ -29,6 +29,8 @@ import { MerchantOrdersComponent } from './components/merchant-orders/merchant-o
 import { MerchantTodayTotalComponent } from './components/merchant-today-total/merchant-today-total.component';
 import { MerchantPendingPaymentComponent } from './components/merchant-pending-payment/merchant-pending-payment.component';
 import { SubscribeMerchantComponent } from './components/subscribe-merchant/subscribe-merchant.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { SubscribeMerchantComponent } from './components/subscribe-merchant/subs
     routing,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
   ],
   providers: [
