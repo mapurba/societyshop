@@ -1,0 +1,107 @@
+{
+  "configVersion": 1,
+  "timestamp": 1608835461190,
+  "index": "./index.html",
+  "assetGroups": [
+    {
+      "name": "SocietyStore",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "./index.html",
+        "./main.2b9af28686aef1a08305.js",
+        "./manifest.webmanifest",
+        "./polyfills-es5.c25cd416fdb8dba90f9e.js",
+        "./polyfills.ee132e127fcf44365051.js",
+        "./runtime.0e49e2b53282f40c8925.js",
+        "./styles.2277daf2aa77a608c4d2.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "./assets/css/style.css",
+        "./assets/icons/icon-128x128.png",
+        "./assets/icons/icon-144x144.png",
+        "./assets/icons/icon-152x152.png",
+        "./assets/icons/icon-192x192.png",
+        "./assets/icons/icon-384x384.png",
+        "./assets/icons/icon-512x512.png",
+        "./assets/icons/icon-72x72.png",
+        "./assets/icons/icon-96x96.png",
+        "./assets/images/android.png",
+        "./assets/images/favicon.ico",
+        "./assets/images/fblogin.png",
+        "./assets/images/ios.png",
+        "./assets/images/kusya_one.jpg",
+        "./assets/images/landingpageimage.png",
+        "./assets/images/logo.png",
+        "./assets/images/mylooks-logo.png",
+        "./assets/images/navLogo.png",
+        "./assets/images/phone.png",
+        "./assets/images/puff.svg",
+        "./assets/images/verified.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "./assets/css/style.css": "21647d7eacaaacb1273ec70fa5dcb95cc27610ae",
+    "./assets/icons/icon-128x128.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/icons/icon-144x144.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/icons/icon-152x152.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/icons/icon-192x192.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/icons/icon-384x384.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/icons/icon-512x512.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/icons/icon-72x72.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/icons/icon-96x96.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/images/android.png": "073dcf14c7c312be5daeb4fa2113429e019fdbc7",
+    "./assets/images/favicon.ico": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
+    "./assets/images/fblogin.png": "b5d72d42e06af71f2d91db10a80a8e52acd13ac7",
+    "./assets/images/ios.png": "d5a23520acdf18636380e1a88d3de2a1efbf6ce1",
+    "./assets/images/kusya_one.jpg": "7782126843d51c1207c0cca0883245c4a6bfacc1",
+    "./assets/images/landingpageimage.png": "b2061c5a1b49ddd8e06d1a364d9577e2a2d8f83c",
+    "./assets/images/logo.png": "a14bcc8ff913dfc1053d0fa21c565da5872fe29a",
+    "./assets/images/mylooks-logo.png": "86425b93ccc5274fe680fb8fdf87d082662b43e2",
+    "./assets/images/navLogo.png": "580640180636ed8d511768ff961ce10cbb817391",
+    "./assets/images/phone.png": "ca7b7a32c07203b59d5c6607be3da1c8ebb26bee",
+    "./assets/images/puff.svg": "3e060e3f4857d3db8a13832678d55d1a5c54c801",
+    "./assets/images/verified.png": "341354067df4ac62d34e09a123b42dba17603c4d",
+    "./index.html": "3dca718b6de92806516d0a7f5d5aa406dc9cdd99",
+    "./main.2b9af28686aef1a08305.js": "2fb8ab816e64e00ec2639e52775a90e1e2dca5ba",
+    "./manifest.webmanifest": "ed01ab5d7b360409e70bbd606eab9fc3c926bcfc",
+    "./polyfills-es5.c25cd416fdb8dba90f9e.js": "aea498161c95fa33a956a64482d4cd6db94aa0bd",
+    "./polyfills.ee132e127fcf44365051.js": "f30f6225350297074bbd5e5bcb2997162a48de46",
+    "./runtime.0e49e2b53282f40c8925.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "./styles.2277daf2aa77a608c4d2.css": "d0acb7aaf4b575888c21d6bab7d18df3630c7487"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
