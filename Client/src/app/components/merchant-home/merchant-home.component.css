@@ -42,7 +42,7 @@
 
 .overlay {
   width: 100vw;
-  position: absolute;
+  position: fixed;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@
 
 .input-group > .btn {
   line-height: 1;
-  padding: 0px;
+  /* padding: 0px; */
 }
 
 .main-container {
@@ -109,4 +109,15 @@
   display: flex;
   flex: 28%;
   padding: 11px 0px;
+}
+
+.overlay-hidden{
+  overflow: hidden;
+}
+
+.tick-icon{
+      width: 30px;
+    position: absolute;
+    left: 30%;
+    top: -7px;
 }

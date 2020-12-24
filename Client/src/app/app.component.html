@@ -9,9 +9,9 @@
   <!-- fix this -->
   <br />
   <br />
-
+<!-- 
   <h1 style="text-align: center">welcome you your personal store</h1>
-  <p style="text-align: center;text-transform: capitalize;">{{ user?.profile?.name }}</p>
+  <p style="text-align: center;text-transform: capitalize;">{{ user?.profile?.name }}</p> -->
 
   <footer class="nav-footer-main">
     <div class="footer-nav" *ngIf="!user?.isMer">
@@ -35,7 +35,7 @@
     <div class="footer-nav" *ngIf="user?.isMer">
       <!-- change these links to router link -->
       <div class="menu">
-        <a class="fa fa-home icon" routerLink="merchantHome">Home</a>
+        <a class="fa fa-home icon" routerLink="merchantHome">Inventory</a>
       </div>
 
       <div class="menu">

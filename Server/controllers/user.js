@@ -600,6 +600,7 @@ exports.userDetail = (req, res, next) => {
     User.find(
       {
         $or: [{ email: { $regex: Q } }, { "profile.name": { $regex: Q } }],
+        isMer: true,
       },
       (err, result) => {
         if (err) {

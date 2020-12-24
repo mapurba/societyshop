@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { mainModule } from "process";
+import { ItemSchema } from "src/app/schemas/ItemSchema";
 
 @Component({
   selector: "app-merchant-home",
@@ -11,7 +12,7 @@ import { mainModule } from "process";
 export class MerchantHomeComponent implements OnInit {
   _list: any;
 
-  newInventoryItem: any;
+  newInventoryItem: ItemSchema;
 
   inventoryForm: FormGroup;
 
@@ -26,7 +27,7 @@ export class MerchantHomeComponent implements OnInit {
   ngOnInit() { }
 
   populateItemList(data) {
-    this._list = data;
+    this._list = data.data;
     console.log(this._list);
   }
 
@@ -56,7 +57,7 @@ export class MerchantHomeComponent implements OnInit {
       this.newInventoryItem.quantity = this.inventoryForm.get("quantity").value;
       this.newInventoryItem.price.new = this.inventoryForm.get("pricePerQuantity").value;
       let payLoad = this.newInventoryItem;
-      this.http.post("api/user/merchant/addToInventory", payLoad).subscribe((res) => {
+      this.http.post("/api/user/merchant/addToInventory", payLoad).subscribe((res) => {
 
       });
     }

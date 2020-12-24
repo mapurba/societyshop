@@ -29,7 +29,7 @@
 
 .overlay {
   width: 100vw;
-  position: absolute;
+  position: fixed;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -70,4 +70,8 @@
 
 .modal > .content > img {
   border-radius: 50%;
+}
+
+.overlay-hidden{
+  overflow: hidden;
 }

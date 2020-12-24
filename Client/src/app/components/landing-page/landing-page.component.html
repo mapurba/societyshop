@@ -8,17 +8,17 @@
             width: 49%;
             padding: 0px 10px;
             background-color: #dac61b;
-        " >
+        ">
           <i class="fa fa-truck"></i> Seller Signup
         </div>
-        <div  (click)="userSignup()"   class="next-slot btn" style=" 
+        <div (click)="userSignup()" class="next-slot btn" style=" 
               display: inline-block;
               width: 49%;
               padding: 0px 10px;
               background-color: #e2cf2bd1;
               margin: 0px 3px;
-            " >
-          <i class="fa fa-bell-o" ></i>
+            ">
+          <i class="fa fa-bell-o"></i>
           <span class="time"> User Signup</span>
         </div>
       </div>
@@ -27,15 +27,21 @@
 
   <div class="flex-rows">
     <div class="delivery-slot-alert">
-      <div class="info">
-        <div class="text">
-          Your next available slot <i class="fa fa-bell-o"></i>
+      <div *ngIf="currentLoggedinUser?.isMer == undefined">
+        <div class="info">
+          <div class="text">
+            Your next available slot <i class="fa fa-bell-o"></i>
+          </div>
+        </div>
+        <div class="next-slot">
+          <span class="fa fa-truck"></span>
+          <span class="time"> Today 5:00PM - 7:00PM</span>
         </div>
       </div>
-      <div class="next-slot">
-        <span class="fa fa-truck"></span>
-        <span class="time"> Today 5:00PM - 7:00PM</span>
+      <div *ngIf="currentLoggedinUser?.isMer == true">
+        set you delivery time
       </div>
+
     </div>
   </div>
 
@@ -50,15 +56,15 @@
             width: 49%;
             padding: 0px 10px;
             background-color: #dac61b;
-        " routerLink="sellerList" >
-           Subscribe Sellers
+        " routerLink="sellerList">
+          Subscribe Sellers
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="flex-rows">
+  <div class="flex-rows" *ngIf="currentLoggedinUser?.isMer != true">
     <div class="section-header">
       <img class="banner-art left"
         src="https://th.bing.com/th/id/OIP.rKFw0gbtsUaSys1i7QY_MQHaHa?w=179&h=180&c=7&o=5&dpr=1.25&pid=1.7" />
@@ -135,6 +141,14 @@
     </div>
   </div>
 
+
+  <div *ngIf="currentLoggedinUser?.isMer == true" style="padding: 13px;">
+  
+    (20% profile complete)
+  
+    complete your profile details and check your inventory
+  
+  </div>
 
 
 
