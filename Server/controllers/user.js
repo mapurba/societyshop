@@ -599,11 +599,7 @@ exports.userDetail = (req, res, next) => {
     let Q = new RegExp(q.q, "i");
     User.find(
       {
-        $or: [
-          { "profile.username": { $regex: Q } },
-          { "profile.name": { $regex: Q } },
-          { email: { $regex: Q } },
-        ],
+        $or: [{ email: { $regex: Q } }, { "profile.name": { $regex: Q } }],
       },
       (err, result) => {
         if (err) {
