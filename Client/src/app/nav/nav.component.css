@@ -24,8 +24,7 @@
     transform: scale(1.2);
     padding: 0px;
     transform-origin: 1px;
-        padding-bottom: 6px;
-
+    padding-bottom: 6px;
   }
 
   .avatar {
@@ -200,7 +199,7 @@ header .sub_menu .sub_menu_pos .activeTab {
   width: 100px !important;
 }
 .avatar .profile-dropdown-content a:hover {
-  background-color: #036bcb !important;
+  background-color: #d8c93d !important;
 }
 .avatar:hover {
   background: none !important;
@@ -214,16 +213,16 @@ header .sub_menu .sub_menu_pos .activeTab {
 .main-twxt-portion {
   line-height: 2;
   font-size: 17px;
-  color: #464000 ;
+  color: #464000;
 }
 
-.search-box{
+.search-box {
   display: inline-block;
-    padding-left: 0;
-    width: 95%;
+  padding-left: 0;
+  width: 95%;
 }
 
-.instagram-login-button{
-      padding-left: 0;
-    margin-left: -12px;
+.instagram-login-button {
+  padding-left: 0;
+  margin-left: -12px;
 }

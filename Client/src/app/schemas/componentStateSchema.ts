@@ -16,6 +16,7 @@ export enum StateNames {
   addToCart = "addToCart",
   UserSession = "UserSession",
   OpenSearchBoxState = "OpenSearchBoxState",
+  userDetail = "UserDetail"
 }
 
 export class UserSession {

@@ -15,6 +15,7 @@ import { MerchantHomeComponent } from "./components/merchant-home/merchant-home.
 import { MerchantOrdersComponent } from "./components/merchant-orders/merchant-orders.component";
 import { MerchantTodayTotalComponent } from "./components/merchant-today-total/merchant-today-total.component";
 import { MerchantPendingPaymentComponent } from "./components/merchant-pending-payment/merchant-pending-payment.component";
+import { SubscribeMerchantComponent } from "./components/subscribe-merchant/subscribe-merchant.component";
 
 // important need to complete lazy loading of the routes
 
@@ -23,17 +24,15 @@ const appRoutes: Routes = [
     path: "",
     pathMatch: "full",
     component: LandingPageComponent,
+  }, {
+    path: "sellerList",
+    pathMatch: "full",
+    component: SubscribeMerchantComponent,
   },
   {
     path: "admin",
     pathMatch: "full",
     component: AdminConsoleComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: "land",
-    pathMatch: "full",
-    component: LandingPageComponent,
     canActivate: [AuthGuardService],
   },
   {

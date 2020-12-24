@@ -27,8 +27,13 @@ export class ProductSearchComponent implements OnInit {
   _show: boolean = false;
   dropdownsearchResul = [];
 
+
+  @Input("Qurl") Qurl?: string;
   @Input("isFlat") isFalt: boolean = false;
 
+  @Input("placeholder") placeholder?: string;
+
+  @Output("isLoading") isLoading?: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild("searchQ") searchQRef: ElementRef;
   @Input("show") setShow(val) {
     this._show = val;
@@ -41,30 +46,32 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
-  @Output("searchResult") searchResult? :EventEmitter<any> = new EventEmitter<any>();
+  @Output("searchResult") searchResult?: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private componentStateServie: ComponentStateService,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+
     this.subject.pipe(debounceTime(500)).subscribe((res) => {
       this.searchQ = res;
       // get the search result from this object
       // console.log(this.searchQ);
-
-      this.fetchsearchResult(this.searchQ||'').subscribe((res: any) => {
+      this.isLoading.emit(true);
+      this.fetchsearchResult(this.searchQ || '').subscribe((res: any) => {
         // console.log(res);
         this.dropdownsearchResul = res.data;
-        this.searchResult.emit(this.dropdownsearchResul);
+        this.searchResult.emit(res);
+        this.isLoading.emit(false);
       });
     });
     this.subject.next("");
   }
 
   fetchsearchResult(Q) {
-    return this.http.get("/api/search/ac?ed=3&q=" + Q + "&");
+    return this.http.get((this.Qurl || "/api/search/ac?ed=3&q=") + Q + "&");
   }
 
   ngAfterViewInit() {
@@ -89,7 +96,7 @@ export class ProductSearchComponent implements OnInit {
     if (cancle) {
       this._showCancleBtn = false;
       this.showDowpdown = false;
-      this.searchQRef.nativeElement.innerText = this.defaultText;
+      this.searchQRef.nativeElement.innerText = this.placeholder || this.defaultText;
 
       return;
     }
@@ -98,7 +105,7 @@ export class ProductSearchComponent implements OnInit {
       const { target } = event;
       const { innerText } = target;
       if (innerText.length <= 1) {
-        this.searchQRef.nativeElement.innerText = this.defaultText;
+        this.searchQRef.nativeElement.innerText = this.placeholder || this.defaultText;
       }
     }
 

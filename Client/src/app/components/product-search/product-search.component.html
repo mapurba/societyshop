@@ -11,7 +11,9 @@
       (click)="clearText($event)"
       (keyup)="onKeyUp($event)"
     >
-      <div class="placeholder">Search all the products</div>
+      <div class="placeholder">
+        {{ placeholder || "Search all the products" }}
+      </div>
     </div>
   </div>
   <div class="action" [hidden]="!_showCancleBtn">
@@ -31,7 +33,7 @@
       *ngFor="let searchTerms of dropdownsearchResul; let i = index"
     >
       <div class="search-bar">
-        <img data-src="{{searchTerms.image}}">
+        <img data-src="{{ searchTerms.image }}" />
         {{ searchTerms.name | sanitizeme }}
       </div>
     </div>

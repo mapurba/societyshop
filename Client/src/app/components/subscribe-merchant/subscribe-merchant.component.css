@@ -1,0 +1,73 @@
+.user-add-new-merhant {
+  padding: 20px 10px;
+}
+
+.product-img {
+  display: inline-block;
+  width: 30%;
+}
+
+.list-item {
+  padding: 5px;
+  border-top: 1px solid #b5a72cad;
+}
+.product-img > img {
+  vertical-align: middle;
+  border-style: none;
+  border-radius: 54%;
+  width: 64px;
+}
+
+.product-discp {
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.flex-action-container {
+  margin: 11px 8px;
+}
+
+.overlay {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  background-color: #ffff0042;
+}
+
+.overlay > .content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+}
+
+.overlay > .content > .product-img {
+  padding: 6px;
+  display: inline-block;
+  flex: 31%;
+  background-color: #ffffff52;
+  flex-direction: column;
+  align-self: center;
+}
+
+.content > .modal {
+  /* min-height: 239px; */
+  width: 75%;
+  background-color: white;
+  position: relative;
+  display: flex;
+}
+
+.modal > .content {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.modal > .content > img {
+  border-radius: 50%;
+}

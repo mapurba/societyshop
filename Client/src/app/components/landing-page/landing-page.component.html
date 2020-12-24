@@ -1,6 +1,6 @@
 <div class="container">
   <!-- selevety time alert component -->
-  <div class="flex-rows">
+  <div class="flex-rows" *ngIf="currentLoggedinUser == undefined">
     <div class="delivery-slot-alert">
       <div class="info">
         <div class="text btn" style="   
@@ -40,6 +40,23 @@
   </div>
 
   <!-- shop by category component -->
+
+
+  <div class="flex-rows" *ngIf="currentLoggedinUser?.isMer == undefined">
+    <div class="delivery-slot-alert">
+      <div class="info">
+        <div class="text btn" style="   
+            display: inline-block;
+            width: 49%;
+            padding: 0px 10px;
+            background-color: #dac61b;
+        " routerLink="sellerList" >
+           Subscribe Sellers
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="flex-rows">
     <div class="section-header">
@@ -117,4 +134,8 @@
       </div>
     </div>
   </div>
+
+
+
+
 </div>

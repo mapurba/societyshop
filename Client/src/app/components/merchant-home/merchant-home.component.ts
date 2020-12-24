@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { mainModule } from "process";
@@ -18,7 +19,7 @@ export class MerchantHomeComponent implements OnInit {
 
   isSubmited: boolean = false;
 
-  constructor() {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -50,13 +51,14 @@ export class MerchantHomeComponent implements OnInit {
   }
 
   addToInvontory() {
-    console.log(this.inventoryForm);
-    // this.inventoryForm.disabled = true;
     this.isSubmited = true;
     if (this.inventoryForm.get("quantity").value) {
       this.newInventoryItem.quantity = this.inventoryForm.get("quantity").value;
       this.newInventoryItem.price.new = this.inventoryForm.get("pricePerQuantity").value;
-      console.log(this.newInventoryItem);
+      let payLoad = this.newInventoryItem;
+      this.http.post("api/user/merchant/addToInventory", payLoad).subscribe((res) => {
+
+      });
     }
   }
 

@@ -36,6 +36,9 @@ const userSchema = new mongoose.Schema(
       username: String,
     },
     isAdmin: Boolean,
+    inventory: {
+      type: Map,
+    },
   },
   { timestamps: true }
 );

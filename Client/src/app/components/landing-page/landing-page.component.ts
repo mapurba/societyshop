@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { UserService } from "src/app/shared/services/user.service";
 
 @Component({
   selector: "app-landing-page",
@@ -7,21 +8,22 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./landing-page.component.css"],
 })
 export class LandingPageComponent implements OnInit {
-  constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  currentLoggedinUser: any;
+  constructor(private http: HttpClient, private userService: UserService) { }
+
+  ngOnInit() {
+    this.currentLoggedinUser;
+
+    this.userService.userSub().subscribe((user) => {
+      this.currentLoggedinUser = user;
+    })
+  }
 
   userSignup() {
     // set user header
 
-    const headers = new HttpHeaders().set("userlogintype", "normal");
-    headers.set(" mode", "cors");
-    headers.set("credentials", "include");
-    headers.set("cache-control", "no-cache");
-    headers.set("sec-fetch-dest", "document");
-    headers.set("sec-fetch-mode", "navigate");
-    headers.set("userType", "merchant_newss");
-    headers.set("Referer", "http://localhost:4300/api/auth/google/");
+
     
  
     // fetch("/api/auth/google", {
