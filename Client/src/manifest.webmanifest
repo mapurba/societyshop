@@ -1,6 +1,6 @@
 {
-  "name": "Client",
-  "short_name": "Client",
+  "name": "SocietyStore",
+  "short_name": "SocietyStore",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
