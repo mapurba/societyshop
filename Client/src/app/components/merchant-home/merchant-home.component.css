@@ -42,7 +42,7 @@
 
 .overlay {
   width: 100vw;
-  position: absolute;
+  position: fixed;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -109,4 +109,8 @@
   display: flex;
   flex: 28%;
   padding: 11px 0px;
+}
+
+.overlay-hidden{
+  overflow: hidden;
 }

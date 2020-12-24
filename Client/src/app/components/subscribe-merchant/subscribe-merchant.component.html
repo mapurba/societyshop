@@ -8,7 +8,9 @@
     </div>
     <div class="flex-list-container">
       <div class="list-item" *ngFor="let muser of this.MerUserList; let id = index" id="{{ 'ptem_' + id }}"
-        (click)="openConfirmation(muser)">
+        (click)="openConfirmation(muser)"
+         [ngClass]="showOverLay?'overlay-hidden':''"
+        >
         <div class="main-container" id="{{id}}">
           <div class="content">
             <div class="product-img">

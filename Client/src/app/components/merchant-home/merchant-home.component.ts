@@ -26,7 +26,7 @@ export class MerchantHomeComponent implements OnInit {
   ngOnInit() { }
 
   populateItemList(data) {
-    this._list = data;
+    this._list = data.data;
     console.log(this._list);
   }
 
