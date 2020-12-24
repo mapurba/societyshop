@@ -1,8 +1,5 @@
 <div class="container main-container">
-  <product-search
-    [isFlat]="true"
-    (searchResult)="populateItemList($event)"
-  ></product-search>
+  <product-search [isFlat]="true" (searchResult)="populateItemList($event)"></product-search>
 
   <!-- <item-list [list]="_list"></item-list> -->
   <div class="item-list">
@@ -15,35 +12,17 @@
     </div>
     <div class="grid-container">
       <div class="grid-item" *ngFor="let item of _list; let id = index">
-        <items-in-list
-          [id]="'item_' + id"
-          [item]="item"
-          (click)="openConfirmation(item)"
-          [viewOnly]="true"
-        >
+        <items-in-list [id]="'item_' + id" [item]="item" (click)="openConfirmation(item)" [viewOnly]="true">
         </items-in-list>
       </div>
     </div>
   </div>
 
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="50"
-    height="50"
-    viewBox="0 0 50 50" style="margin: 26px 38%;"
-  >
-    <path
-      fill="#d8c93d"
-      d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z"
-    >
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="0 25 25"
-        to="360 25 25"
-        dur="0.5s"
-        repeatCount="indefinite"
-      />
+  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" style="margin: 26px 38%;">
+    <path fill="#d8c93d"
+      d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z">
+      <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.5s"
+        repeatCount="indefinite" />
     </path>
   </svg>
 
@@ -71,21 +50,15 @@
             <div class="input-group">
               <label> Price</label>
               <select formControlName="pricePerQuantity">
-                <option
-                  *ngFor="
-                    let price of numSequence(newInventoryItem?.price?.new, -1)
-                  "
-                >
+                <option *ngFor="let price of numSequence(newInventoryItem?.price?.new, -1)">
                   {{ price }}
                 </option>
                 <option selected value="{{ newInventoryItem?.price?.new }}">
                   {{ newInventoryItem?.price?.new }}
                 </option>
-                <option
-                  *ngFor="
+                <option *ngFor="
                     let price of numSequence(newInventoryItem?.price?.new, 1)
-                  "
-                >
+                  ">
                   {{ price }}
                 </option>
               </select>
@@ -93,6 +66,8 @@
             <div class="input-group">
               <button class="btn" [disabled]="isSubmited">
                 Add To Inventory
+                <img [hidden]="!isSubmited" class="tick-icon"
+                  src="https://storage.googleapis.com/societystore.appspot.com/cdn/img/tick.png">
               </button>
             </div>
           </form>
