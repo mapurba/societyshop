@@ -41,9 +41,8 @@ const userSchema = new mongoose.Schema(
       type: Map,
     },
     defaultMer: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      default: "5fde835e4c92f60c39368ae0",
+      type: Array,
+      default: ["5fde835e4c92f60c39368ae0"],
     },
   },
   { timestamps: true }

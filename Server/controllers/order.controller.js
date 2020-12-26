@@ -1,6 +1,7 @@
 const Orders = require("../models/Orders");
 const Products = require("../models/Items");
 const productController = require("./product.controller");
+const mongoose = require("mongoose");
 
 /* Helper Methods */
 calculateBill = (items, quantityMap) => {
@@ -38,7 +39,7 @@ exports.getAllOrders = async (req, res) => {
   const ruser = await req.user;
 
   // if (ruser["isMer"] == true) {
-  Orders.find({ })
+  Orders.find({})
     .sort({ createdAt: -1 })
     .then((result) => {
       res.status(200).send({ data: result });
@@ -64,17 +65,48 @@ exports.createOrder = async (req, res) => {
     });
     const itemIds = items.map((item) => item.itemCode);
     const OrderIds = items.map((item) => {
-      return { itemCode: item.itemCode, quantity: item.quantity, price: item.price ,image:item.image,name:item.name,discp:'',brand:item.brand };
+      return {
+        itemCode: item.itemCode,
+        quantity: item.quantity,
+        price: item.price,
+        image: item.image,
+        name: item.name,
+        discp: "",
+        brand: item.brand,
+      };
     });
     const dbItems = await productController._getProductsByIds(itemIds);
     const totalBill = calculateBill(dbItems, quantityMap);
+
+    const findLastOrder = await Orders.findOneAndUpdate(
+      {
+        user: mongoose.Types.ObjectId(req.user.id),
+        paymentStatus: 0,
+      },
+      {
+        paymentStatus:-2
+      }
+    );
+    let respos;
+    if (findLastOrder) {
+      // respos = findLastOrder;
+      // respos.orderItems = OrderIds;
+      // respos.totalAmountAfterDiscount = totalBill.totalAmountAfterDiscount;
+      // respos.totalAmount = totalBill.totalAmount;
+      console.log("order deleted.....");
+    }
+    // else {
     const newOrder = new Orders({
       orderItems: OrderIds,
       ...totalBill,
       user,
       mer: mer,
     });
-    let respos = await newOrder.save();
+    respos = await newOrder.save();
+      // }
+
+      console.log(respos);
+
     res.send({ respos }).status(201);
   }
 };

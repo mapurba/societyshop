@@ -19,84 +19,51 @@
         </tr>
         <tr>
           <td>order amount</td>
-          <td><input type="text" name="orderAmount" value="2" /></td>
+          <td><input type="text" name="orderAmount" value="0" [ngModel]="currentOrderDetail?.totalAmountAfterDiscount" /></td>
         </tr>
         <tr>
           <td>customer name</td>
-          <td><input type="text" name="customerName" value="a" /></td>
+          <td><input type="text" name="customerName" value="payments" /></td>
         </tr>
-        <tr>
+        <tr>  
           <td>customer email</td>
-          <td><input type="text" name="customerEmail" value="a@a.com" /></td>
+          <td><input type="text" name="customerEmail" value="payment@societystore.co" /></td>
         </tr>
         <tr>
           <td>customer phone</td>
           <td><input type="text" name="customerPhone" value="1234512345" /></td>
         </tr>
       </table>
+      <div id="resultDiv"></div>
       <table>
         <tr style="background-color: #0000006b" [hidden]="orderId == null">
           <td class="dynamicContentForm"></td>
+          <!-- card -->
+          <div>
+          </div>
         </tr>
         <div class="radioBttns" [hidden]="orderId == null">
           <tr>
             <td>
-              <input
-                class="btn"
-                class="paymentRadioInput"
-                type="radio"
-                id="upi"
-                checked
-                name="paymentOption"
-                value="upi"
-              />
-              <div
-                class="btn"
-                disabled
-                for="upi"
-                (click)="changePaymentMode('upi')"
-              >
+              <input class="btn" class="paymentRadioInput" type="radio" id="upi" checked name="paymentOption" value="upi" />
+              <div class="btn" disabled for="upi" (click)="changePaymentMode('upi')">
                 upi
               </div>
             </td>
             <td>
-              <input
-                class="btn"
-                class="paymentRadioInput"
-                type="radio"
-                id="card"
-                name="paymentOption"
-                value="card"
-              />
+              <input class="btn" class="paymentRadioInput" type="radio" id="card" name="paymentOption" value="card" />
               <div class="btn" for="card" (click)="changePaymentMode('card')">
                 card
               </div>
             </td>
             <td>
-              <input
-                class="btn"
-                class="paymentRadioInput"
-                type="radio"
-                id="nb"
-                name="paymentOption"
-                value="nb"
-              />
-              <div
-                class="btn"
-                for="netBanking"
-                (click)="changePaymentMode('nb')"
-              >
+              <input class="btn" class="paymentRadioInput" type="radio" id="nb" name="paymentOption" value="nb" />
+              <div class="btn" for="netBanking" (click)="changePaymentMode('nb')">
                 net banking
               </div>
             </td>
             <td>
-              <input
-                class="paymentRadioInput"
-                type="radio"
-                id="wallets"
-                name="paymentOption"
-                value="wallets"
-              />
+              <input class="paymentRadioInput" type="radio" id="wallets" name="paymentOption" value="wallets" />
               <div class="btn" (click)="changePaymentMode('wallets')">
                 wallets
               </div>
@@ -105,29 +72,20 @@
         </div>
         <tr>
           <div class="action-btns">
-            <button class="btn action" routerLink="/payment">Cancle</button>
-            <button
-              class="btn action"
-              [disabled]="isOrderCreating"
-              [hidden]="enablePayment"
-              (click)="createOrderAndToPayment()"
-            >
+            <!-- <button class="btn action" routerLink="/payment">Cancle</button> -->
+            <button class="btn action" [disabled]="isOrderCreating" [hidden]="enablePayment" (click)="createOrderAndToPayment()">
               {{ !isOrderCreating ? "Order Now" : "...." }}
             </button>
-            <button
-              type="submit"
-              class="btn"
-              id="payBtn"
-              [hidden]="!enablePayment"
-            >
+            <button class="btn action" routerLink="/">Cancle</button>
+            <button type="submit" class="btn" id="payBtn" [hidden]="!enablePayment">
               Pay Later
               <!-- if the user clicks here than first it will fo to payment page .. -->
               <!-- user should be re directed from the card form -->
             </button>
-            <button class="btn action" routerLink="/">Category</button>
+            <!-- <button class="btn action" routerLink="/">Category</button>
             <a class="fa fa-home icon btn action" routerlink="" href="/"
               >Home</a
-            >
+            > -->
             <!-- <button class="btn action" routerLink="/">Home</button> -->
           </div>
         </tr>

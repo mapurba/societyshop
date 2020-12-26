@@ -20,18 +20,30 @@ _getProductsByIds = async (ids) => {
   // });
 };
 
-
 exports.getProductFrommerchant = async (req, res) => {
-  console.log("show items form merchant...");
-  const user = await User.findById([
-    "5fe4ae3de6f7e817e02a536f",
-    "5fdb77d8d2c03101695351e4", // all default merchant
-    "5fde835e4c92f60c39368ae0",
-    "5fd4677a78273a2f75167457",
-    "5fd8ed9b6b07f92e1c805f27",
-  ]);
+  console.log("show items form merchant..." + req.user.defaultMer);
 
-  res.send(user.inventory).status(200);
+  let merchant = [];
+  req.user.defaultMer.forEach((mer) => {
+    merchant.push(mongoose.Types.ObjectId(mer));
+  });
+
+  let Q = {
+    _id: {
+      $in: merchant,
+    },
+  };
+
+  const user = await User.find(Q);
+
+  const inventory = [];
+  user.forEach((user) => {
+    if (user.inventory) {
+      inventory.push(...user.inventory);
+    } 
+  });
+
+  res.send(inventory).status(200);
 };
 
 /* APIs */

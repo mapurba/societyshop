@@ -28,6 +28,9 @@ export class PaymentComponent implements OnInit {
   isOrderCreating = false;
 
   enablePayment = false;
+
+
+  currentOrderDetail: any;
   // _setDisplayMode = 0;
 
   componentMode = paymentComponentMode.fullPage;
@@ -90,6 +93,9 @@ export class PaymentComponent implements OnInit {
         this.orderId = res.respos._id;
         this.enablePayment = true;
         this.orderCreationFailed = false;
+        // this.paymentRedirection(res);
+        this.currentOrderDetail = res.respos;
+
       },
       (err) => {
         this.isOrderCreating = false;
@@ -108,8 +114,8 @@ export class PaymentComponent implements OnInit {
 
     let newOrderDetail = {
       orderId: orderDetail.respos._id,
-      orderAmount: "2",
-      customerName: "a",
+      orderAmount: orderDetail.respos.totalAmountAfterDiscount,
+      customerName: orderDetail.respos.user,
       customerEmail: "a@a.com",
       customerPhone: "1234512345",
     };

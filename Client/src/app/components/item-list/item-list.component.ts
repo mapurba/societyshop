@@ -57,15 +57,14 @@ export class ItemListComponent implements OnInit {
       //   StateNames.addToCart
       // ) as State;
 
-
-      Object.entries(res).forEach((item: any) => {
-
+      res.map((item: any) => {
         let itemC = JSON.parse(item[1]);
         if (itemC.quantity > 0) {
           itemC.quantity = 0;
           this._list.push(itemC);
         }
-      });
+      })
+
 
 
 
