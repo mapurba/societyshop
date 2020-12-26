@@ -1,3 +1,46 @@
-<p>
-  merchant-orders works!
-</p>
+<h3 class="page-heading">New Orders</h3>
+
+<div class="main-container">
+  <div class="container">
+    <ul class="grid-container">
+      <li class="grid-item new-order" *ngFor="let order of orders; let id = index"
+        (click)="openConfirmation(order?.orderItems)">
+        <img src="../../../assets/images/porder.png" />
+        <div>
+          <p>Name : Apurba Mondal</p>
+          <p>Items : 5 items-in-list</p>
+          <p>Total : ₹{{ order.totalAmount }}</p>
+          <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event)">
+            Delivered ?
+          </button>
+          <span class="btn">
+            Payment :
+            {{ order.paymentStatus == 0 ? "Pending" : "Done" }}
+          </span>
+        </div>
+      </li>
+    </ul>
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" style="margin: 26px 38%">
+      <path fill="#d8c93d"
+        d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z">
+        <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.5s"
+          repeatCount="indefinite" />
+      </path>
+    </svg>
+  </div>
+</div>
+<div class="overlay" (click)="hideOverlay($event)" *ngIf="showOverlay">
+  <div class="content" (click)="prevent($event)">
+    <div class="modal">
+      <!-- <div  > -->
+      <!-- <items-in-list class="content" *ngFor="let items of orderItems" [item]="items" [disabled]="true"></items-in-list> -->
+      <!-- </div> -->
+      <div class="grid-item-container">
+        <div class="grid-items" *ngFor="let item of orderItems; let id = index">
+          <items-in-list [id]="'item_' + id" [item]="item" (click)="openConfirmation(item)" [viewOnly]="true">
+          </items-in-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,10 @@ export class ItemsService {
     return this.http.get("/api/products/list");
   }
 
+  getinventoryFrommerchant(): Observable<any> {
+    return this.http.get("/api/products/merchantProductlist");
+  }
+
   addNewItem(item: ItemSchema) {
     return this.http.post("/api/products", item);
   }

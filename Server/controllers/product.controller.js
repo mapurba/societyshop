@@ -5,6 +5,7 @@ const Item = require("../models/Items");
 const Products = require("../models/Items");
 const http = require("https");
 const { curly } = require("node-libcurl");
+const User = require("../models/User");
 
 /* Helper Methods */
 // @ts-ignore
@@ -17,6 +18,14 @@ _getProductsByIds = async (ids) => {
   // return items.map((item) => item.itemCode);
 
   // });
+};
+
+
+exports.getProductFrommerchant = async (req, res) => {
+  console.log("show items form merchant...");
+  const user = await User.findById("5fe4ae3de6f7e817e02a536f");
+
+  res.send(user.inventory).status(200);
 };
 
 /* APIs */

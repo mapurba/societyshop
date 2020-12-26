@@ -56,7 +56,6 @@ export class StateDB {
           r.push(helper[key]);
         } else {
           helper[key].quantity += 1;
-          // helper[key].total += o.instances;
         }
 
         return r;
@@ -67,15 +66,6 @@ export class StateDB {
       this.subject.next({ id: id, value: this._states });
       return;
     }
-
-    console.log(
-      "###$$ stateName update",
-      id + "size ( ",
-      result,
-      ") old value : ",
-      this._states.get(id)
-    );
-
     let newState = new State(id, value);
     this._states.delete(id);
     this._states.set(id, newState);

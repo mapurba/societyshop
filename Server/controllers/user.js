@@ -773,37 +773,49 @@ exports.addtoInventory = (req, res, next) => {
       res.send({}).status(489);
     }
 
-    if (user.inventory && user.inventory.length > 0) {
-      console.log(user.inventory.get("3254"));
-      inventory.data = user.inventory.get(req.body.itemCode);
+    if (user.inventory == undefined) {
+      // merchant user inventory not found
+      let newItem = req.body;
+      let quantity = newItem.quantity;
+      delete newItem.quantity;
+      newItem.quantity = parseInt(quantity);
+      user.inventory = new Map();
+      user.inventory.set(req.body.itemCode.toString(), JSON.stringify(newItem));
+      console.log(user.inventory.get(req.body.itemCode.toString()));
     }
-
-    if (user.isMer == true && user.inventory) {
-      let item = user.inventory.get(req.body.itemCode);
-
-      if (!item) {
-        console.log(item);
+    else if (user.inventory != undefined) { // merchant user inventory found 
+      if (user.inventory.get(req.body.itemCode.toString()) == undefined) {
+        // inventory item not found create ... insert to map
+        user.inventory.set(req.body.itemCode.toString(), JSON.stringify(req.body));
+        console.log("item not found......: "+req.body.itemCode);
+      } else {
+        console.log("item found......" + (user.inventory.get(req.body.itemCode.toString()).toString()));
+        let item = JSON.parse(user.inventory.get(req.body.itemCode.toString()).toString());
+        const quantity = parseInt(item.quantity);
+         console.log({
+           c: item.itemCode,
+           b: quantity,
+         });
+        delete item.quantity; 
+        item.quantity = parseInt(quantity) + parseInt(req.body.quantity);
+        user.inventory.set(req.body.itemCode.toString(), JSON.stringify(item));
       }
     }
 
-    if (!user.inventory) {
-      user.inventory = new Map();
-      user.inventory.set(req.body.itemCode.toString(), JSON.stringify(item));
-    }
+    console.log({
+      // b: item.quantity,
+      a: user.inventory.get(req.body.itemCode.toString()),
+    });
 
-    user.inventory.set(
-      req.body.itemCode.toString(),
-      JSON.stringify(inventory.data)
-    );
-
-    console.log("user ", inventory.data);
-
-    user.save((err) => {
+      // console.log(user.inventory.get(req.body.itemCode.toString()).quantity);
+    user.save((err,newinv) => {
       if (err) {
         return next(err);
       }
       // req.flash("success", { msg: "user session updated." });
-      res.send({ success: true }).status(200);
+      res.send(newinv).status(200);
     });
+
+
   });
 };
