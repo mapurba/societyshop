@@ -7,16 +7,19 @@
         (click)="openConfirmation(order?.orderItems)">
         <img src="../../../assets/images/porder.png" />
         <div>
-          <p>Name : Apurba Mondal</p>
-          <p>Items : 5 items-in-list</p>
+          <span>Flat : F1403</span>
+          <p>Name : Apurba Mondal </p>
+          <p>Items : {{order.orderItems.length}} items-in-list</p>
           <p>Total : ₹{{ order.totalAmount }}</p>
-          <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event)">
-            Delivered ?
-          </button>
-          <span class="btn">
-            Payment :
-            {{ order.paymentStatus == 0 ? "Pending" : "Done" }}
-          </span>
+          <div class="order-footer">
+            <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event)">
+              Delivered ?
+            </button>
+            <span class="btn">
+              Payment :
+              {{ order.paymentStatus == 0 ? "Pending" : "Done" }}
+            </span>
+          </div>
         </div>
       </li>
     </ul>
@@ -39,6 +42,8 @@
         <div class="grid-items" *ngFor="let item of orderItems; let id = index">
           <items-in-list [id]="'item_' + id" [item]="item" (click)="openConfirmation(item)" [viewOnly]="true">
           </items-in-list>
+          <span style="font-size: 22px;margin-right: 16px;margin-top: 5px;">x</span>
+          <p>{{item?.quantity}}</p>
         </div>
       </div>
     </div>

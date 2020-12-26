@@ -12,6 +12,9 @@
 .grid-item {
   /* background-color: dodgerblue; */
   background-color: white;
+  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 0%), 0 3px 3px -2px rgb(0 0 0 / 0%),
+    0 1px 8px 0 rgb(0 0 0 / 13%);
+  /* margin-bottom: 5px; */
 }
 
 /* Responsive layout - makes a one column-layout instead of two-column layout */
@@ -60,21 +63,19 @@
 
 .content > .product-img {
   padding: 6px;
-  display: inline-block;
-  flex: 31%;
+  display: flex;
   background-color: #ffffff52;
   flex-direction: column;
-  align-self: center;
+  margin: 4px 8%;
 }
 
 .content > .add-to-inventory {
-  display: inline-block;
-  flex: 28%;
+  display: block;
   padding: 10px 10px 10px 0px;
 }
 
 .content > .product-img > img {
-  width: 112px;
+  max-width: 100%;
   vertical-align: baseline;
 }
 
@@ -84,6 +85,9 @@
   background-color: white;
   position: relative;
   display: flex;
+  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 0%), 0 3px 3px -2px rgb(0 0 0 / 0%),
+    0 1px 8px 0 rgb(0 0 0 / 13%);
+  margin-bottom: 5px;
 }
 
 .input-group > select {
@@ -91,6 +95,10 @@
   margin-bottom: 10px;
 }
 
+.input-group {
+  /* display: grid;
+  grid-template-columns: 20% auto; */
+}
 .input-group > .btn {
   line-height: 1;
   /* padding: 0px; */
@@ -106,18 +114,17 @@
 }
 
 .content {
-  display: flex;
   flex: 28%;
   padding: 11px 0px;
 }
 
-.overlay-hidden{
+.overlay-hidden {
   overflow: hidden;
 }
 
-.tick-icon{
-      width: 30px;
-    position: absolute;
-    left: 30%;
-    top: -7px;
+.tick-icon {
+  width: 30px;
+  position: absolute;
+  left: 30%;
+  top: -7px;
 }

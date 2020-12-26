@@ -23,7 +23,10 @@ _getProductsByIds = async (ids) => {
 
 exports.getProductFrommerchant = async (req, res) => {
   console.log("show items form merchant...");
-  const user = await User.findById("5fe4ae3de6f7e817e02a536f");
+  const user = await User.findById([
+    "5fe4ae3de6f7e817e02a536f",
+    "5fdb77d8d2c03101695351e4",
+  ]);
 
   res.send(user.inventory).status(200);
 };

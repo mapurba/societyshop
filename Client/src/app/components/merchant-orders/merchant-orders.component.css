@@ -2,14 +2,16 @@ li.grid-item {
   list-style-type: none;
   background-color: #ffffffcf;
   padding: 5px;
-  border-top: ridge;
   display: grid;
+  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 0%), 0 3px 3px -2px rgb(0 0 0 / 0%),
+    0 1px 8px 0 rgb(0 0 0 / 13%);
+  margin-bottom: 5px;
   grid-template-columns: 100px auto;
 }
 ul.grid-container {
-  padding: 0;
   text-decoration: none;
   width: 100%;
+  padding: 10px;
 }
 
 .new-order::before {
@@ -78,7 +80,10 @@ li.grid-item > div > p {
   position: relative;
   display: flex;
   overflow-y: scroll;
-  padding: 10px;  
+  padding: 10px;
+  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 0%), 0 3px 3px -2px rgb(0 0 0 / 0%),
+    0 1px 8px 0 rgb(0 0 0 / 13%);
+  margin-bottom: 5px;
 }
 
 .modal > .content {
@@ -110,6 +115,7 @@ li.grid-item > div > p {
 .grid-items {
   /* background-color: dodgerblue; */
   background-color: white;
+  display: flex;
 }
 
 /* Responsive layout - makes a one column-layout instead of two-column layout */
@@ -118,4 +124,8 @@ li.grid-item > div > p {
     /* flex-direction: column; */
     grid-template-columns: auto;
   }
+}
+
+.order-footer {
+  display: flex;
 }

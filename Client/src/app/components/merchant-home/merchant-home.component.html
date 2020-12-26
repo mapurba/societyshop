@@ -33,10 +33,13 @@
   <div class="Content" (click)="prevent($event)">
     <div class="modal">
       <div class="content">
+        <p style="
+            text-align: center;
+            font-size: 1.1em;
+            border-bottom: 1px solid #80802d;
+        ">Add this item to your online stock</p>
         <div class="product-img">
           <img data-src="{{ newInventoryItem?.image }}" />
-        </div>
-        <div class="add-to-inventory">
           <form [formGroup]="inventoryForm" (ngSubmit)="addToInvontory()">
             <div class="input-group">
               <label> Quantity</label>
@@ -48,7 +51,7 @@
               </select>
             </div>
             <div class="input-group">
-              <label> Price</label>
+              <label> Price Per item</label>
               <select formControlName="pricePerQuantity">
                 <option *ngFor="let price of numSequence(newInventoryItem?.price?.new, -1)">
                   {{ price }}
@@ -57,8 +60,8 @@
                   {{ newInventoryItem?.price?.new }}
                 </option>
                 <option *ngFor="
-                    let price of numSequence(newInventoryItem?.price?.new, 1)
-                  ">
+                              let price of numSequence(newInventoryItem?.price?.new, 1)
+                            ">
                   {{ price }}
                 </option>
               </select>
@@ -72,6 +75,7 @@
             </div>
           </form>
         </div>
+
       </div>
     </div>
   </div>
