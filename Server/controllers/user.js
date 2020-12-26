@@ -69,7 +69,7 @@ exports.logout = (req, res) => {
     if (err)
       console.log("Error : Failed to destroy the session during logout.", err);
     req.user = null;
-    res.redirect("/");
+    res.redirect("https://societystore.co/");
   });
 };
 
@@ -775,29 +775,42 @@ exports.addtoInventory = (req, res, next) => {
 
     if (user.inventory == undefined) {
       // merchant user inventory not found
-      let newItem = req.body;
-      let quantity = newItem.quantity;
+      let newItem = { ...req.body };
+      let { quantity, price } = newItem;
       delete newItem.quantity;
+      newItem.price.new = parseInt(newItem.price.new);
       newItem.quantity = parseInt(quantity);
+      console.log("not found", newItem);
       user.inventory = new Map();
       user.inventory.set(req.body.itemCode.toString(), JSON.stringify(newItem));
-      console.log(user.inventory.get(req.body.itemCode.toString()));
-    }
-    else if (user.inventory != undefined) { // merchant user inventory found 
-      if (user.inventory.get(req.body.itemCode.toString()) == undefined) {
+    } else if (user.inventory != undefined) {
+      // merchant user inventory found
+      let newItem = { ...req.body };
+      console.log(newItem.itemCode);
+      let { quantity, price } = newItem;
+      newItem.price.new = parseInt(newItem.price.new);
+      newItem.quantity = parseInt(quantity);
+
+      if (user.inventory.get(newItem.itemCode.toString()) == undefined) {
         // inventory item not found create ... insert to map
-        user.inventory.set(req.body.itemCode.toString(), JSON.stringify(req.body));
-        console.log("item not found......: "+req.body.itemCode);
+        user.inventory.set(
+          newItem.itemCode.toString(),
+          JSON.stringify(newItem)
+        );
       } else {
-        console.log("item found......" + (user.inventory.get(req.body.itemCode.toString()).toString()));
-        let item = JSON.parse(user.inventory.get(req.body.itemCode.toString()).toString());
+        let item = JSON.parse(
+          user.inventory.get(newItem.itemCode.toString()).toString()
+        );
+
+        console.log("found", item);
         const quantity = parseInt(item.quantity);
-         console.log({
-           c: item.itemCode,
-           b: quantity,
-         });
-        delete item.quantity; 
-        item.quantity = parseInt(quantity) + parseInt(req.body.quantity);
+        console.log({
+          c: item.itemCode,
+          b: quantity,
+        });
+        delete item.quantity;
+        item.quantity = parseInt(quantity) + parseInt(newItem.quantity);
+        item.price.new = newItem.price.new;
         user.inventory.set(req.body.itemCode.toString(), JSON.stringify(item));
       }
     }
@@ -807,15 +820,13 @@ exports.addtoInventory = (req, res, next) => {
       a: user.inventory.get(req.body.itemCode.toString()),
     });
 
-      // console.log(user.inventory.get(req.body.itemCode.toString()).quantity);
-    user.save((err,newinv) => {
+    // console.log(user.inventory.get(req.body.itemCode.toString()).quantity);
+    user.save((err, newinv) => {
       if (err) {
         return next(err);
       }
       // req.flash("success", { msg: "user session updated." });
       res.send(newinv).status(200);
     });
-
-
   });
 };

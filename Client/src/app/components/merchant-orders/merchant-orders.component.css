@@ -115,6 +115,7 @@ li.grid-item > div > p {
 .grid-items {
   /* background-color: dodgerblue; */
   background-color: white;
+  display: flex;
 }
 
 /* Responsive layout - makes a one column-layout instead of two-column layout */

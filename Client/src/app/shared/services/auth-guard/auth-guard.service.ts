@@ -18,8 +18,9 @@ export class AuthGuardService implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {
-    console.log("user static");
+    console.log("user static" + this._router.url);
 
+    // console.log()
     console.log(this.userDetail.getCurrentUserStatic());
     if (this.userDetail.getCurrentUserStatic() == undefined) return false;
     else if (this.userDetail.getCurrentUserStatic().isMer) {
