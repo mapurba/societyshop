@@ -29,6 +29,7 @@ export class PaymentComponent implements OnInit {
 
   enablePayment = false;
 
+  payMode: any;
 
   currentOrderDetail: any;
   // _setDisplayMode = 0;
@@ -148,17 +149,20 @@ export class PaymentComponent implements OnInit {
 
   changePaymentMode(id): any {
     console.log("opening form ....");
-
+    this.payMode = id;
     try {
-      let _paymentMode = window["paymentOptions"];
+      // let _paymentMode = window["paymentOptions"];
 
-      console.log({ id, _paymentMode });
+      // console.log({ id, _paymentMode });
 
-      if (id === "walet") {
-        console.log("something else");
-        return;
-      }
-      window["displayFormElement"](_paymentMode[id]);
+      // if (id === "walet") {
+      //   console.log("something else");
+      //   return;
+      // }
+      // window["displayFormElement"](_paymentMode[id]);
+
+
+
     } catch (e) {
       console.log("payment script not. loaded");
     }

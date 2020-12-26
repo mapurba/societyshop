@@ -64,23 +64,96 @@ table {
   background-color: rgb(239, 239, 239);
 }
 
-#resultDiv{
-  
-    background: #dfc07917;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
+#resultDiv {
+  background: #dfc07917;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-#cardForm{
-
+#cardForm {
 }
 
-#cardForm > div{
+#cardForm > div {
   display: flex;
 }
 
-#cardForm > div >input{
+#cardForm > div > input {
   flex: 1;
+}
+
+input[type="text"] {
+  margin-bottom: 3px;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  color: white;
+}
+
+label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 5px;
+  padding: 2px 0;
+}
+
+.container {
+  background-color: #000000b3;
+  box-shadow: 0 3px 4px 0 rgb(255 255 255 / 82%),
+    0 3px 3px -2px rgb(255 255 255 / 84%), 0 1px 8px 0 rgb(255 255 255 / 47%);
+  padding-bottom: 8px;
+}
+
+.card-form {
+  text-align: left;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0;
+  margin-left: 0;
+  text-align: left;
+}
+.cvv-row {
+  display: grid;
+  grid-template-columns: 106px 99px;
+}
+
+.cvv-row > .grid-row {
+  padding: 0px 4px;
+  max-width: 100%;
+}
+
+.card-form {
+  /* background-color: #000000b3; */
+  color: #ebebd8;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  border-radius: 7px;
+}
+
+.nb-dropdown {
+  width: 100%;
+  padding: 6px;
+  background-color: #7f7f7f45;
+  color: white;
+}
+
+input::placeholder {
+  color: white;
+}
+input {
+  background-color: #5a5a5d;
+}
+
+.upi-form {
+  padding: 3px;
+}
+
+.netb-form {
+  padding: 3px;
 }

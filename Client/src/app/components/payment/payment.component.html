@@ -19,15 +19,19 @@
         </tr>
         <tr>
           <td>order amount</td>
-          <td><input type="text" name="orderAmount" value="0" [ngModel]="currentOrderDetail?.totalAmountAfterDiscount" /></td>
+          <td>
+            <input type="text" name="orderAmount" value="0" [ngModel]="currentOrderDetail?.totalAmountAfterDiscount" />
+          </td>
         </tr>
         <tr>
           <td>customer name</td>
           <td><input type="text" name="customerName" value="payments" /></td>
         </tr>
-        <tr>  
+        <tr>
           <td>customer email</td>
-          <td><input type="text" name="customerEmail" value="payment@societystore.co" /></td>
+          <td>
+            <input type="text" name="customerEmail" value="payment@societystore.co" />
+          </td>
         </tr>
         <tr>
           <td>customer phone</td>
@@ -35,13 +39,59 @@
         </tr>
       </table>
       <div id="resultDiv"></div>
+
+
       <table>
-        <tr style="background-color: #0000006b" [hidden]="orderId == null">
-          <td class="dynamicContentForm"></td>
+<tr [hidden]="orderId == null">
           <!-- card -->
-          <div>
+          <div class="container">
+            <form>
+              <div class="row card-form" *ngIf="payMode=='card'">
+                <div class="col-50">
+                  <h3>Payment</h3>
+                  <label for="fname">Accepted Cards</label>
+                  <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color: navy"></i>
+                    <i class="fa fa-cc-amex" style="color: blue"></i>
+                    <i class="fa fa-cc-mastercard" style="color: red"></i>
+                    <i class="fa fa-cc-discover" style="color: orange"></i>
+                  </div>
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cardname" placeholder="John More Doe" />
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" />
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" placeholder="September" />
+                  <div class="cvv-row">
+                    <div class="grid-row">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" placeholder="2018" />
+                    </div>
+                    <div class="grid-row">
+                      <label for="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" placeholder="352" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="upi-form" *ngIf="payMode=='upi'">
+                <label for="cname">UPI Address:</label>
+                <input type="text" id="VPA" name="VPA" placeholder="UPI Address" />
+              </div>
+              <div class="netb-form">
+                <select type="text" id="nb" name="nb" *ngIf="payMode=='nb'" class="nb-dropdown" placeholder="Bank">
+                  <option>
+                    SBI (India)
+                  </option>
+                  <option>HDFC
+                  </option>
+                </select>
+              </div> <!-- <input type="submit" value="Continue to checkout" class="btn" /> -->
+            </form>
           </div>
         </tr>
+
+
         <div class="radioBttns" [hidden]="orderId == null">
           <tr>
             <td>
@@ -62,21 +112,19 @@
                 net banking
               </div>
             </td>
-            <td>
-              <input class="paymentRadioInput" type="radio" id="wallets" name="paymentOption" value="wallets" />
-              <div class="btn" (click)="changePaymentMode('wallets')">
-                wallets
-              </div>
-            </td>
           </tr>
         </div>
+
+
         <tr>
           <div class="action-btns">
             <!-- <button class="btn action" routerLink="/payment">Cancle</button> -->
             <button class="btn action" [disabled]="isOrderCreating" [hidden]="enablePayment" (click)="createOrderAndToPayment()">
               {{ !isOrderCreating ? "Order Now" : "...." }}
             </button>
-            <button class="btn action" routerLink="/">Cancle</button>
+            <button class="btn action" routerLink="/" [hidden]="!enablePayment">
+              Cancle
+            </button>
             <button type="submit" class="btn" id="payBtn" [hidden]="!enablePayment">
               Pay Later
               <!-- if the user clicks here than first it will fo to payment page .. -->
@@ -89,7 +137,11 @@
             <!-- <button class="btn action" routerLink="/">Home</button> -->
           </div>
         </tr>
+
+
       </table>
+
+
     </form>
   </div>
 </div>
