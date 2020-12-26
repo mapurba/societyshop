@@ -67,7 +67,7 @@ export class ProductSearchComponent implements OnInit {
         this.isLoading.emit(false);
       });
     });
-    this.subject.next("");
+    // this.subject.next("");
   }
 
   fetchsearchResult(Q) {
