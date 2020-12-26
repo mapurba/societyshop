@@ -53,36 +53,21 @@
         <product-search class="container col-10 search-box" *ngIf="!loggedInUserDetails?.isMer"></product-search>
       </div>
 
-      <div
-        class="col-2 text-right top-menu-right navigation-container header profile-dropdown"
-      >
+      <div class="col-2 text-right top-menu-right navigation-container header profile-dropdown">
         <div class="dropdown avatar">
-          <img
-            *ngIf="userLoggedin && !loadingUser"
-            [src]="loggedInUserDetails?.profile?.picture"
-            alt="Avatar"
-          />
+          <img *ngIf="userLoggedin && !loadingUser" [src]="loggedInUserDetails?.profile?.picture" alt="Avatar" />
           <span class="profile_menu_image" *ngIf="loadingUser">...</span>
-          <a
-            class="btn btn-md btn-sm instagram-login-button"
-            *ngIf="!userLoggedin && !loadingUser"
-            role="button"
-            href="/api/auth/google"
-          >
-            Login</a
-          >
-          <div class="dropdown-content profile-dropdown-content">
+          <a class="btn btn-md btn-sm instagram-login-button" *ngIf="!userLoggedin && !loadingUser" role="button"
+            href="/api/auth/google">
+            Login</a>
+          <div class="dropdown-content profile-dropdown-content" *ngIf="userLoggedin">
             <a href="/api/user/logout"><span>Sign Out</span></a>
             <a href="/conact" target="_blank">
-              Contact Us</a
-            >
-            <a href="/help" target="_blank"
-              >Site Help</a
-            >
+              Contact Us</a>
+              <a href="/help" target="_blank">Site Help</a>
             <a href="javascript:void(0);">
               <img src="assets/images/oo_icon.gif" alt="Feedback" />
-              Feedback</a
-            >
+              Feedback</a>
           </div>
         </div>
       </div>
@@ -139,8 +124,7 @@
           > -->
 
           <a href="/bsca/bsc/mysite/employer/auth/planadmin/yourPlans">
-            ...Raj is our delivery partner</a
-          >
+            ...Raj is our delivery partner</a>
         </nav>
       </div>
     </div>

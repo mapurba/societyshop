@@ -21,9 +21,9 @@ export class UserService {
 
   constructor(private http: HttpClient, private cookieService: CookieService, private componentStateService: ComponentStateService) {
     
-    this.getUserDetailV2().subscribe((res) => {
-      this.currentUserStatic = res.user;
-    });
+    // this.getUserDetailV2().subscribe((res) => {
+    //   this.currentUserStatic = res.user;
+    // });
 
     this.getUserDetailCreateState();
 

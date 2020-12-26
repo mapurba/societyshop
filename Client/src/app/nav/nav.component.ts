@@ -30,7 +30,7 @@ export class NavComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getUserDetail();
+    // this.getUserDetail();
   }
 
   ngAfterViewInit() {
@@ -39,6 +39,18 @@ export class NavComponent implements OnInit {
       .subscribe((res) => {
         if (res.id === StateNames.OpenSearchBoxState) {
           this.hideLogo = true;
+        }
+        if (res.id === StateNames.userDetail) {
+          // this.searchQRef.nativeElement.click();
+          // this.user = res.user;
+          let userDetail = res.value.get(StateNames.userDetail);
+
+          console.log("usr loaded...")
+          this.loadingUser = false;
+          this.userLoggedin = true;
+          this.loggedInUserDetails = userDetail.value.user;
+          this.userService.getUserDetailV3(userDetail.value.user);
+          this.UpdateCartfromSession(userDetail.value.user.session["cartValue"]);
         }
       });
   }
