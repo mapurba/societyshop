@@ -27,13 +27,12 @@ export class NavComponent implements OnInit {
     public route: Router,
     private componentStateService: ComponentStateService,
     private sessionService: SessionService
-  ) {}
+  ) { }
 
   ngOnInit() {
     // this.getUserDetail();
-  }
+    this.loadingUser = true;
 
-  ngAfterViewInit() {
     this.componentStateService
       .onStateChange(StateNames.OpenSearchBoxState)
       .subscribe((res) => {
@@ -41,10 +40,7 @@ export class NavComponent implements OnInit {
           this.hideLogo = true;
         }
         if (res.id === StateNames.userDetail) {
-          // this.searchQRef.nativeElement.click();
-          // this.user = res.user;
           let userDetail = res.value.get(StateNames.userDetail);
-
           console.log("usr loaded...")
           this.loadingUser = false;
           this.userLoggedin = true;
@@ -53,6 +49,10 @@ export class NavComponent implements OnInit {
           this.UpdateCartfromSession(userDetail.value.user.session["cartValue"]);
         }
       });
+  }
+
+  ngAfterViewInit() {
+
   }
   public isloggedin() {
     // console.log(this.userService.isLogedinUser());
@@ -66,20 +66,20 @@ export class NavComponent implements OnInit {
   // }
 
   getUserDetail() {
-    this.loadingUser = true;
-    this.userService.getUserDetailV2().subscribe(
-      (res) => {
-        this.loadingUser = false;
-        this.userLoggedin = true;
-        this.loggedInUserDetails = res.user;
-        this.userService.getUserDetailV3(res.user);
-        this.UpdateCartfromSession(res.user.session["cartValue"]);
-      },
-      (err) => {
-        this.loadingUser = false;
-        this.userLoggedin = false;
-      }
-    );
+    // this.loadingUser = true;
+    // this.userService.getUserDetailV2().subscribe(
+    //   (res) => {
+    //     this.loadingUser = false;
+    //     this.userLoggedin = true;
+    //     this.loggedInUserDetails = res.user;
+    //     this.userService.getUserDetailV3(res.user);
+    //     this.UpdateCartfromSession(res.user.session["cartValue"]);
+    //   },
+    //   (err) => {
+    //     this.loadingUser = false;
+    //     this.userLoggedin = false;
+    //   }
+    // );
   }
 
   UpdateCartfromSession(itemsOfCart: ItemSchema[]) {

@@ -56,8 +56,8 @@
       <div class="col-2 text-right top-menu-right navigation-container header profile-dropdown">
         <div class="dropdown avatar">
           <img *ngIf="userLoggedin && !loadingUser" [src]="loggedInUserDetails?.profile?.picture" alt="Avatar" />
-          <span class="profile_menu_image" *ngIf="loadingUser">...</span>
-          <a class="btn btn-md btn-sm instagram-login-button" *ngIf="!userLoggedin && !loadingUser" role="button"
+          <!-- <span class="profile_menu_image" *ngIf="loadingUser">...</span> -->
+          <a class="btn btn-md btn-sm instagram-login-button" *ngIf="!userLoggedin" role="button"
             href="/api/auth/google">
             Login</a>
           <div class="dropdown-content profile-dropdown-content" *ngIf="userLoggedin">
