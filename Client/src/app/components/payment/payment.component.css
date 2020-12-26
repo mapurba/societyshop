@@ -27,13 +27,22 @@ table {
 .action-btns {
   margin: -3px;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  background-color: #474747;
+  margin-top: -10px;
+  padding: 11px;
+}
+
+.action-btns > p {
+  flex: 1;
+  text-align: left;
+  color: white;
+  font-size: 1.3em;
+  word-break: break-word;
 }
 
 .btn.action {
   cursor: pointer;
-  width: 25%;
-  font-size: 17px;
   margin-right: 5px;
   background-color: #ff7600;
   color: white;
@@ -156,4 +165,8 @@ input {
 
 .netb-form {
   padding: 3px;
+}
+
+.payment-card {
+  margin: -2px;
 }

@@ -42,7 +42,7 @@
 
 
       <table>
-<tr [hidden]="orderId == null">
+        <tr [hidden]="orderId == null">
           <!-- card -->
           <div class="container">
             <form>
@@ -117,24 +117,21 @@
 
 
         <tr>
+        
           <div class="action-btns">
+            <p>
+              Total Bill : {{currentOrderDetail?.totalAmountAfterDiscount}}
+            </p>
             <!-- <button class="btn action" routerLink="/payment">Cancle</button> -->
             <button class="btn action" [disabled]="isOrderCreating" [hidden]="enablePayment" (click)="createOrderAndToPayment()">
               {{ !isOrderCreating ? "Order Now" : "...." }}
             </button>
-            <button class="btn action" routerLink="/" [hidden]="!enablePayment">
+            <!-- <button class="btn action" routerLink="/" style=" margin: 17px 6px;" [hidden]="!enablePayment">
               Cancle
-            </button>
+            </button> -->
             <button type="submit" class="btn" id="payBtn" [hidden]="!enablePayment">
-              Pay Later
-              <!-- if the user clicks here than first it will fo to payment page .. -->
-              <!-- user should be re directed from the card form -->
+              Pay Now
             </button>
-            <!-- <button class="btn action" routerLink="/">Category</button>
-            <a class="fa fa-home icon btn action" routerlink="" href="/"
-              >Home</a
-            > -->
-            <!-- <button class="btn action" routerLink="/">Home</button> -->
           </div>
         </tr>
 

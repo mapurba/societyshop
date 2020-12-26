@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1608835461190,
+  "timestamp": 1609012880869,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -12,7 +12,7 @@
       },
       "urls": [
         "./index.html",
-        "./main.2b9af28686aef1a08305.js",
+        "./main.c6528fbf1eb847f355f1.js",
         "./manifest.webmanifest",
         "./polyfills-es5.c25cd416fdb8dba90f9e.js",
         "./polyfills.ee132e127fcf44365051.js",
@@ -48,13 +48,30 @@
         "./assets/images/mylooks-logo.png",
         "./assets/images/navLogo.png",
         "./assets/images/phone.png",
+        "./assets/images/porder.png",
         "./assets/images/puff.svg",
-        "./assets/images/verified.png"
+        "./assets/images/verified.png",
+        "./assets/js/payment.js",
+        "./assets/js/seamlessHealper.js"
       ],
       "patterns": []
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+    {
+      "name": "api",
+      "patterns": [
+        "\\/api"
+      ],
+      "strategy": "freshness",
+      "maxSize": 0,
+      "maxAge": 0,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
   "hashTable": {
     "./assets/css/style.css": "21647d7eacaaacb1273ec70fa5dcb95cc27610ae",
     "./assets/icons/icon-128x128.png": "c91e88b604a7482ae27dabd0b9489a30c06eae67",
@@ -75,10 +92,13 @@
     "./assets/images/mylooks-logo.png": "86425b93ccc5274fe680fb8fdf87d082662b43e2",
     "./assets/images/navLogo.png": "580640180636ed8d511768ff961ce10cbb817391",
     "./assets/images/phone.png": "ca7b7a32c07203b59d5c6607be3da1c8ebb26bee",
+    "./assets/images/porder.png": "959705fa08fd254609c2259f18f412aa7d5f5a0c",
     "./assets/images/puff.svg": "3e060e3f4857d3db8a13832678d55d1a5c54c801",
     "./assets/images/verified.png": "341354067df4ac62d34e09a123b42dba17603c4d",
-    "./index.html": "3dca718b6de92806516d0a7f5d5aa406dc9cdd99",
-    "./main.2b9af28686aef1a08305.js": "2fb8ab816e64e00ec2639e52775a90e1e2dca5ba",
+    "./assets/js/payment.js": "5212b0877c6096196906fcff57197dd3da13d3cf",
+    "./assets/js/seamlessHealper.js": "c409453194525e6283d9cecf8075bf3cafefdd37",
+    "./index.html": "9ee43242202c071c6af96973f4217bf52bdd7802",
+    "./main.c6528fbf1eb847f355f1.js": "39cf330baf7120d1a196cf7d1ca28e17d242396a",
     "./manifest.webmanifest": "ed01ab5d7b360409e70bbd606eab9fc3c926bcfc",
     "./polyfills-es5.c25cd416fdb8dba90f9e.js": "aea498161c95fa33a956a64482d4cd6db94aa0bd",
     "./polyfills.ee132e127fcf44365051.js": "f30f6225350297074bbd5e5bcb2997162a48de46",
