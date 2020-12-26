@@ -2,7 +2,7 @@
   <div class="main mb-2 container">
     <app-nav [isScrolling]="scrollStop"></app-nav>
   </div>
-  <div class="main mb-2 container">
+  <div class="main mb-2 container" *ngIf="!userDetailLoading">
     <router-outlet></router-outlet>
   </div>
 

@@ -23,6 +23,7 @@ export class AppComponent {
   scrollStop: boolean = true;
   scroller: any;
   user: any;
+  userDetailLoading: boolean = true;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -111,11 +112,7 @@ export class AppComponent {
             );
           }, 4000);
         }
-      });
-    this.componentStateServie
-      .onStateChange(StateNames.UserSession)
-      .subscribe((res) => {
-        if (res.id === StateNames.UserSession) {  
+        if (res.id === StateNames.UserSession) {
           // this.searchQRef.nativeElement.click();
           let userSession = res.value.get(StateNames.UserSession);
           console.log(userSession);
@@ -133,11 +130,24 @@ export class AppComponent {
           //   JSON.stringify(res.value.get("UserSession").value)
           // );
         }
+        if (res.id === StateNames.userDetail) {
+          // this.searchQRef.nativeElement.click();
+          // this.user = res.user;
+          let userDetail = res.value.get(StateNames.userDetail);
+
+          console.log("usr loaded...")
+          this.user = userDetail.value.user;
+          this.userDetailLoading = false;
+        }
       });
 
-    this.userDetail.getUserDetailV2().subscribe((res) => {
-      this.user = res.user;
-    });
+
+    // this.userDetail.getUserDetailV2().subscribe((res) => {
+    //   this.user = res.user;
+    //   this.userDetailLoading = false;
+    // });
+
+
     // this.autofullscreen();
   }
 
@@ -153,21 +163,5 @@ export class AppComponent {
     window.scroll(this.currentXPos, this.currentYpos - 1);
   }
 
-  getStateFromDbAndSetToComponentState() {}
-
-  // autofullscreen() {
-  //   const element = this.document.querySelector("body");
-  //   // make the element go to full-screen mode
-  //   console.log("funncreen error");
-
-  //   element
-  //     .requestFullscreen()
-  //     .then(function () {
-  //       console.log("element has entered fullscreen mode successfully");
-  //     })
-  //     .catch(function (error) {
-  //       // element could not enter fullscreen mode
-  //       console.log("funncreen error");
-  //     });
-  // }
+  getStateFromDbAndSetToComponentState() { }
 }
