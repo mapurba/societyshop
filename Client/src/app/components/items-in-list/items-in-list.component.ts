@@ -42,8 +42,6 @@ export class ItemsInListComponent implements OnInit {
 
       const newitem = Object.assign({}, item);
       cart.value.push(newitem);
-      console.log("###$$%", newitem);
-
       // ...this..
       let newState = new State(StateNames.addToCart, cart.value);
       this.componentStateService.setState(newState);

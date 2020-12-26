@@ -48,17 +48,28 @@ export class ItemListComponent implements OnInit {
   getAllItem() {
 
     //// this has to be paginated ...... based on the query pararms ....
-    this.itemService.getAllItems({}).subscribe((res) => {
+    this.itemService.getinventoryFrommerchant().subscribe((res) => {
       // for each current list update the quantatio for the referance of the user ..
 
       // just change the current lis details
 
-      const items: State = this.componentStateService.getStateByStateName(
-        StateNames.addToCart
-      ) as State;
-      items.value.map((item) => {
+      // const items: State = this.componentStateService.getStateByStateName(
+      //   StateNames.addToCart
+      // ) as State;
+
+
+      Object.entries(res).forEach((item: any) => {
+
+        let itemC = JSON.parse(item[1]);
+        if (itemC.quantity > 0) {
+          itemC.quantity = 0;
+          this._list.push(itemC);
+        }
       });
-      this._list = res;
+
+
+
+      // this._list = res;
     });
   }
 

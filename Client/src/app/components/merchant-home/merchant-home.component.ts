@@ -36,7 +36,7 @@ export class MerchantHomeComponent implements OnInit {
     this.hideOverLay = false;
     console.log(event);
   }
-  openConfirmation(item) {
+  openConfirmation(item: ItemSchema) {
     this.hideOverLay = true;
     this.newInventoryItem = item;
     console.log(item)
@@ -54,9 +54,11 @@ export class MerchantHomeComponent implements OnInit {
   addToInvontory() {
     this.isSubmited = true;
     if (this.inventoryForm.get("quantity").value) {
-      this.newInventoryItem.quantity = this.inventoryForm.get("quantity").value;
+      this.newInventoryItem.quantity = parseInt(this.inventoryForm.get("quantity").value);
       this.newInventoryItem.price.new = this.inventoryForm.get("pricePerQuantity").value;
-      let payLoad = this.newInventoryItem;
+      let payLoad: ItemSchema = this.newInventoryItem;
+      // payLoad = this.newInventoryItem;
+
       this.http.post("/api/user/merchant/addToInventory", payLoad).subscribe((res) => {
 
       });
