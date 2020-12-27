@@ -40,16 +40,19 @@
 
       <!-- <div class="logo-profile"> -->
       <div class="logo-image col-10">
-        <div _ngcontent-c1="" class="humbug">
-          <div _ngcontent-c1=""></div>
-          <div _ngcontent-c1=""></div>
-          <div _ngcontent-c1=""></div>
+        <div [hidden]="!hideProfileDropDown||hideLogo">
+          <div class="humbug">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
+          <a href="#" class="main-twxt-portion" [hidden]="!hideProfileDropDown||hideLogo">
+            <!-- <img src="assets/images/bsc_logo.gif" alt="BSC Logo" /> -->
+            Your Local Store
+          </a>
         </div>
 
-        <a href="#" class="main-twxt-portion" [hidden]="!hideProfileDropDown||hideLogo">
-          <!-- <img src="assets/images/bsc_logo.gif" alt="BSC Logo" /> -->
-          Your Local Store
-        </a>
         <product-search class="container col-10 search-box" *ngIf="!loggedInUserDetails?.isMer"></product-search>
       </div>
 
@@ -58,13 +61,11 @@
           <img *ngIf="userLoggedin && !loadingUser" [src]="loggedInUserDetails?.profile?.picture" alt="Avatar" />
           <!-- <span class="profile_menu_image" *ngIf="loadingUser">...</span> -->
           <a class="btn btn-md btn-sm instagram-login-button" *ngIf="!userLoggedin" role="button"
-            href="/api/auth/google">
-            Login</a>
+            href="/api/auth/google">Login</a>
           <div class="dropdown-content profile-dropdown-content" *ngIf="userLoggedin">
             <a href="/api/user/logout"><span>Sign Out</span></a>
-            <a href="/conact" target="_blank">
-              Contact Us</a>
-              <a href="/help" target="_blank">Site Help</a>
+            <a href="/account">Account</a>
+            <a href="/help" target="_blank">Site Help</a>
             <a href="javascript:void(0);">
               <img src="assets/images/oo_icon.gif" alt="Feedback" />
               Feedback</a>
@@ -74,56 +75,16 @@
       <!-- </div> -->
 
       <div class="col-8 text-right top-menu-user">
-        <!-- <span *ngIf="currentUser && currentUser.name"
-        ><strong>{{ currentUser.name }}</strong></span
-      > -->
+      
       </div>
     </div>
-    <!-- ........................Level1 Header Content Ends Here.....................   -->
 
-    <!-- Level 2 Navigation menu begins here-->
-    <!--   <div class="navigation-container mobile">
-      <div class="dropdown">
-        <a
-          href="/bsca/bsc/mysite/employer/cwsSSORedirector?FromCWS=true&sectionName=memberSearch&groupID"
-          class="dropbtn"
-        >
-          <em> home </em>
-        </a>
-      </div>
-     
-      <div class="dropdown">
-        <a
-          href="/bsca/bsc/mysite/employer/auth/settings/manageusers"
-          class="dropbtn"
-        >
-          <em> settings </em>
-        </a>
-        <div class="dropdown-content">
-          <a href="/bsca/bsc/mysite/employer/auth/settings/manageusers"
-            >Manage Users</a
-          >
-          <a href="/bsca/bsc/mysite/employer/auth/settings/preference"
-            >My Profile & Preferences</a
-          >
-        </div>
-      </div>
-
-      
-      <div class="dropdown last spacer"></div>
-      <div class="dropdown last spacer"></div>
-    </div> -->
-    <!-- Level 2 Navigation menu ends here-->
 
     <!-- Level 3 Sub Menu Begins here-->
     <div class="sub_menu">
       <div class="sub_menu_pos">
         <nav>
-          <!-- <a routerLink="/roster" routerLinkActive="activeTab"
-            >Member Roster / Search</a
-          > -->
-
-          <a href="/bsca/bsc/mysite/employer/auth/planadmin/yourPlans">
+          <a href="">
             ...Raj is our delivery partner</a>
         </nav>
       </div>

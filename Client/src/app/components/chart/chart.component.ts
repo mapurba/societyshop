@@ -6,31 +6,7 @@ import { State, StateNames } from "src/app/schemas/componentStateSchema";
 import { ItemSchema, retriveItemFromLocalStore } from "src/app/schemas/ItemSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
 
-class PAYMENT_TYPE_RESPONCE {
-  CARD = {
-    appId: "46214749ea974b6ff04be5d9741264",
-    card_cvv: "123",
-    card_expiryMonth: "04",
-    card_expiryYear: "2023",
-    card_holder: "a",
-    card_number: "4444333322221111",
-    customerEmail: "a@a.com",
-    customerName: "a",
-    customerPhone: "1234512345",
-    notifyUrl: "",
-    orderAmount: "2",
-    orderCurrency: "INR",
-    orderId: "5147",
-    paymentOption: "card",
-    paymentToken: "q/LW7lc8MMKqyQNMih9P9Q7gB3t3TLwfudKO5rkMgjI=",
-    source: "sdk-transparent",
-  };
 
-  upi = {};
-
-  netBanking = {};
-  walet = {};
-}
 
 @Component({
   selector: "app-chart",

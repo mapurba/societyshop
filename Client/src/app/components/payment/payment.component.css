@@ -170,3 +170,12 @@ input {
 .payment-card {
   margin: -2px;
 }
+
+.paypent-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 99vh;
+  width: 100vw;
+}

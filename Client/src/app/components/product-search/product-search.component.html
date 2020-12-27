@@ -4,13 +4,7 @@
 <div class="search-box">
   <div class="input">
     <i class="fa fa-search" aria-hidden="true"> </i>
-    <div
-      class="text"
-      contenteditable="true"
-      #searchQ
-      (click)="clearText($event)"
-      (keyup)="onKeyUp($event)"
-    >
+    <div class="text" contenteditable="true" #searchQ (click)="clearText($event)" (keyup)="onKeyUp($event)">
       <div class="placeholder">
         {{ placeholder || "Search all the products" }}
       </div>
@@ -23,15 +17,9 @@
 </div>
 
 <div class="floating-dropdown" *ngIf="!isFalt">
-  <div
-    class="search-dropdown"
-    *ngIf="showDowpdown"
-    (mouseleave)="mouseLeave($event)"
-  >
-    <div
-      class="fa item"
-      *ngFor="let searchTerms of dropdownsearchResul; let i = index"
-    >
+  <div class="search-dropdown" *ngIf="showDowpdown" (mouseleave)="mouseLeave($event)">
+    <div class="fa item" *ngFor="let searchTerms of dropdownsearchResul; let i = index"
+      (click)="gotoProductList(searchTerms)">
       <div class="search-bar">
         <img data-src="{{ searchTerms.image }}" />
         {{ searchTerms.name | sanitizeme }}

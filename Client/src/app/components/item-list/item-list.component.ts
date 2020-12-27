@@ -25,11 +25,22 @@ export class ItemListComponent implements OnInit {
   set list(val) {
     this._list = val;
   }
+
+
+  _searchQ: string;
+
+  @Input("Q") set Q(val) {
+    if (val != "") {
+      this._searchQ = val;
+      setTimeout(() => { this.loadSearchResult(this._searchQ); });
+    }
+  }
   constructor(
     private itemService: ItemsService,
     private componentStateService: ComponentStateService
   ) {
     this._list = [];
+    // this._searchQ = "";
     // this._list.push(
     //   new ItemSchema({
     //     name: "",
@@ -40,7 +51,7 @@ export class ItemListComponent implements OnInit {
     //     image:
     //       "" /* "https://www.bigbasket.com/media/uploads/p/m/40018854_4-himalaya-purifying-neem-face-wash.jpg", */,
     //     brand: "",
-        
+
     //   })
     // );
   }
@@ -65,15 +76,21 @@ export class ItemListComponent implements OnInit {
         }
       })
 
-
-
-
-      // this._list = res;
     });
   }
 
+
+  loadSearchResult(Q: string) {
+    this.itemService.fetchsearchResult(Q).subscribe((data) => {
+      this._list = data.data;
+    })
+  }
+
   ngOnInit() {
-    this.getAllItem();
+
+    // console.log(this._searchQ);
+    // if (!this._searchQ)
+    //   this.getAllItem();
   }
 
   ngDestroy() {

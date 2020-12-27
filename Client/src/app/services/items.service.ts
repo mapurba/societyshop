@@ -17,6 +17,10 @@ export class ItemsService {
     return this.http.get("/api/products/merchantProductlist");
   }
 
+  fetchsearchResult(Q): Observable<any> {
+    return this.http.get(("/api/search/ac?ed=3&q=") + Q + "&");
+  }
+
   addNewItem(item: ItemSchema) {
     return this.http.post("/api/products", item);
   }

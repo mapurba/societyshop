@@ -8,6 +8,7 @@ import {
   ViewChild,
   EventEmitter,
 } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import { StateNames } from "src/app/schemas/componentStateSchema";
@@ -50,7 +51,8 @@ export class ProductSearchComponent implements OnInit {
 
   constructor(
     private componentStateServie: ComponentStateService,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -62,7 +64,7 @@ export class ProductSearchComponent implements OnInit {
       this.isLoading.emit(true);
       this.fetchsearchResult(this.searchQ || '').subscribe((res: any) => {
         // console.log(res);
-        this.dropdownsearchResul = res.data;
+        this.dropdownsearchResul = res.data.slice(0, 10);
         this.searchResult.emit(res);
         this.isLoading.emit(false);
       });
@@ -125,5 +127,11 @@ export class ProductSearchComponent implements OnInit {
     this._showCancleBtn = true;
     window.getSelection().selectAllChildren(this.searchQRef.nativeElement);
     this.showDowpdown = true;
+  }
+
+  gotoProductList(item) {
+    console.log(item);
+    this.route.navigate(['list', { search: item.name }]);
+    this.showDowpdown = false;
   }
 }

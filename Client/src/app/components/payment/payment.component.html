@@ -106,18 +106,18 @@
                 card
               </div>
             </td>
-            <td>
+            <!-- <td>
               <input class="btn" class="paymentRadioInput" type="radio" id="nb" name="paymentOption" value="nb" />
               <div class="btn" for="netBanking" (click)="changePaymentMode('nb')">
                 net banking
               </div>
-            </td>
+            </td> -->
           </tr>
         </div>
 
 
         <tr>
-        
+
           <div class="action-btns">
             <p>
               Total Bill : {{currentOrderDetail?.totalAmountAfterDiscount}}
@@ -129,7 +129,7 @@
             <!-- <button class="btn action" routerLink="/" style=" margin: 17px 6px;" [hidden]="!enablePayment">
               Cancle
             </button> -->
-            <button type="submit" class="btn" id="payBtn" [hidden]="!enablePayment">
+            <button [hidden]="!enablePayment" (click)="processPayment()">
               Pay Now
             </button>
           </div>
@@ -142,3 +142,4 @@
     </form>
   </div>
 </div>
+<iframe class="paypent-screen" *ngIf="showiframeScreen" [src]="paymentHash"></iframe>

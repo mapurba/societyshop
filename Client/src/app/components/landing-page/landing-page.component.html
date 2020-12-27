@@ -1,6 +1,6 @@
 <div class="container">
   <!-- selevety time alert component -->
-  <div class="flex-rows" *ngIf="currentLoggedinUser == undefined">
+  <!-- <div class="flex-rows" *ngIf="currentLoggedinUser == undefined">
     <div class="delivery-slot-alert">
       <div class="info">
         <div class="text btn" style="   
@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="flex-rows">
     <div class="delivery-slot-alert">
@@ -35,12 +35,12 @@
         </div>
         <div class="next-slot">
           <span class="fa fa-truck"></span>
-          <span class="time"> Today 5:00PM - 7:00PM</span>
+          <span class="time"> Today 8:00AM - 9:00PM</span>
         </div>
       </div>
-      <div *ngIf="currentLoggedinUser?.isMer == true">
+      <!-- <div *ngIf="currentLoggedinUser?.isMer == true">
         set you delivery time
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -51,14 +51,14 @@
   <div class="flex-rows" *ngIf="currentLoggedinUser?.isMer == undefined">
     <div class="delivery-slot-alert">
       <div class="info">
-        <div class="text btn" style="   
+        <a class="text btn" style="   
             display: inline-block;
             width: 49%;
             padding: 0px 10px;
             background-color: #dac61b;
-        " routerLink="sellerList">
-          Subscribe Sellers
-        </div>
+        " href="/api/auth/google">
+          Login
+      </a>
       </div>
     </div>
   </div>

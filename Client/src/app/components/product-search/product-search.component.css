@@ -58,6 +58,7 @@
   height: 31px;
   padding-left: 17px;
   float: right;
+  margin: 0px 9px;
 }
 
 .item::after {
@@ -104,6 +105,10 @@
 .search-bar {
   max-width: 90%;
   overflow: hidden;
+  white-space: nowrap;
+}
+.item:hover {
+  border: 1px solid red !important;
 }
 
 .placeholder {

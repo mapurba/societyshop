@@ -1,13 +1,29 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { State, StateNames } from "src/app/schemas/componentStateSchema";
 import { ItemSchema, retriveItemFromLocalStore } from "src/app/schemas/ItemSchema";
+import { PAYMENT_TYPE_RESPONCE } from "src/app/schemas/paymentResponce";
 import { ComponentStateService } from "src/app/services/component-state.service";
 
 export enum paymentComponentMode {
   buttonOnly = 0,
   fullPage = 1,
+}
+
+export enum cashFreeSDKEventEnums { paymentRequest = "PAYMENT_REQUEST", paymentResponse = "PAYMENT_RESPONSE" }
+
+
+
+function initiateCashfree() {
+  var config = {};
+  config.layout = { view: "popup", width: "650" };
+  // config.layout = {};
+  config.checkout = "transparent";
+  config.mode = "PROD"; //use PROD when you go live
+  window.CashFree.init(config);
 }
 
 @Component({
@@ -34,6 +50,10 @@ export class PaymentComponent implements OnInit {
   currentOrderDetail: any;
 
   totalAmount
+
+  showiframeScreen: boolean = false;
+
+  paymentHash: any;
   // _setDisplayMode = 0;
 
   componentMode = paymentComponentMode.fullPage;
@@ -46,13 +66,22 @@ export class PaymentComponent implements OnInit {
   constructor(
     private component̥StateService: ComponentStateService,
     private http: HttpClient,
-    private route: Router
-  ) {}
+    private route: Router,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit() {
     // this.loadPaymentRelatedJs();
     console.log(this._setDisplayMode);
 
+    // this.createItemForm = new FormGroup({
+    //   name: new FormControl("", [Validators.required]),
+    //   discp: new FormControl("", [Validators.required]),
+    //   price: new FormControl("", [Validators.required]),
+    //   brand: new FormControl("", [Validators.required]),
+    //   varient: new FormControl("", [Validators.required]),
+    //   image: new FormControl("", [Validators.required]),
+    // });
 
 
     this.component̥StateService
@@ -98,6 +127,42 @@ export class PaymentComponent implements OnInit {
     // this.componentMode = this._setDisplayMode;
   }
 
+
+  handleResponse(data) {
+    console.log(data);
+  }
+
+  callback(event) {
+    //sample callback to see what response is received
+    console.log("call back passed to sdk called");
+    console.log("event:", event);
+
+    switch (event.name) {
+      case cashFreeSDKEventEnums.paymentRequest: {
+        console.log("payment request enum hit");
+        console.log("event:", event);
+        //do error reporting here
+        //.....
+        //unfreeze form
+        // this.displayResult(event.status, event.message);
+        console.log("event:", event);
+        break;
+      }
+      case cashFreeSDKEventEnums.paymentResponse: {
+        //capture response and send to server
+        console.log("payment response enum hit");
+        console.log("event:", event);
+        const { response } = event;
+        this.handleResponse(JSON.stringify(response));
+        break;
+      }
+      default: {
+        console.log("other event caught");
+        console.log("event:", event);
+      }
+    }
+  }
+
   retriveItemFromLocalStore(id): any[] {
     let lastValue = localStorage.getItem(id);
     if (lastValue && lastValue.length > 0) {
@@ -139,14 +204,13 @@ export class PaymentComponent implements OnInit {
 
   paymentRedirection(orderDetail) {
     // this.route.navigate(["/payment"]);
-    let orderData = orderDetail;
 
     //this creates the order and creata  a payment token can be for to redirect to PG page.store that to session #ToDO
 
     let newOrderDetail = {
-      orderId: orderDetail.respos._id,
-      orderAmount: orderDetail.respos.totalAmountAfterDiscount,
-      customerName: orderDetail.respos.user,
+      orderId: orderDetail.order._id,
+      orderAmount: 1,
+      customerName: orderDetail.order.user.profile.name,
       customerEmail: "a@a.com",
       customerPhone: "1234512345",
     };
@@ -159,22 +223,45 @@ export class PaymentComponent implements OnInit {
         }
       )
       .subscribe((res: any) => {
-        console.log({ ...res.additionalFields, ...newOrderDetail });
-        this.redirectToCashFree({
+        console.log({ ...res.additionalFields, ...newOrderDetail, ...orderDetail.paymentDetail });
+        let paymentData = {
           ...res.additionalFields,
           ...newOrderDetail,
+          ...orderDetail.paymentDetail,
           source: "web_societystore",
-        });
+        };
+        // this.redirectToCashFree({
+        //   ...res.additionalFields,
+        //   ...newOrderDetail,
+        //   ...orderDetail.paymentDetail,
+        //   source: "web_societystore",
+        // });
+
+        try {
+          initiateCashfree();
+          window.CashFree.makePayment(paymentData, this.callback);
+        } catch (e) {
+          console.log(e);
+        }
+
+
       });
   }
 
   redirectToCashFree(data) {
     this.http
       .post(
-        "https://test.cashfree.com/billpay/checkout/post/generate-paymenthash",
+        "https://www.cashfree.com/checkout/post/generate-paymenthash",
         { ...data }
       )
-      .subscribe((res) => {});
+      .subscribe((res: any) => {
+        if (res.status == "OK") {
+          // let paymentUrl = "https://www.cashfree.com/checkout/post/payment/" + res.paymentHash;
+          // this.paymentHash = this.sanitizer.bypassSecurityTrustResourceUrl(paymentUrl);
+          // console.log(this.paymentHash);
+          // this.showiframeScreen = true;
+        }
+      });
   }
 
   changePaymentMode(id): any {
@@ -196,5 +283,33 @@ export class PaymentComponent implements OnInit {
     } catch (e) {
       console.log("payment script not. loaded");
     }
+  }
+
+  processPayment() {
+
+    let payload = { order: this.currentOrderDetail, paymentDetail: {} }
+    switch (this.payMode) {
+      case "upi": {
+        payload.paymentDetail = PAYMENT_TYPE_RESPONCE.upi;
+        break;
+      }
+      case "card": {
+        payload.paymentDetail = PAYMENT_TYPE_RESPONCE.CARD;
+        break;
+      }
+      case "nb": {
+        payload.paymentDetail = PAYMENT_TYPE_RESPONCE.netBanking;
+        break;
+      }
+
+      default: return;
+
+
+    }
+
+
+
+    console.log(payload);
+    this.paymentRedirection(payload);
   }
 }
