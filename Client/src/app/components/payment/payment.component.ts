@@ -72,6 +72,11 @@ export class PaymentComponent implements OnInit {
         }
 
       });
+    let cartItems = new Map(retriveItemFromLocalStore("cartValue"));
+    this.state = { value: [] };
+    cartItems.forEach((value: any, key) => {
+      this.state.value.push(value);
+    });
   }
 
   ngAfterViewInit() {
