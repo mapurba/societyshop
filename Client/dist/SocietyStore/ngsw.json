@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1609012880869,
+  "timestamp": 1609104853684,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -12,7 +12,7 @@
       },
       "urls": [
         "./index.html",
-        "./main.c6528fbf1eb847f355f1.js",
+        "./main.641761fd19f67723c323.js",
         "./manifest.webmanifest",
         "./polyfills-es5.c25cd416fdb8dba90f9e.js",
         "./polyfills.ee132e127fcf44365051.js",
@@ -97,8 +97,8 @@
     "./assets/images/verified.png": "341354067df4ac62d34e09a123b42dba17603c4d",
     "./assets/js/payment.js": "5212b0877c6096196906fcff57197dd3da13d3cf",
     "./assets/js/seamlessHealper.js": "c409453194525e6283d9cecf8075bf3cafefdd37",
-    "./index.html": "9ee43242202c071c6af96973f4217bf52bdd7802",
-    "./main.c6528fbf1eb847f355f1.js": "39cf330baf7120d1a196cf7d1ca28e17d242396a",
+    "./index.html": "6cca2392d9327cb49ecee375d251084495c71def",
+    "./main.641761fd19f67723c323.js": "b3424ce4b7c95eeb53b1c057248ab6e539e63471",
     "./manifest.webmanifest": "ed01ab5d7b360409e70bbd606eab9fc3c926bcfc",
     "./polyfills-es5.c25cd416fdb8dba90f9e.js": "aea498161c95fa33a956a64482d4cd6db94aa0bd",
     "./polyfills.ee132e127fcf44365051.js": "f30f6225350297074bbd5e5bcb2997162a48de46",

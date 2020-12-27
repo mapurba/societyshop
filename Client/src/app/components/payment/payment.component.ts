@@ -17,19 +17,15 @@ export enum cashFreeSDKEventEnums { paymentRequest = "PAYMENT_REQUEST", paymentR
 
 
 
-function initiateCashfree() {
-  var config = {};
-  config.layout = { view: "popup", width: "650" };
-  // config.layout = {};
-  config.checkout = "transparent";
-  config.mode = "PROD"; //use PROD when you go live
-  window.CashFree.init(config);
-}
+
 
 @Component({
   selector: "payment",
   templateUrl: "./payment.component.html",
   styleUrls: ["./payment.component.css"],
+  providers: [
+    { provide: Window, useValue: window }
+  ]
 })
 export class PaymentComponent implements OnInit {
   loading: boolean = true;
@@ -67,7 +63,8 @@ export class PaymentComponent implements OnInit {
     private component̥StateService: ComponentStateService,
     private http: HttpClient,
     private route: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private window: Window
   ) { }
 
   ngOnInit() {
@@ -127,6 +124,16 @@ export class PaymentComponent implements OnInit {
     // this.componentMode = this._setDisplayMode;
   }
 
+
+
+  initiateCashfree() {
+    var config = { layout: {}, checkout: {}, mode: "TEST" };
+    config.layout = { view: "popup", width: "650" };
+    // config.layout = {};
+    config.checkout = "transparent";
+    config.mode = "PROD"; //use PROD when you go live
+    this.window['CashFree'].init(config);
+  }
 
   handleResponse(data) {
     console.log(data);
@@ -238,8 +245,8 @@ export class PaymentComponent implements OnInit {
         // });
 
         try {
-          initiateCashfree();
-          window.CashFree.makePayment(paymentData, this.callback);
+          this.initiateCashfree();
+          this.window['CashFree'].makePayment(paymentData, this.callback);
         } catch (e) {
           console.log(e);
         }
