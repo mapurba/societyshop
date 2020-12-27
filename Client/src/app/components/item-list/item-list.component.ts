@@ -89,8 +89,8 @@ export class ItemListComponent implements OnInit {
   ngOnInit() {
 
     // console.log(this._searchQ);
-    // if (!this._searchQ)
-    //   this.getAllItem();
+    if (!this._searchQ)
+      this.getAllItem();
   }
 
   ngDestroy() {

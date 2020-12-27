@@ -12,7 +12,8 @@ export const PAYMENT_TYPE_RESPONCE = {
 
     upi: {
 
-        upi_vpa: "apurbamandal0@oksbi",
+        upi_vpa: "",
+        upi: { vpa: "apurbamandal0@oksbi" },
         paymentOption: "upi",
     },
 

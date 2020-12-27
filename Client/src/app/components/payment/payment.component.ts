@@ -53,6 +53,7 @@ export class PaymentComponent implements OnInit {
   // _setDisplayMode = 0;
 
   componentMode = paymentComponentMode.fullPage;
+  upiAddress = new FormControl("");
 
   @Input("setDisplayMode") _setDisplayMode = 0;
 
@@ -87,8 +88,6 @@ export class PaymentComponent implements OnInit {
 
         if (res.id === StateNames.addToCart) {
           let userCart = res.value.get(StateNames.addToCart);
-          // this.loggedInUserDetails = userDetail.value.user;
-          // this.dummylist = userCart.value || retriveItemFromLocalStore("cartValue");
           console.log('cart changed.');
           let cartItems = new Map(retriveItemFromLocalStore("cartValue"));
           this.state = { value: [] };
@@ -190,13 +189,10 @@ export class PaymentComponent implements OnInit {
     this.http.post("/api/orders/create", { items: this.state.value }).subscribe(
       (res: any) => {
         console.log({ "order created......": res });
-        // this.paymentRedirection(res);
-        // this.clearCurrentCart();
         this.isOrderCreating = false;
         this.orderId = res.respos._id;
         this.enablePayment = true;
         this.orderCreationFailed = false;
-        // this.paymentRedirection(res);
         this.currentOrderDetail = res.respos;
 
       },
@@ -235,6 +231,7 @@ export class PaymentComponent implements OnInit {
           ...res.additionalFields,
           ...newOrderDetail,
           ...orderDetail.paymentDetail,
+          returnUrl: "https://societystore.co/payment",
           source: "web_societystore",
         };
         // this.redirectToCashFree({
@@ -246,7 +243,7 @@ export class PaymentComponent implements OnInit {
 
         try {
           this.initiateCashfree();
-          this.window['CashFree'].makePayment(paymentData, this.callback);
+          this.window['CashFree'].paySeamless(paymentData, this.callback);
         } catch (e) {
           console.log(e);
         }
@@ -298,6 +295,8 @@ export class PaymentComponent implements OnInit {
     switch (this.payMode) {
       case "upi": {
         payload.paymentDetail = PAYMENT_TYPE_RESPONCE.upi;
+        payload.paymentDetail.upi.vpa = this.upiAddress.value;
+        payload.paymentDetail.upi_vpa = this.upiAddress.value;
         break;
       }
       case "card": {

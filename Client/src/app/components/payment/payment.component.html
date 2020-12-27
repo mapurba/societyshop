@@ -76,7 +76,7 @@
               </div>
               <div class="upi-form" *ngIf="payMode=='upi'">
                 <label for="cname">UPI Address:</label>
-                <input type="text" id="VPA" name="VPA" placeholder="UPI Address" />
+                <input type="text" placeholder="UPI Address" [formControl]="upiAddress" />
               </div>
               <div class="netb-form">
                 <select type="text" id="nb" name="nb" *ngIf="payMode=='nb'" class="nb-dropdown" placeholder="Bank">
