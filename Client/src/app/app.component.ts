@@ -25,6 +25,8 @@ export class AppComponent {
   user: any;
   userDetailLoading: boolean = true;
 
+  removeLoader = false;
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private componentStateServie: ComponentStateService,
@@ -32,7 +34,12 @@ export class AppComponent {
     public route: Router,
     private userDetail: UserService
   ) {
-    console.log(route.url);
+    // console.log(route.url);
+
+    setTimeout(() => {
+      this.removeLoader = true;
+    }, 1000);
+
   }
 
   getScrollDirection(scrollX, scrollY) {

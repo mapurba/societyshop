@@ -4,7 +4,7 @@
 
 .footer-nav {
   display: flex;
-  padding: 5px; 
+  padding: 5px;
   flex-flow: wrap;
   text-align: center;
 }
@@ -30,23 +30,21 @@
   font-size: 1.3em;
 }
 
-@media(max-width:700px){
-  body{
+@media (max-width: 700px) {
+  body {
     font-size: 12px !important;
   }
-  .container{
+  .container {
     margin: 0;
     padding: 0 !important;
   }
-  .main{
+  .main {
     margin-top: 20px;
   }
 }
-.container{
-  padding:4px;
+.container {
+  padding: 4px;
 }
-
-
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -55,7 +53,7 @@
 /* Track */
 ::-webkit-scrollbar-track {
   background: #fed6;
-  
+
   margin-top: 80px;
 }
 
@@ -70,4 +68,12 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
   border-radius: 30px;
+}
+.pre-loader {
+  text-align: center;
+  padding-top: 14%;
+}
+
+.pre-loader > img {
+  width: 300px;
 }
