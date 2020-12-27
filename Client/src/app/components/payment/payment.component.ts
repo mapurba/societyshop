@@ -294,9 +294,10 @@ export class PaymentComponent implements OnInit {
     let payload = { order: this.currentOrderDetail, paymentDetail: {} }
     switch (this.payMode) {
       case "upi": {
+        // payload.paymentDetail =
         payload.paymentDetail = PAYMENT_TYPE_RESPONCE.upi;
-        payload.paymentDetail.upi.vpa = this.upiAddress.value;
-        payload.paymentDetail.upi_vpa = this.upiAddress.value;
+        payload.paymentDetail['upi'].vpa = this.upiAddress.value;
+        payload.paymentDetail['upi_vpa'] = this.upiAddress.value;
         break;
       }
       case "card": {
