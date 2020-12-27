@@ -5,8 +5,9 @@
   <div class="input">
     <i class="fa fa-search" aria-hidden="true"> </i>
     <div class="text" contenteditable="true" #searchQ (click)="clearText($event)" (keyup)="onKeyUp($event)">
-      <div class="placeholder">
+      <div class="placeholder ">
         {{ placeholder || "Search all the products" }}
+      <span class="blink_me">|</span>
       </div>
     </div>
   </div>

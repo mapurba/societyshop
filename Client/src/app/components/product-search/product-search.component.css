@@ -118,3 +118,14 @@
   align-items: center;
   font-size: 14px;
 }
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+  font-weight:700;
+}
+
+@keyframes blinker {  
+  50% { opacity:0; }
+}
+
+
