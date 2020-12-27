@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { State } from "src/app/schemas/componentStateSchema";
-import { ItemSchema } from "src/app/schemas/ItemSchema";
+import { State, StateNames } from "src/app/schemas/componentStateSchema";
+import { ItemSchema, retriveItemFromLocalStore } from "src/app/schemas/ItemSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
 
 export enum paymentComponentMode {
@@ -32,6 +32,8 @@ export class PaymentComponent implements OnInit {
   payMode: any;
 
   currentOrderDetail: any;
+
+  totalAmount
   // _setDisplayMode = 0;
 
   componentMode = paymentComponentMode.fullPage;
@@ -50,6 +52,26 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     // this.loadPaymentRelatedJs();
     console.log(this._setDisplayMode);
+
+
+
+    this.component̥StateService
+      .onStateChange(StateNames.OpenSearchBoxState)
+      .subscribe((res) => {
+
+        if (res.id === StateNames.addToCart) {
+          let userCart = res.value.get(StateNames.addToCart);
+          // this.loggedInUserDetails = userDetail.value.user;
+          // this.dummylist = userCart.value || retriveItemFromLocalStore("cartValue");
+          console.log('cart changed.');
+          let cartItems = new Map(retriveItemFromLocalStore("cartValue"));
+          this.state = { value: [] };
+          cartItems.forEach((value: any, key) => {
+            this.state.value.push(value);
+          });
+        }
+
+      });
   }
 
   ngAfterViewInit() {
@@ -60,15 +82,15 @@ export class PaymentComponent implements OnInit {
   }
 
   ngDoCheck() {
-    // this.dummylist = this.retriveItemFromLocalStore();
-    this.state = this.component̥StateService.getStateByStateName(
-      this.addToCartState
-    ) as State;
-    this.dummylist = this.state
-      ? this.state.value
-      : this.retriveItemFromLocalStore("cartValue");
+    // this.   = this.retriveItemFromLocalStore();
+    // this.state = this.component̥StateService.getStateByStateName(
+    //   this.addToCartState
+    // ) as State;
+    // this.dummylist = this.state
+    //   ? this.state.value
+    //   : this.retriveItemFromLocalStore("cartValue");
 
-    this.componentMode = this._setDisplayMode;
+    // this.componentMode = this._setDisplayMode;
   }
 
   retriveItemFromLocalStore(id): any[] {
@@ -85,6 +107,9 @@ export class PaymentComponent implements OnInit {
   }
   createOrderAndToPayment() {
     this.isOrderCreating = true;
+
+    // let cartValue =
+
     this.http.post("/api/orders/create", { items: this.state.value }).subscribe(
       (res: any) => {
         console.log({ "order created......": res });

@@ -26,40 +26,60 @@ export class ItemsInListComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.item);
-  }
-
-  //state create update
-  addToCart(item: ItemSchema) {
-    // item.quantity = 1;
-    item.quantity = item.quantity == 0 ? 1 : ++item.quantity;
-    this.item = item;
-    if (this.componentStateService.getStateByStateName(StateNames.addToCart)) {
-      let cart = this.componentStateService.getStateByStateName(
-        StateNames.addToCart
-      ) as State;
-      /////
-      // item.quantity++;
-
-      const newitem = Object.assign({}, item);
-      cart.value.push(newitem);
-      // ...this..
-      let newState = new State(StateNames.addToCart, cart.value);
-      this.componentStateService.setState(newState);
-    } else {
-      //creating empty state is not exist in the datastore
-      //right time to add the items of local storage to the datastore
-
-      let newState = new State(StateNames.addToCart, [
-        ...retriveItemFromLocalStore("cartValue"),
-        item,
-      ]);
-      this.componentStateService.setState(newState);
+    const cartValue = retriveItemFromLocalStore("cartValue");
+    if (cartValue.length > 0) {
+      let map = new Map(cartValue);
+      let tit: any = map.get(this.item.itemCode.toString());
+      if (tit) {
+        this.item.quantity = tit.quantity;
+        console.log('merged');
+     }
     }
   }
 
-  removeOneItem(item: ItemSchema) {
-    this.item.quantity--;
-    // updatestate()
+  //state create update
+  addToCart(item: ItemSchema, inc?: number) {
+    const cartValue = retriveItemFromLocalStore("cartValue");
+
+
+
+    if (cartValue.length <= 0) {
+      let newCart = new Map<string, any>();
+      item.quantity++;
+      newCart.set(item.itemCode.toString(), item);
+      this.item.quantity = item.quantity;
+      localStorage.setItem("cartValue", JSON.stringify(Array.from(newCart.entries())));
+      let cartState = new State(StateNames.addToCart, JSON.stringify(Array.from(newCart.entries())));
+      this.componentStateService.setState(cartState);
+      return;
+    }
+    else {
+      let map = new Map(cartValue);
+      let tit: any = map.get(item.itemCode.toString());
+      if (tit) {
+        tit.quantity += inc;
+        this.item.quantity = tit.quantity;
+        if (tit.quantity == 0) {
+          map.delete(tit.itemCode.toString()); 
+        } else {
+          map.set(item.itemCode.toString(), tit);
+        }
+        
+      } else {
+        item.quantity++;
+        map.set(item.itemCode.toString(), item);
+      }
+
+
+      localStorage.setItem("cartValue", JSON.stringify(Array.from(map.entries())));
+
+      let cartState = new State(StateNames.addToCart, JSON.stringify(Array.from(map.entries())));
+      this.componentStateService.setState(cartState);
+      return;
+    }
+
+
   }
+
 
 }

@@ -45,27 +45,29 @@ export class StateDB {
     /* 
       only map unique object to the store based on the object code.
     */
-    var result = [];
-    if (id === StateNames.addToCart) {
-      // value.fo
-      var helper = {};
-      result = value.reduce(function (r, o: ItemSchema) {
-        var key = o.itemCode;
-        if (!helper[key]) {
-          helper[key] = Object.assign({}, o); // create a copy of o
-          r.push(helper[key]);
-        } else {
-          helper[key].quantity += 1;
-        }
+    // var result = [];
+    // if (id === StateNames.addToCart) {
+    //   // value.fo
+    //   var helper = {};
+    //   result = value.forEach(function (o, r: ItemSchema) {
+    //     var key = o.itemCode;
+    //     if (!helper[key]) {
+    //       helper[key] = Object.assign({}, o); // create a copy of o
+    //       // r.push(helper[key]);
+    //     } else {
+    //       helper[key].quantity += 1;
+    //     }
 
-        return r;
-      }, []);
-      let newState = new State(id, result);
-      this._states.delete(id);
-      this._states.set(id, newState);
-      this.subject.next({ id: id, value: this._states });
-      return;
-    }
+    //     return r;
+    //   });
+
+
+    //   let newState = new State(id, result);
+    //   this._states.delete(id);
+    //   this._states.set(id, newState);
+    //   this.subject.next({ id: id, value: this._states });
+    //   return;
+    // }
     let newState = new State(id, value);
     this._states.delete(id);
     this._states.set(id, newState);

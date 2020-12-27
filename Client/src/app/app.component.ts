@@ -88,29 +88,27 @@ export class AppComponent {
       .subscribe((res) => {
         if (res.id === StateNames.addToCart) {
           // this.searchQRef.nativeElement.click();
-          console.log(res.value.get(StateNames.addToCart).value);
-
           // #Todo cleanup
           ///store item to local storage if needed
           // update session store
-
           //update local store
-          try {
-            localStorage.setItem(
-              "cartValue",
-              JSON.stringify(res.value.get(StateNames.addToCart).value)
-            );
-          } catch (e) {
-            console.log("localStorage save error");
+          if (res.value.get(StateNames.addToCart).value) {
+            try {
+              // localStorage.setItem(
+              //   "cartValue",
+              //   JSON.stringify(res.value.get(StateNames.addToCart).value)
+              // );
+              setTimeout(() => {
+                console.log("....update serrion.");
+                this.updateSessionStateByProperty(
+                  "cartValue",
+                  res.value.get(StateNames.addToCart).value
+                );
+              }, 4000);
+            } catch (e) {
+              console.error("Empty Cart");
+            }
           }
-
-          setTimeout(() => {
-            console.log("....update serrion.");
-            this.updateSessionStateByProperty(
-              "cartValue",
-              res.value.get(StateNames.addToCart).value
-            );
-          }, 4000);
         }
         if (res.id === StateNames.UserSession) {
           // this.searchQRef.nativeElement.click();
@@ -135,18 +133,16 @@ export class AppComponent {
           // this.user = res.user;
           let userDetail = res.value.get(StateNames.userDetail);
 
-          console.log("usr loaded...")
+          console.log("usr loaded...");
           this.user = userDetail.value.user;
           this.userDetailLoading = false;
         }
       });
 
-
     // this.userDetail.getUserDetailV2().subscribe((res) => {
     //   this.user = res.user;
     //   this.userDetailLoading = false;
     // });
-
 
     // this.autofullscreen();
   }

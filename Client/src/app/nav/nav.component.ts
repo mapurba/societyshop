@@ -46,7 +46,7 @@ export class NavComponent implements OnInit {
           this.userLoggedin = true;
           this.loggedInUserDetails = userDetail.value.user;
           this.userService.getUserDetailV3(userDetail.value.user);
-          this.UpdateCartfromSession(userDetail.value.user.session["cartValue"]);
+         // this.UpdateCartfromSession(userDetail.value.user.session["cartValue"]);
         }
       });
   }
@@ -103,6 +103,6 @@ export class NavComponent implements OnInit {
   }
 
   logout(event) {
-    localStorage.clear();
+   // localStorage.clear();
   }
 }

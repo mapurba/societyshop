@@ -1,15 +1,15 @@
 <!-- <p>payment works!</p> -->
 <br />
 
-<div class="main" [hidden]="componentMode">
+<div class="main" [hidden]="_setDisplayMode">
   <div class="content">
     <div class="preloader" [hidden]="!isloading()"></div>
     payment works ....... are goes the call bal url and the paymet success
     screen. if needed remove loader.
   </div>
 </div>
-{{ componentMode }}
-<div class="payment-card" [hidden]="!componentMode">
+{{ _setDisplayMode }}
+<div class="payment-card" [hidden]="!_setDisplayMode">
   <div class="floating-paymentform">
     <form id="seamlessBasic" style="position: relative">
       <table class="mainForm">

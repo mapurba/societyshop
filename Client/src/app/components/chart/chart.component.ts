@@ -3,7 +3,7 @@ import { ArrayType } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { State, StateNames } from "src/app/schemas/componentStateSchema";
-import { ItemSchema } from "src/app/schemas/ItemSchema";
+import { ItemSchema, retriveItemFromLocalStore } from "src/app/schemas/ItemSchema";
 import { ComponentStateService } from "src/app/services/component-state.service";
 
 class PAYMENT_TYPE_RESPONCE {
@@ -46,40 +46,60 @@ export class ChartComponent implements OnInit {
     private component̥StateService: ComponentStateService,
     private http: HttpClient,
     private route: Router
-  ) {}
+  ) {
+    this.dummylist = [];
+  }
 
   ngAfterViewInit() {
     // this.dummylist = this.retriveItemFromLocalStore();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dummylist = [];
+
+    this.component̥StateService
+      .onStateChange(StateNames.OpenSearchBoxState)
+      .subscribe((res) => {
+
+        if (res.id === StateNames.addToCart) {
+          let userCart = res.value.get(StateNames.addToCart);
+          // this.loggedInUserDetails = userDetail.value.user;
+          // this.dummylist = userCart.value || retriveItemFromLocalStore("cartValue");
+          console.log('cart changed.');
+          let cartItems = new Map(retriveItemFromLocalStore("cartValue"));
+          this.dummylist = [];
+          cartItems.forEach((value: any, key) => {
+            this.dummylist.push(value);
+          });
+        }
+
+
+      });
+
+    // this.dummylist = || [];
+    let cartItems = new Map(retriveItemFromLocalStore("cartValue"));
+    cartItems.forEach((value: any, key) => {
+      this.dummylist.push(value);
+    });
+
+
+
+  }
   ngDoCheck() {
     // this.dummylist = this.retriveItemFromLocalStore();
-    this.state = this.component̥StateService.getStateByStateName(
-      this.addToCartState
-    ) as State;
-    try {
-      this.dummylist = this.state
-        ? this.state.value
-        : this.retriveItemFromLocalStore("cartValue");
-    } catch (e) {
-      console.error("JSon parse failed");
-      this.dummylist = [];
-    }
+    // this.state = this.component̥StateService.getStateByStateName(
+    //   this.addToCartState
+    // ) as State;
+    // try {
+    //   this.dummylist = this.state
+    //     ? this.state.value
+    //     : this.retriveItemFromLocalStore("cartValue");
+    // } catch (e) {
+    //   console.error("JSon parse failed");
+    //   this.dummylist = [];
+    // }
   }
 
-  retriveItemFromLocalStore(id): any[] {
-    let lastValue = localStorage.getItem(id);
-    if (lastValue && lastValue.length > 0) {
-      try {
-        return JSON.parse(localStorage.getItem(id));
-      } catch (e) {
-        console.error("JSon parse failed");
-        return this.dummylist;
-      }
-    }
-    return this.dummylist;
-  }
 
   mergeCartValue(oldCart, newCart, coppyAll?: true): any[] {
     let oldCartMap = new Map<number, any>();
@@ -107,7 +127,15 @@ export class ChartComponent implements OnInit {
   clearCurrentCart() {
     let newCart = new State(StateNames.addToCart, []);
     this.component̥StateService.setState(newCart);
+    this.dummylist = [];
   }
 
-  initiatePayment(orderDetails) {}
+  initiatePayment(orderDetails) { }
+
+
+  ngDestroy() {
+    this.component̥StateService
+      .onStateChange().unsubscribe();
+  }
 }
+
