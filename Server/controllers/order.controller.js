@@ -124,7 +124,7 @@ exports.paymentResponce = async (req, res, next) => {
       case txnTypes.cancelled: {
         //buisness logic if payment was cancelled
         await Orders.findOneAndUpdate(
-          { _id: req.body.ObjectId },
+          { _id: mongoose.Types.ObjectId(req.body.orderId) },
           { paymentStatus: -2, paymentMessage: "Cancelled by user" }
         );
         return res.status(200).send({
@@ -147,7 +147,7 @@ exports.paymentResponce = async (req, res, next) => {
           };
         }
         await Orders.findOneAndUpdate(
-          { _id: req.body.ObjectId },
+          { _id: mongoose.Types.ObjectId(req.body.orderId) },
           { paymentStatus: 1, paymentMessage: txnTypes.failed }
         );
         return res.status(200).send({
@@ -171,7 +171,7 @@ exports.paymentResponce = async (req, res, next) => {
         }
 
         await Orders.findOneAndUpdate(
-          { _id: req.body.ObjectId },
+          { _id: mongoose.Types.ObjectId(req.body.orderId) },
           { paymentStatus: 2, paymentMessage: txnTypes.success }
         );
         return res.status(200).send({
@@ -204,6 +204,11 @@ exports.paymentResponce = async (req, res, next) => {
   } else {
     console.log("signature gotten: ", signature);
     console.log("signature derived: ", derivedSignature);
+    let dbresponc = await Orders.findOneAndUpdate(
+      { _id: mongoose.Types.ObjectId(req.body.orderId) },
+      { paymentStatus: -3, paymentMessage: "Signature misssatch" }
+    );
+
     return res.status(200).send({
       status: "error",
       message: "signature mismatch",
