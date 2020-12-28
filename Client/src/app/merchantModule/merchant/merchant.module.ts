@@ -7,6 +7,7 @@ import { MerchantHomeComponent } from './merchant-home/merchant-home.component';
 import { MerchantOrdersComponent } from './merchant-orders/merchant-orders.component';
 import { MerchantPendingPaymentComponent } from './merchant-pending-payment/merchant-pending-payment.component';
 import { MerchantTodayTotalComponent } from './merchant-today-total/merchant-today-total.component';
+import { CalculatorComponent } from 'src/app/components/calculator/calculator.component';
 
 const routes: Routes = [
 
@@ -34,6 +35,11 @@ const routes: Routes = [
     component: MerchantTodayTotalComponent,
     canActivate: [AuthGuardService],
   },
+  {
+    path: "calc",
+    pathMatch: "full",
+    component: CalculatorComponent
+  }
 ];
 
 @NgModule({
@@ -41,7 +47,8 @@ const routes: Routes = [
     MerchantHomeComponent,
     MerchantOrdersComponent,
     MerchantPendingPaymentComponent,
-    MerchantTodayTotalComponent
+    MerchantTodayTotalComponent,
+    CalculatorComponent
   ],
   imports: [
     CommonModule,
