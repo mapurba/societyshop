@@ -4,6 +4,7 @@ const orderController = require('../controllers/order.controller');
 
 orderRouter.get('/list', orderController.getAllOrders);
 orderRouter.post('/create', orderController.createOrder);
-orderRouter.post("/payment/responce", orderController.paymentResponce);
+orderRouter.post("/validate", orderController.validateUpi);
+orderRouter.use("/payment/responce", orderController.paymentResponce);
 
 module.exports = orderRouter;
