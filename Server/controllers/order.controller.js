@@ -2,6 +2,9 @@ const Orders = require("../models/Orders");
 const Products = require("../models/Items");
 const productController = require("./product.controller");
 const mongoose = require("mongoose");
+const signatureVerification = require("../util/signatureCreation");
+const config = require("../util/config.json");
+const enums = require("../util/enums");
 
 /* Helper Methods */
 calculateBill = (items, quantityMap) => {
@@ -84,7 +87,7 @@ exports.createOrder = async (req, res) => {
         paymentStatus: 0,
       },
       {
-        paymentStatus:-2
+        paymentStatus: -2,
       }
     );
     let respos;
@@ -103,10 +106,107 @@ exports.createOrder = async (req, res) => {
       mer: mer,
     });
     respos = await newOrder.save();
-      // }
+    // }
 
-      console.log(respos);
+    console.log(respos);
 
     res.send({ respos }).status(201);
+  }
+};
+
+exports.paymentResponce = async (req, res, next) => {
+  console.log("seamlessBasic result hit");
+  console.log(req.body);
+
+  const txnTypes = enums.transactionStatusEnum;
+  try {
+    switch (req.body.txStatus) {
+      case txnTypes.cancelled: {
+        //buisness logic if payment was cancelled
+        await Orders.findOneAndUpdate(
+          { _id: req.body.ObjectId },
+          { paymentStatus: -2, paymentMessage: "Cancelled by user" }
+        );
+        return res.status(200).send({
+          status: "failed",
+          message: "transaction was cancelled by user",
+        });
+      }
+      case txnTypes.failed: {
+        //buisness logic if payment failed
+        const signature = req.body.signature;
+        const derivedSignature = signatureVerification.signatureResponse1(
+          req.body,
+          config.secretKey
+        );
+        if (derivedSignature !== signature) {
+          throw {
+            name: "signature missmatch",
+            message:
+              "there was a missmatch in signatures genereated and received",
+          };
+        }
+        await Orders.findOneAndUpdate(
+          { _id: req.body.ObjectId },
+          { paymentStatus: 1, paymentMessage: txnTypes.failed }
+        );
+        return res.status(200).send({
+          status: "failed",
+          message: "payment failure",
+        });
+      }
+      case txnTypes.success: {
+        //buisness logic if payments succeed
+        const signature = req.body.signature;
+        const derivedSignature = signatureVerification.signatureResponse1(
+          req.body,
+          config.secretKey
+        );
+        if (derivedSignature !== signature) {
+          throw {
+            name: "signature missmatch",
+            message:
+              "there was a missmatch in signatures genereated and received",
+          };
+        }
+
+        await Orders.findOneAndUpdate(
+          { _id: req.body.ObjectId },
+          { paymentStatus: 2, paymentMessage: txnTypes.success }
+        );
+        return res.status(200).send({
+          status: "success",
+          message: "payment success",
+        });
+      }
+    }
+  } catch (err) {
+    console.log("err caught");
+    console.log(err);
+    return res.status(500).send({
+      status: "error",
+      err: err,
+      name: err.name,
+      message: err.message,
+    });
+  }
+
+  const signature = req.body.signature;
+  const derivedSignature = signatureVerification.signatureResponse1(
+    req.body,
+    config.secretKey
+  );
+  if (derivedSignature === signature) {
+    console.log("works");
+    return res.status(200).send({
+      status: req.body.txStatus,
+    });
+  } else {
+    console.log("signature gotten: ", signature);
+    console.log("signature derived: ", derivedSignature);
+    return res.status(200).send({
+      status: "error",
+      message: "signature mismatch",
+    });
   }
 };

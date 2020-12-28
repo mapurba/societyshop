@@ -231,7 +231,9 @@ export class PaymentComponent implements OnInit {
           ...res.additionalFields,
           ...newOrderDetail,
           ...orderDetail.paymentDetail,
-          returnUrl: "https://societystore.co/payment",
+          // returnUrl: "https://us-central1-societystore.cloudfunctions.net/moduleExports/seamlessBasic/result",
+          returnUrl: "https://societystore.co/api/orders/payment/responce",
+          notifyUrl: "https://societystore.co/api/orders/payment/responce",
           source: "web_societystore",
         };
         // this.redirectToCashFree({

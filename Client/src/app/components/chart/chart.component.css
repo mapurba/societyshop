@@ -1,5 +1,6 @@
 .flex-action-container {
   display: flex;
+  padding: 9px 0px 7px 0px;
 }
 
 .flex-action-container > .flex-right {

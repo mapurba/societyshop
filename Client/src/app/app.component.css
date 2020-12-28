@@ -83,3 +83,7 @@
 .pre-loader > img {
   width: 300px;
 }
+
+.menu > p {
+  margin-top: -7px;
+}

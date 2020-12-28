@@ -3,8 +3,7 @@
     <app-nav [isScrolling]="scrollStop"></app-nav>
   </div>
   <div class="pre-loader" *ngIf="!removeLoader">
-    <img src="../assets/images/tree.png">
-  
+    <img src="../assets/images/tree.png" />
   </div>
   <div class="main mb-2 container" *ngIf="!userDetailLoading && removeLoader">
     <router-outlet></router-outlet>
@@ -20,37 +19,42 @@
   <footer class="nav-footer-main">
     <div class="footer-nav" *ngIf="!user?.isMer">
       <!-- change these links to router link -->
-      <div class="menu">
-        <a class="fa fa-home icon" routerLink="">Home</a>
+      <div class="menu" routerLink="">
+        <img _ngcontent-vdb-c45="" src="../assets/images/home1.png" style="width: 27px; padding: 0; margin-top: -7px" />
+        <p>Home</p>
       </div>
 
-      <div class="menu">
-        <a class="fa fa-th icon" routerLink="">Category</a>
+      <div class="menu" routerLink="">
+        <img _ngcontent-vdb-c45="" src="../assets/images/bag.png" style="width: 27px; padding: 0; margin-top: -7px" />
+        <p>Category</p>
       </div>
-      <div class="menu">
-        <i class="fa fa-search icon" (click)="openSearch()"> search</i>
+      <div class="menu" (click)="openSearch()">
+        <img _ngcontent-vdb-c45="" src="../assets/images/q.png" style="width: 27px; padding: 0; margin-top: -7px" />
+        <p> search</p>
       </div>
 
-      <div class="menu">
-        <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a>
+      <div class="menu" routerLink="cart">
+        <img _ngcontent-vdb-c45="" src="../assets/images/cart2.png" style="width: 27px; padding: 0; margin-top: -7px" />
+        <p>Cart</p>
+        <!-- <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a> -->
       </div>
     </div>
 
     <div class="footer-nav" *ngIf="user?.isMer">
       <!-- change these links to router link -->
       <div class="menu">
-        <a class="fa fa-home icon" routerLink="merchantHome">Inventory</a>
+        <a class="fa fa-home icon" routerLink="merchantHome">Store</a>
       </div>
 
       <div class="menu">
-        <a class="fa fa-th icon" routerLink="merchantOrder">My Orders</a>
+        <a class="fa fa-th icon" routerLink="merchantOrder">Orders</a>
       </div>
       <div class="menu">
         <i class="fa fa-search icon" routerLink="merchantPendingPayment">Payment
         </i>
       </div>
       <div class="menu">
-        <a class="fa fa-shopping-cart icon" routerLink="merchantTodayTotal">Todays Total</a>
+        <a class="fa fa-shopping-cart icon" routerLink="merchantTodayTotal">Today's</a>
       </div>
     </div>
   </footer>

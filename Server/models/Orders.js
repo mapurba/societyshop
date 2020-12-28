@@ -44,10 +44,13 @@ const orderSchema = new mongoose.Schema(
       default: 0,
     },
     paymentStatus: {
-      type: String,
+      type: Number,
       // required: false,
       default: 0,
       // 0 - payment penmding , -1 - payment failed , 1 - success , 2 - credit
+    },
+    paymentMessage: {
+      type:  String,
     },
     orderStatus: {
       type: String,
