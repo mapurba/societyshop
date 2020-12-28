@@ -1,4 +1,4 @@
-.flex-action-container {
+/* .flex-action-container {
   display: flex;
 }
 
@@ -30,7 +30,6 @@
 }
 
 .list-item {
-  /* background-color: dodgerblue; */
   padding: 10px;
   flex: 20%;
 }
@@ -43,7 +42,6 @@
 
 .main-container {
   background-color: whitesmoke;
-  /* padding: 0px 0px 10px 0px; */
 }
 .list-item {
   background-color: white;
@@ -105,4 +103,4 @@
 
 .sticky-header {
   text-align: center;
-}
+} */

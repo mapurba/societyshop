@@ -1,21 +1,12 @@
-import { FeedComponent } from "./feed/feed.component";
 import { RouterModule, Routes } from "@angular/router";
-import { ProfileComponent } from "./profile/profile.component";
-import { BlogComponent } from "./blog/blog.component";
-import { AdminConsoleComponent } from "./admin/admin-console/admin-console.component";
-import { PrivacyComponent } from "./privacy/privacy.component";
-import { AccountComponent } from "./account/account.component";
-import { SignupComponent } from "./signup/signup.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
-import { ChartComponent } from "./components/chart/chart.component";
-import { AddItemsComponent } from "./components/add-items/add-items.component";
-import { PaymentComponent } from "./components/payment/payment.component";
+// import { AddItemsComponent } from "./components/add-items/add-items.component";
 import { AuthGuardService } from "./shared/services/auth-guard/auth-guard.service";
-import { MerchantHomeComponent } from "./components/merchant-home/merchant-home.component";
-import { MerchantOrdersComponent } from "./components/merchant-orders/merchant-orders.component";
-import { MerchantTodayTotalComponent } from "./components/merchant-today-total/merchant-today-total.component";
-import { MerchantPendingPaymentComponent } from "./components/merchant-pending-payment/merchant-pending-payment.component";
-import { SubscribeMerchantComponent } from "./components/subscribe-merchant/subscribe-merchant.component";
+import { AccountComponent } from "./components/account/account.component";
+// import { BlogComponent } from "./components/blog/blog.component";
+import { PrivacyComponent } from "./components/privacy/privacy.component";
+import { ProfileComponent } from "./components/profile/profile.component";
+import { SignupComponent } from "./components/signup/signup.component";
 
 // important need to complete lazy loading of the routes
 
@@ -24,79 +15,47 @@ const appRoutes: Routes = [
     path: "",
     pathMatch: "full",
     component: LandingPageComponent,
-  }, {
-    path: "sellerList",
-    pathMatch: "full",
-    component: SubscribeMerchantComponent,
   },
-  {
-    path: "admin",
-    pathMatch: "full",
-    component: AdminConsoleComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: "list",
-    pathMatch: "full",
-    component: FeedComponent,
-    canActivate: [],
-  },
-  {
-    path: "cart",
-    pathMatch: "full",
-    component: ChartComponent,
-    canActivate: [],
-  },
-  {
-    path: "add-items",
-    pathMatch: "full",
-    component: AddItemsComponent,
-    canActivate: [],
-  },
+  // {
+  //   path: "sellerList",
+  //   pathMatch: "full",
+  //   component: SubscribeMerchantComponent,
+  // },
+  // {
+  //   path: "admin",
+  //   pathMatch: "full",
+  //   component: AdminConsoleComponent,
+  //   canActivate: [AuthGuardService],
+  // },
+  // {
+  //   path: "add-items",
+  //   pathMatch: "full",
+  //   component: AddItemsComponent,
+  //   canActivate: [],
+  // },
   {
     path: "profile",
     pathMatch: "full",
     component: ProfileComponent,
   },
-  { path: "payment", pathMatch: "full", component: PaymentComponent },
+  {
+    path: "my",
+    loadChildren: './clientModule/client/client.module#ClientModule',
+    canActivate: [AuthGuardService],
+  },
   {
     path: "merchant",
-    pathMatch: "full",
-    component: AddItemsComponent,
+    loadChildren: './merchantModule/merchant/merchant.module#MerchantModule',
     canActivate: [AuthGuardService],
   },
-  {
-    path: "merchantOrder",
-    pathMatch: "full",
-    component: MerchantOrdersComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: "merchantPendingPayment",
-    pathMatch: "full",
-    component: MerchantPendingPaymentComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: "merchantTodayTotal",
-    pathMatch: "full",
-    component: MerchantTodayTotalComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: "merchantHome",
-    pathMatch: "full",
-    component: MerchantHomeComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: "blog",
-    pathMatch: "full",
-    children: [
-      { path: ":id", component: BlogComponent },
-      { path: "", component: BlogComponent },
-    ],
-  },
+  // {
+  //   path: "blog",
+  //   pathMatch: "full",
+  //   children: [
+  //     { path: ":id", component: BlogComponent },
+  //     { path: "", component: BlogComponent },
+  //   ],
+  // },
   { path: "account", pathMatch: "full", component: AccountComponent },
   { path: "signup", pathMatch: "full", component: SignupComponent },
   { path: "privacy", pathMatch: "full", component: PrivacyComponent },

@@ -1,20 +1,20 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { AddItemsComponent } from './add-items.component';
+// import { AdminConsoleComponent } from './admin-console.component';
 
-// describe('AddItemsComponent', () => {
-//   let component: AddItemsComponent;
-//   let fixture: ComponentFixture<AddItemsComponent>;
+// describe('AdminConsoleComponent', () => {
+//   let component: AdminConsoleComponent;
+//   let fixture: ComponentFixture<AdminConsoleComponent>;
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ AddItemsComponent ]
+//       declarations: [ AdminConsoleComponent ]
 //     })
 //     .compileComponents();
 //   }));
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(AddItemsComponent);
+//     fixture = TestBed.createComponent(AdminConsoleComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

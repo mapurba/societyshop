@@ -24,7 +24,7 @@
         <p>Home</p>
       </div>
 
-      <div class="menu" routerLink="">
+      <div class="menu" routerLink="my">
         <img _ngcontent-vdb-c45="" src="../assets/images/bag.png" style="width: 27px; padding: 0; margin-top: -7px" />
         <p>Category</p>
       </div>
@@ -33,7 +33,7 @@
         <p> search</p>
       </div>
 
-      <div class="menu" routerLink="cart">
+      <div class="menu" routerLink="my/cart">
         <img _ngcontent-vdb-c45="" src="../assets/images/cart2.png" style="width: 27px; padding: 0; margin-top: -7px" />
         <p>Cart</p>
         <!-- <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a> -->
@@ -43,18 +43,18 @@
     <div class="footer-nav" *ngIf="user?.isMer">
       <!-- change these links to router link -->
       <div class="menu">
-        <a class="fa fa-home icon" routerLink="merchantHome">Store</a>
+        <a class="fa fa-home icon" routerLink="merchant">Store</a>
       </div>
 
       <div class="menu">
-        <a class="fa fa-th icon" routerLink="merchantOrder">Orders</a>
+        <a class="fa fa-th icon" routerLink="/merchant/orders">Orders</a>
       </div>
       <div class="menu">
-        <i class="fa fa-search icon" routerLink="merchantPendingPayment">Payment
+        <i class="fa fa-search icon" routerLink="merchant/payment">Payment
         </i>
       </div>
       <div class="menu">
-        <a class="fa fa-shopping-cart icon" routerLink="merchantTodayTotal">Today's</a>
+        <a class="fa fa-shopping-cart icon" routerLink="merchant/today">Today's</a>
       </div>
     </div>
   </footer>
