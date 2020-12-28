@@ -55,6 +55,8 @@ export class PaymentComponent implements OnInit {
   componentMode = paymentComponentMode.fullPage;
   upiAddress = new FormControl("");
 
+  paymentProcessiong = false;
+  upiValid = '';
   @Input("setDisplayMode") _setDisplayMode = 0;
 
   isloading() {
@@ -232,7 +234,8 @@ export class PaymentComponent implements OnInit {
           ...newOrderDetail,
           ...orderDetail.paymentDetail,
           // returnUrl: "https://us-central1-societystore.cloudfunctions.net/moduleExports/seamlessBasic/result",
-          returnUrl: "https://societystore.co/api/orders/payment/responce",
+          returnUrl: "http://localhost:4300/api/orders/payment/responce",
+          // returnUrl: "https://societystore.co/api/orders/payment/responce",
           notifyUrl: "https://societystore.co/api/orders/payment/responce",
           source: "web_societystore",
         };
@@ -292,6 +295,7 @@ export class PaymentComponent implements OnInit {
   }
 
   processPayment() {
+    this.paymentProcessiong = true;
 
     let payload = { order: this.currentOrderDetail, paymentDetail: {} }
     switch (this.payMode) {
@@ -300,7 +304,21 @@ export class PaymentComponent implements OnInit {
         payload.paymentDetail = PAYMENT_TYPE_RESPONCE.upi;
         payload.paymentDetail['upi'].vpa = this.upiAddress.value;
         payload.paymentDetail['upi_vpa'] = this.upiAddress.value;
-        break;
+
+        this.http.post("/api/orders/validate", payload.paymentDetail).subscribe((res: any) => {
+          // console.log(res);
+          if (res.status == "OK" && res.valid == true) {
+            this.upiValid = 'green';
+            this.paymentRedirection(payload);
+          } else {
+            this.upiValid = 'red';
+            this.paymentProcessiong = false;
+            return;
+          }
+
+        })
+        return;
+
       }
       case "card": {
         payload.paymentDetail = PAYMENT_TYPE_RESPONCE.CARD;
@@ -318,7 +336,7 @@ export class PaymentComponent implements OnInit {
 
 
 
-    console.log(payload);
+    // console.log(payload);
     this.paymentRedirection(payload);
   }
 }

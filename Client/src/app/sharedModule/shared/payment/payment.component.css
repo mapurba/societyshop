@@ -163,6 +163,12 @@ input {
   padding: 3px;
 }
 
+.upi-form > label {
+  color: white;
+  text-align: initial;
+  font-size: large;
+}
+
 .netb-form {
   padding: 3px;
 }
@@ -179,3 +185,11 @@ input {
   height: 99vh;
   width: 100vw;
 }
+
+.red {
+  border: 3px solid red !important;
+}
+.green {
+  border: 3px solid green !important;
+}
+

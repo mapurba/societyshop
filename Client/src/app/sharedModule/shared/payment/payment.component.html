@@ -75,8 +75,9 @@
                 </div>
               </div>
               <div class="upi-form" *ngIf="payMode=='upi'">
-                <label for="cname">UPI Address:</label>
-                <input type="text" placeholder="UPI Address" [formControl]="upiAddress" />
+                <label for="cname" *ngIf="upiValid !=='red'">Pay By </label>
+                <label for="cname" *ngIf="upiValid =='red'">Enter Valid UPI Address </label>
+                <input type="text" placeholder="UPI Address" [ngClass]="upiValid=='red'?'red':''" [formControl]="upiAddress" />
               </div>
               <div class="netb-form">
                 <select type="text" id="nb" name="nb" *ngIf="payMode=='nb'" class="nb-dropdown" placeholder="Bank">
@@ -129,8 +130,9 @@
             <!-- <button class="btn action" routerLink="/" style=" margin: 17px 6px;" [hidden]="!enablePayment">
               Cancle
             </button> -->
-            <button [hidden]="!enablePayment" (click)="processPayment()">
-              Pay Now
+            <button [hidden]="!enablePayment" class="btn action" (click)="processPayment()">
+              <img *ngIf="paymentProcessiong" src="../../../../assets/images/payment.gif" style="width: 48px;">
+              <span *ngIf="!paymentProcessiong">PayNow</span>
             </button>
           </div>
         </tr>
