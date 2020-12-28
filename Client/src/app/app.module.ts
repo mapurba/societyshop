@@ -16,6 +16,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { CrousalComponent } from './components/crousal/crousal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SignupComponent } from './components/signup/signup.component';
     SignupComponent,
     AccountComponent,
     LandingPageComponent,
+    CrousalComponent,
   ],
   imports: [
     BrowserModule,

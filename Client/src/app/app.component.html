@@ -3,7 +3,7 @@
     <app-nav [isScrolling]="scrollStop"></app-nav>
   </div>
   <div class="pre-loader" *ngIf="!removeLoader">
-    <img src="../assets/images/tree.png" />
+    <img src="../assets/images/tree.gif" />
   </div>
   <div class="main mb-2 container" *ngIf="!userDetailLoading && removeLoader">
     <router-outlet></router-outlet>
@@ -12,6 +12,7 @@
   <!-- fix this -->
   <br />
   <br />
+  <!-- <crousal> </crousal> -->
   <!-- 
   <h1 style="text-align: center">welcome you your personal store</h1>
   <p style="text-align: center;text-transform: capitalize;">{{ user?.profile?.name }}</p> -->

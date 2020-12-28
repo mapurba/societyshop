@@ -51,17 +51,16 @@
   <div class="flex-rows" *ngIf="currentLoggedinUser?.isMer == undefined">
     <div class="delivery-slot-alert">
       <div class="info">
-        <a class="text btn" style="   
+        <p class="text btn" style="   
             display: inline-block;
-            width: 49%;
             padding: 0px 10px;
-            background-color: #dac61b;
-        " href="/api/auth/google">
-          Login
-      </a>
+        " >
+        Get All You Deliveries Together
+      </p>
       </div>
     </div>
   </div>
+  <crousal> </crousal>
 
 
   <div class="flex-rows" *ngIf="currentLoggedinUser?.isMer != true">
