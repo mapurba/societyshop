@@ -46,7 +46,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
   ],
   providers: [
     InterceptService,
-    { provide: APP_BASE_HREF, useValue : '/' },
+    // { provide: APP_BASE_HREF, useValue : '/' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptService,
