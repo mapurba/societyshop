@@ -234,8 +234,8 @@ export class PaymentComponent implements OnInit {
           ...newOrderDetail,
           ...orderDetail.paymentDetail,
           // returnUrl: "https://us-central1-societystore.cloudfunctions.net/moduleExports/seamlessBasic/result",
-          returnUrl: "http://localhost:4300/api/orders/payment/responce",
-          // returnUrl: "https://societystore.co/api/orders/payment/responce",
+          // returnUrl: "http://localhost:4300/api/orders/payment/responce",
+          returnUrl: "https://societystore.co/api/orders/payment/responce",
           notifyUrl: "https://societystore.co/api/orders/payment/responce",
           source: "web_societystore",
         };

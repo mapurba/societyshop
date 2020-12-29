@@ -5,7 +5,8 @@
     <ul class="grid-container">
       <li class="grid-item new-order" *ngFor="let order of orders; let id = index"
         (click)="openConfirmation(order?.orderItems)">
-        <img src="../../../assets/images/porder.png" />
+        <img src="../../../assets/images/order.png" *ngIf="order.paymentStatus != 2" />
+        <img src="../../../assets/images/paid.png" *ngIf="order.paymentStatus == 2" />
         <div>
           <span>Flat : F1403</span>
           <p>Name : Apurba Mondal </p>
@@ -15,10 +16,11 @@
             <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event)">
               Delivered ?
             </button>
-            <span class="btn">
+            <!-- <img src="../../../../assets/images/paymentpaid.png"> -->
+            <!-- <span class="btn">
               Payment :
               {{ order.paymentStatus == 2 ? "Paid" : "Not Paid" }}
-            </span>
+            </span> -->
           </div>
         </div>
       </li>
