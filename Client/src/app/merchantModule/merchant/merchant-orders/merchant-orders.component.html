@@ -13,8 +13,9 @@
           <p>Items : {{order.orderItems.length}} items-in-list</p>
           <p>Total : ₹{{ order.totalAmount }}</p>
           <div class="order-footer">
-            <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event)">
+            <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event,{order:order._id})">
               Delivered ?
+              <span *ngIf="order.orderStatus == 3"> <img src="../../../../assets/images/gtick.png"></span>
             </button>
             <!-- <img src="../../../../assets/images/paymentpaid.png"> -->
             <!-- <span class="btn">

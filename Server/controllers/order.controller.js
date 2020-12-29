@@ -247,3 +247,19 @@ exports.validateUpi = async (req, res) => {
     res.send(489);
   }
 };
+
+exports.updateOrder = async (req, res) => {
+  if (req.body.order) {
+    let result = await Orders.findByIdAndUpdate(
+      { _id: mongoose.Types.ObjectId(req.body.order) },
+      {
+        orderStatus: 3,
+      }
+    );
+    if (result) {
+      res.send({}).status(200);
+    }
+  } else {
+    res.send({}).status(489);
+  }
+};

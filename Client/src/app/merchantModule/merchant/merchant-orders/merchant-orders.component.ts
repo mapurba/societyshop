@@ -27,8 +27,17 @@ export class MerchantOrdersComponent implements OnInit {
     console.log(this.orderItems);
   }
 
-  prevent(event) {
+  prevent(event, order) {
+    this.deliveryorder(order);
     event.stopPropagation();
+  }
+
+  deliveryorder(order) {
+    if (order) {
+      this.http.post('/api/orders/delivery', order).subscribe((res) => {
+        this.getMyOrders();
+      });
+    }
   }
   hideOverlay(event) {
     this.showOverlay = !this.showOverlay;
