@@ -7,6 +7,7 @@ let $: any;
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
+  showOverlay = false;
 
   constructor() { }
 
@@ -26,5 +27,19 @@ export class CalculatorComponent implements OnInit {
   ngAfterViewInit() {
     this.loadScript();
   }
+
+  openConfirmation(order) {
+    this.showOverlay = true;
+  }
+
+
+  prevent(event, order) {
+    event.stopPropagation();
+  }
+
+  hideOverlay(event) {
+    this.showOverlay = !this.showOverlay;
+  }
+
 
 }

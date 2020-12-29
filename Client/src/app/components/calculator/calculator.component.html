@@ -3,9 +3,7 @@
 
         <!-- TITLE -->
 
-        <div id='title' class='text-center'>
-            <h5><b>ELECTRONIC CALCULATOR</b></h5>
-        </div>
+
 
         <!-- ENTRY BOX -->
 
@@ -47,12 +45,20 @@
             <button value='.'>.</button>
             <button id='equalButton' value='='>=</button>
 
+            <div id='title' class='text-center'>
+                <!-- <h5><b>ELECTRONIC CALCULATOR</b></h5> -->
+                <button class="btn red order" (click)="openConfirmation(120)">Create Order</button>
+            </div>
+
         </div>
         <!-- end buttons -->
-        <div id='tester'></div>
+        <!-- <div id='tester'> -->
+        
+        <!-- </div> -->
     </div>
     <!-- end calculator -->
 </div>
+
 <!-- end container -->
 
 <footer id="footer" class="text-center">
@@ -62,3 +68,22 @@
             Justin Woodward</a>
     </div>
 </footer>
+<div class="create-order">
+    <div class="overlay" (click)="hideOverlay($event)" *ngIf="showOverlay">
+        <div class="content" (click)="prevent($event)">
+            <div class="modal">
+                <!-- <div  > -->
+                <!-- <items-in-list class="content" *ngFor="let items of orderItems" [item]="items" [disabled]="true"></items-in-list> -->
+                <!-- </div> -->
+                <div class="grid-item-container">
+                    <div class="grid-items">
+                        <input type="text" placeholder="UPI Address " />
+                    </div>
+                    <div class="grid-items">
+                        <button class="btn red order">Take Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
