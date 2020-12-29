@@ -17,6 +17,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { CrousalComponent } from './components/crousal/crousal.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CrousalComponent } from './components/crousal/crousal.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    LazyLoadImageModule,
     SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 

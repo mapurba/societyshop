@@ -5,8 +5,8 @@
     <ul class="grid-container">
       <li class="grid-item new-order" *ngFor="let order of orders; let id = index"
         (click)="openConfirmation(order?.orderItems)">
-        <img src="../../../assets/images/order.png" *ngIf="order.paymentStatus != 2" />
-        <img src="../../../assets/images/paid.png" *ngIf="order.paymentStatus == 2" />
+        <img [lazyLoad]="'../../../assets/images/order.png'" *ngIf="order.paymentStatus != 2" />
+        <img [lazyLoad]="'../../../assets/images/paid.png'" *ngIf="order.paymentStatus == 2" />
         <div>
           <span>Flat : F1403</span>
           <p>Name : Apurba Mondal </p>
@@ -15,7 +15,7 @@
           <div class="order-footer">
             <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event,{order:order._id})">
               Delivered ?
-              <span *ngIf="order.orderStatus == 3"> <img src="../../../../assets/images/gtick.png"></span>
+              <span *ngIf="order.orderStatus == 3"> <img [lazyLoad]="'../../../../assets/images/gtick.png'"></span>
             </button>
             <!-- <img src="../../../../assets/images/paymentpaid.png"> -->
             <!-- <span class="btn">

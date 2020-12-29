@@ -6,6 +6,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 
@@ -21,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    LazyLoadImageModule,
+
   ],
   exports: [
     ItemsInListComponent,

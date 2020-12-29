@@ -1,7 +1,7 @@
 <div class="main-container"  id="sss{{item?.itemCode}}"  >
   <div class="content" >
     <div class="product-img">
-      <img data-src="{{ item?.image }}"   />
+      <img [lazyLoad]="item?.image" />
     </div>
     <div class="product-discp">
       <p class="brad-name" [ngClass]="item?.brand? '' : 'noloader'">
