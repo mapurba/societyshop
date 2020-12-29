@@ -41,12 +41,10 @@ const appRoutes: Routes = [
   {
     path: "my",
     loadChildren: './clientModule/client/client.module#ClientModule',
-    canActivate: [AuthGuardService],
   },
   {
     path: "merchant",
-    loadChildren: './merchantModule/merchant/merchant.module#MerchantModule',
-    canActivate: [AuthGuardService],
+    loadChildren: './merchantModule/merchant/merchant.module#MerchantModule'
   },
   // {
   //   path: "blog",

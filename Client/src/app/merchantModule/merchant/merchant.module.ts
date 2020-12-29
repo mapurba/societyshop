@@ -21,19 +21,19 @@ const routes: Routes = [
     path: "orders",
     pathMatch: "full",
     component: MerchantOrdersComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: "payment",
     pathMatch: "full",
     component: MerchantPendingPaymentComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: "today",
     pathMatch: "full",
     component: MerchantTodayTotalComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: "calc",
