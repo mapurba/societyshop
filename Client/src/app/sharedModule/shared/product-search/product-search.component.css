@@ -121,11 +121,17 @@
 
 .blink_me {
   animation: blinker 1s linear infinite;
-  font-weight:700;
+  font-weight: 700;
 }
 
-@keyframes blinker {  
-  50% { opacity:0; }
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
-
+.isLoading {
+  width: 21px;
+  height: 16px;
+  padding-right: 6px;
+}

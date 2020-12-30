@@ -9,7 +9,7 @@
 
         <div id='entrybox' class='text-right'>
             <div id='entry'>
-                <p id='answer'>0</p>
+                <p id='answer' #total>0</p>
             </div>
             <div id='history'>
                 <p>0</p>
@@ -47,13 +47,13 @@
 
             <div id='title' class='text-center'>
                 <!-- <h5><b>ELECTRONIC CALCULATOR</b></h5> -->
-                <button class="btn red order" (click)="openConfirmation(120)">Create Order</button>
+                <button class="btn red order create-order" (click)="openConfirmation(120)">Create Order</button>
             </div>
 
         </div>
         <!-- end buttons -->
         <!-- <div id='tester'> -->
-        
+
         <!-- </div> -->
     </div>
     <!-- end calculator -->
@@ -76,11 +76,35 @@
                 <!-- <items-in-list class="content" *ngFor="let items of orderItems" [item]="items" [disabled]="true"></items-in-list> -->
                 <!-- </div> -->
                 <div class="grid-item-container">
-                    <div class="grid-items">
-                        <input type="text" placeholder="UPI Address " />
+                    <div class="grid-items" *ngIf="!upiSelected">
+                        <product-search [isFlat]=true [Qurl]="'/api/search/gvpa?ed=3&q='" (searchResult)="upiList($event)"
+                            [placeholder]="'Search/Add  UPI Address'" (isLoading)="isloading($event)"></product-search>
+                        <div class="search-list">
+                            <ul class="upi-list">
+                                <li *ngFor="let upi of searchResult; let i = index" (click)="selectedUpi(upi)">
+                                    {{upi.name}}
+                                    {{upi.Vpa}}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="grid-items">
-                        <button class="btn red order">Take Payment</button>
+                    <div class="grid-items confirm" *ngIf="upiSelected">
+                        <ul class="payment-confirm">
+                            <li>
+                                <label>Amoun : </label> {{newOrder.amount}}
+                            </li>
+                            <li>
+                                <label>Name : </label> {{newOrder.upi.name}}
+                            </li>
+                            <li>
+                                <label>Upi Address: </label>{{newOrder.upi.Vpa}}
+                            </li>
+                        </ul>
+                    
+                        <button class="btn red order" [disabled]="newOrder?.amount<=0 || newOrder?.amount==''">Take Payment</button>
+                        <a class="btn btn-primary" style="" id="paylink"
+                            href="upi://pay?pa=8116299165@ybl&pn=apurbamondal&tn=undefined&am=200"><i class="fa fa-money"></i>
+                            <span data-i18n="upiqrc-btn-pay">Pay apurbamondal using UPI</span></a>
                     </div>
                 </div>
             </div>

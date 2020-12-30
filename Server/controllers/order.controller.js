@@ -6,6 +6,7 @@ const signatureVerification = require("../util/signatureCreation");
 const config = require("../util/config.json");
 const enums = require("../util/enums");
 const request = require("request");
+const UPI = require("../models/Upi");
 
 /* Helper Methods */
 calculateBill = (items, quantityMap) => {
@@ -81,7 +82,6 @@ exports.createOrder = async (req, res) => {
     });
     const dbItems = await productController._getProductsByIds(itemIds);
     const totalBill = calculateBill(dbItems, quantityMap);
-
     const findLastOrder = await Orders.findOneAndUpdate(
       {
         user: mongoose.Types.ObjectId(req.user.id),
@@ -108,9 +108,7 @@ exports.createOrder = async (req, res) => {
     });
     respos = await newOrder.save();
     // }
-
     console.log(respos);
-
     res.send({ respos }).status(201);
   }
 };
@@ -235,12 +233,37 @@ exports.validateUpi = async (req, res) => {
         "Content-Type": "application/json",
       },
     };
-    await request(options, function (error, response) {
+    await request(options, async (error, response) => {
       if (error) throw new Error(error);
-      console.log(response.body);
-      if (response.body) {
-        res.send(response.body);
-        // res.render('payment', { data:response.body });
+      // name: "APURBA  MONDAL";
+      // status: "OK";
+      // valid: true;
+      // vpa: "mapurba@ybl";
+
+      try {
+        const { valid, status, vpa, name } = JSON.parse(response.body);
+        console.log(response.body);
+        console.log(valid);
+
+        if (valid == true) {
+          // console.log(upir.valid);
+          const upi = new UPI({
+            Vpa: vpa,
+            name: name,
+            verified: valid,
+            status: status,
+          });
+          let newupi = await upi.save();
+          if (newupi) {
+            console.log(newupi);
+            res.send(response.body);
+          }
+          // UPI.find
+        } else {
+          res.send({ fucl: "s" }).status(489);
+        }
+      } catch (e) {
+        res.send({ fucl: "s" }).status(489);
       }
     });
   } else {
@@ -261,5 +284,15 @@ exports.updateOrder = async (req, res) => {
     }
   } else {
     res.send({}).status(489);
+  }
+};
+
+exports.createPaymentRequest = async (req, res) => {
+  const body = req.body;
+  const user = req.user;
+  const mer = "5fe4ae3de6f7e817e02a536f"; //only one merchent in system
+  if (body) {
+    // create ablank order in the ssystem for payment traking perpous only
+    // order type should be  paymntrequest.
   }
 };

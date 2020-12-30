@@ -28,7 +28,6 @@ $(document).ready(function () {
 
   $("button").click(function () {
     entry = $(this).attr("value");
-    console.log("entry: " + entry);
 
     //reset for log after answer to equation.
     if (reset) {
@@ -102,7 +101,7 @@ $(document).ready(function () {
         entry = "";
       } else {
         if (current[current.length - 1] === ".") {
-          current = current.concat(entry);
+          // current = current.concat(entry);
         } else {
           current += entry;
         }
@@ -124,7 +123,7 @@ $(document).ready(function () {
         log += current;
         $("#history").html(log);
       } else {
-        current = current.concat(".");
+        // current = current.concat(".");
         ans = ans.concat(".");
         log = ans;
         $("#history").html(ans);
@@ -199,9 +198,13 @@ $(document).ready(function () {
       decimal = true;
     }
 
-    console.log("decimal: " + decimal);
-    console.log("current: " + current);
-    console.log("answer: " + ans);
-    console.log($("#history").text().length);
+    // console.log("decimal: " + decimal);
+    // console.log("current: " + current);
+    // console.log("answer: " + ans);
+    // console.log($("#history").text().length);
+  });
+
+  $(".create-order").click(function () {
+    window["current"] = current;
   });
 }); // end doc ready function

@@ -304,7 +304,6 @@ export class PaymentComponent implements OnInit {
         payload.paymentDetail = PAYMENT_TYPE_RESPONCE.upi;
         payload.paymentDetail['upi'].vpa = this.upiAddress.value;
         payload.paymentDetail['upi_vpa'] = this.upiAddress.value;
-
         this.http.post("/api/orders/validate", payload.paymentDetail).subscribe((res: any) => {
           // console.log(res);
           if (res.status == "OK" && res.valid == true) {
@@ -318,7 +317,6 @@ export class PaymentComponent implements OnInit {
 
         })
         return;
-
       }
       case "card": {
         payload.paymentDetail = PAYMENT_TYPE_RESPONCE.CARD;
@@ -328,14 +326,8 @@ export class PaymentComponent implements OnInit {
         payload.paymentDetail = PAYMENT_TYPE_RESPONCE.netBanking;
         break;
       }
-
       default: return;
-
-
     }
-
-
-
     // console.log(payload);
     this.paymentRedirection(payload);
   }

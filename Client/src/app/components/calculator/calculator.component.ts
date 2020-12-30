@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 let $: any;
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
-  styleUrls: ['./calculator.component.css']
+  styleUrls: ['./calculator.component.css'],
+  providers: [
+    { provide: Window, useValue: window }
+  ]
 })
 export class CalculatorComponent implements OnInit {
   showOverlay = false;
 
-  constructor() { }
+  searchResult: any[] = [];
+  upiSelected = false;
+  isloaded: boolean = false;
+  @ViewChild('total') total;
+
+
+
+
+  newOrder: any = { upi: {}, amount: 0 };
+
+  constructor(
+    private window: Window
+
+  ) { }
 
   ngOnInit(): void {
     // final draft
@@ -30,7 +46,18 @@ export class CalculatorComponent implements OnInit {
 
   openConfirmation(order) {
     this.showOverlay = true;
+    try {
+      console.log(this.total.nativeElement.innerHTML);
+
+      this.newOrder.amount = parseInt(this.total.nativeElement.innerHTML);
+    }
+    catch (e) {
+      this.newOrder.amount = 1;
+    }
+
   }
+
+
 
 
   prevent(event, order) {
@@ -39,7 +66,26 @@ export class CalculatorComponent implements OnInit {
 
   hideOverlay(event) {
     this.showOverlay = !this.showOverlay;
+    this.upiSelected = false;
+    this.newOrder = {};
   }
 
+  upiList(data) {
+    this.searchResult = data.data;
+  }
+
+
+  selectedUpi(upi) {
+    this.upiSelected = true;
+    this.newOrder.upi = upi;
+    // this.newOrder.amount =
+  }
+
+
+  isloading(data) {
+    this.isloaded = data;
+    console.log(this.isloaded);
+
+  }
 
 }

@@ -165,7 +165,7 @@ a:visited {
 }
 
 .content > .modal {
-  width: 82%;
+  width: 100%;
   background-color: white;
   position: relative;
   display: flex;
@@ -190,9 +190,45 @@ a:visited {
   overflow: hidden;
 }
 
+.grid-item-container {
+  display: grid;
+  padding-top: 17px;
+  grid-gap: 35px;
+}
+.upi-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-.grid-item-container{
-    display: grid;
-    padding-top: 17px;
-    grid-gap: 35px;
+.upi-list > li {
+  border-top: 1px ridge;
+  border-bottom: 1px ridge;
+  padding: 6px 7px;
+  text-align: initial;
+}
+.payment-confirm {
+  list-style-type: none;
+}
+
+.payment-confirm > li {
+  text-align: initial;
+}
+
+.payment-confirm > li > label {
+  width: 40%;
+  text-align: end;
+}
+.grid-items {
+  width: 87vw;
+  font-size: 13px;
+  box-shadow: none !important;
+}
+
+.search-list {
+  margin-top: 15px;
+}
+
+.grid-items.confirm {
+  text-align: center;
 }

@@ -27,6 +27,7 @@ export class ProductSearchComponent implements OnInit {
   subject: Subject<any> = new Subject();
   _show: boolean = false;
   dropdownsearchResul = [];
+  isloading = false;
 
 
   @Input("Qurl") Qurl?: string;
@@ -62,11 +63,14 @@ export class ProductSearchComponent implements OnInit {
       // get the search result from this object
       // console.log(this.searchQ);
       this.isLoading.emit(true);
+      this.isloading = true;
       this.fetchsearchResult(this.searchQ || '').subscribe((res: any) => {
         // console.log(res);
         this.dropdownsearchResul = res.data.slice(0, 10);
         this.searchResult.emit(res);
         this.isLoading.emit(false);
+        this.isloading = false;
+
       });
     });
     this.subject.next("");
@@ -114,9 +118,9 @@ export class ProductSearchComponent implements OnInit {
     this._showCancleBtn = false;
   }
 
-  touch() {}
+  touch() { }
 
-  overlayTouch(event) {}
+  overlayTouch(event) { }
 
   mouseLeave(event): void {
     this.showDowpdown = false;

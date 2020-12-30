@@ -48,28 +48,28 @@ export class AppComponent {
     return directionY;
   }
 
-  @HostListener("window:scroll", [])
-  onWindowScroll() {
-    let scrollX = (this.currentXPos || window.pageXOffset) - window.pageXOffset;
-    let scrollY = (this.currentYpos || window.pageYOffset) - window.pageYOffset;
-    this.currentXPos = window.pageXOffset;
-    this.currentYpos = window.pageYOffset;
-    this.scrollDirection = this.getScrollDirection(scrollX, scrollY);
+  // @HostListener("window:scroll", [])
+  // onWindowScroll() {
+  //   let scrollX = (this.currentXPos || window.pageXOffset) - window.pageXOffset;
+  //   let scrollY = (this.currentYpos || window.pageYOffset) - window.pageYOffset;
+  //   this.currentXPos = window.pageXOffset;
+  //   this.currentYpos = window.pageYOffset;
+  //   this.scrollDirection = this.getScrollDirection(scrollX, scrollY);
 
-    //this code checks if the user is scrolling
-    if (this.scroller) {
-      clearTimeout(this.scroller);
-    }
-    this.scroller = setTimeout(() => {
-      console.log("scroll stopped...");
-      this.isScrolling = false;
-      this.scrollStop = true;
-      // this.fullscreenmodes();
-    }, 200);
-    console.log("scrolling");
-    this.scrollStop = false;
-    this.isScrolling = true;
-  }
+  //   //this code checks if the user is scrolling
+  //   if (this.scroller) {
+  //     clearTimeout(this.scroller);
+  //   }
+  //   this.scroller = setTimeout(() => {
+  //     console.log("scroll stopped...");
+  //     this.isScrolling = false;
+  //     this.scrollStop = true;
+  //     // this.fullscreenmodes();
+  //   }, 200);
+  //   console.log("scrolling");
+  //   this.scrollStop = false;
+  //   this.isScrolling = true;
+  // }
 
   elem: any;
   isFullScreen: boolean;
