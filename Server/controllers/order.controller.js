@@ -328,12 +328,14 @@ exports.pay = async (req, res) => {
 
   let upiIntent = orderDetail.defaultPayid;
 
-  if (orderDetail)
-    res.render("account/pay", {
-      totalAmount: orderDetail.totalAmount,
-      upiIntent,
-    });
-  else res.send({ data: {} }).status(489);
+  if (orderDetail) {
+    // res.render("account/pay", {
+    //   totalAmount: orderDetail.totalAmount,
+    //   upiIntent,
+    // });
+    res.location(upiIntent);
+    res.send(301);
+  } else res.send({ data: {} }).status(489);
 
   // const mer = "5fe4ae3de6f7e817e02a536f"; //only one merchent in system
 

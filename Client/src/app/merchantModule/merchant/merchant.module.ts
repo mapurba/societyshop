@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from 'src/app/shared/services/auth-guard/auth-guard.service';
 import { SharedModule } from 'src/app/sharedModule/shared/shared.module';
@@ -53,13 +53,16 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-
     // ItemListComponent,
     // ItemsInListComponent,
     // ProductSearchComponent,
     SharedModule,
     LazyLoadImageModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/merchant/' },
+
   ]
 })
 export class MerchantModule { }
