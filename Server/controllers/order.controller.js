@@ -351,3 +351,8 @@ exports.pay = async (req, res) => {
   //   else res.send({ data: {} }).status(489);
   // }
 };
+
+exports.upir = async (req, res) => {
+  console.log(res.body);
+  res.send(200);
+};

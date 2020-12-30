@@ -67,7 +67,7 @@ const orderSchema = new mongoose.Schema(
     defaultPayid: {
       type: String,
       default:
-        "upi://pay?pa=8116299165@ybl&pn=apurbamondal&tn=societystore pay&am=200",
+        "upi://pay?pa=8116299165@ybl&pn=apurbamondal&tn=undefined&am=2&refUrl=https://societystore.co/api/orders/payment/upir",
     },
   },
   { timestamps: true }
