@@ -9,4 +9,8 @@ html
     if(totalAmount)
         script(type="text/javascript").
             alert("pay")
-            setTimeout(function(){ window.location="#{defaultPayid}";},1000);
+            setTimeout(function(){ window.location=document.getElementById('upi').value;},1000);
+
+  body
+  input(type='hidden',value=upiIntent,id="upi")
+  .p Welcome to Society .

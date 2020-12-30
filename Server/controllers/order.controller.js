@@ -326,7 +326,13 @@ exports.pay = async (req, res) => {
     $or: [{ id: { $regex: Q } }],
   });
 
-  if (orderDetail) res.render("account/pay", orderDetail);
+  let upiIntent = JSON.stringify(orderDetail.defaultPayid);
+
+  if (orderDetail)
+    res.render("account/pay", {
+      totalAmount: orderDetail.totalAmount,
+      upiIntent,
+    });
   else res.send({ data: {} }).status(489);
 
   // const mer = "5fe4ae3de6f7e817e02a536f"; //only one merchent in system

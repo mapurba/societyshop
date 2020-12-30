@@ -22,8 +22,7 @@ const orderItemSchema = new mongoose.Schema(
 const orderSchema = new mongoose.Schema(
   {
     id: {
-      type: String
-      
+      type: String,
     },
     orderItems: {
       type: [],
@@ -68,7 +67,7 @@ const orderSchema = new mongoose.Schema(
     defaultPayid: {
       type: String,
       default:
-        "upi://pay?pa=8116299165@ybl&pn=apurbamondal&tn=undefined&am=200",
+        "upi://pay?pa=8116299165@ybl&pn=apurbamondal&tn=societystore pay&am=200",
     },
   },
   { timestamps: true }
