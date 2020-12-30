@@ -232,3 +232,16 @@ a:visited {
 .grid-items.confirm {
   text-align: center;
 }
+
+.wp-text {
+  font-family: sans-serif;
+  font-weight: 500;
+  color: white;
+}
+.wp-text > img {
+  width: 101px;
+}
+
+.payme {
+  text-align: center;
+}

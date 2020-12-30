@@ -100,11 +100,15 @@ exports.createOrder = async (req, res) => {
       console.log("order deleted.....");
     }
     // else {
+    const original_id = new mongoose.Types.ObjectId();
+
     const newOrder = new Orders({
       orderItems: OrderIds,
       ...totalBill,
       user,
       mer: mer,
+      _id: original_id,
+      id: original_id.toHexString(),
     });
     respos = await newOrder.save();
     // }
@@ -287,12 +291,57 @@ exports.updateOrder = async (req, res) => {
   }
 };
 
-exports.createPaymentRequest = async (req, res) => {
+exports.createPaymentRequestLink = async (req, res) => {
   const body = req.body;
   const user = req.user;
   const mer = "5fe4ae3de6f7e817e02a536f"; //only one merchent in system
+
   if (body) {
     // create ablank order in the ssystem for payment traking perpous only
     // order type should be  paymntrequest.
+    const original_id = new mongoose.Types.ObjectId();
+    const totalAmount = body.amount;
+    const newOrder = new Orders({
+      totalAmount: totalAmount,
+      mer: mer,
+      _id: original_id,
+      id: original_id.toHexString(),
+    });
+    respos = await newOrder.save();
+    if (respos) res.send({ data: respos }).status(200);
+    else res.send({ data: {} }).status(489);
   }
+};
+
+exports.pay = async (req, res) => {
+  const body = req.body;
+  const user = req.user;
+
+  const orderPre = req.path.split("/")[1];
+
+  const Q = new RegExp(orderPre + "$", "i");
+  console.log(Q);
+
+  let orderDetail = await Orders.findOne({
+    $or: [{ id: { $regex: Q } }],
+  });
+
+  if (orderDetail) res.render("account/pay", orderDetail);
+  else res.send({ data: {} }).status(489);
+
+  // const mer = "5fe4ae3de6f7e817e02a536f"; //only one merchent in system
+
+  // if (body) {
+  //   // create ablank order in the ssystem for payment traking perpous only
+  //   // order type should be  paymntrequest.
+
+  //   const totalAmount = body.amount;
+  //   const newOrder = new Orders({
+  //     totalAmount: totalAmount,
+  //     mer: mer,
+  //   });
+  //   respos = await newOrder.save();
+  //   if (respos) res.send({ data: respos }).status(200);
+  //   else res.send({ data: {} }).status(489);
+  // }
 };

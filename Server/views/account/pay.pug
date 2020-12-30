@@ -1,0 +1,12 @@
+
+html
+  head
+    title Pay #{totalAmount} To Store
+    meta(name='description', content="Pay " +totalAmount+" to Store" )
+    meta(property='og:title', content="Pay " + totalAmount+" to Store")
+    meta(property='og:image', content="https://societystore.co/assets/icons/icon.png")
+    
+    if(totalAmount)
+        script(type="text/javascript").
+            alert("pay")
+            setTimeout(function(){ window.location="#{defaultPayid}";},1000);

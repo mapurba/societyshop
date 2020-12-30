@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-
-
 const Price = {
   old: Number,
   new: Number,
@@ -23,12 +21,13 @@ const orderItemSchema = new mongoose.Schema(
 
 const orderSchema = new mongoose.Schema(
   {
-    /*_id: {
-        type: String, unique: true, required: true, dropDups: true
-    },*/
+    id: {
+      type: String
+      
+    },
     orderItems: {
       type: [],
-      required: true,
+      required: false,
     },
     totalAmount: {
       type: Number,
@@ -50,7 +49,7 @@ const orderSchema = new mongoose.Schema(
       // 0 - payment penmding , -1 - payment failed , 1 - success , 2 - credit
     },
     paymentMessage: {
-      type:  String,
+      type: String,
     },
     orderStatus: {
       type: String,
@@ -65,6 +64,11 @@ const orderSchema = new mongoose.Schema(
     mer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+    defaultPayid: {
+      type: String,
+      default:
+        "upi://pay?pa=8116299165@ybl&pn=apurbamondal&tn=undefined&am=200",
     },
   },
   { timestamps: true }

@@ -13,6 +13,7 @@ const adminRouter = require('./adminRouter');
 const orderRouter = require('./orderRoutes');
 const productRouter = require("./productsRoutes");
 const searchRouter = require("./searchRouter");
+const pay = require("./pay");
 
 /**
  *  Routing path
@@ -23,5 +24,6 @@ routerAdmin.use('/admin', adminRouter);
 routerAdmin.use('/orders', orderRouter);
 routerAdmin.use("/products", productRouter);
 routerAdmin.use("/search", searchRouter);
+routerAdmin.use("/pay", pay);
 
 module.exports = routerAdmin;

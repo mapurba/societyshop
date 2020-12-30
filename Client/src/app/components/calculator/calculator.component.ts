@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 let $: any;
@@ -15,6 +16,7 @@ export class CalculatorComponent implements OnInit {
   searchResult: any[] = [];
   upiSelected = false;
   isloaded: boolean = false;
+  payMod = 'reset';
   @ViewChild('total') total;
 
 
@@ -23,7 +25,8 @@ export class CalculatorComponent implements OnInit {
   newOrder: any = { upi: {}, amount: 0 };
 
   constructor(
-    private window: Window
+    private window: Window,
+    private http: HttpClient
 
   ) { }
 
@@ -45,20 +48,18 @@ export class CalculatorComponent implements OnInit {
   }
 
   openConfirmation(order) {
-    this.showOverlay = true;
     try {
-      console.log(this.total.nativeElement.innerHTML);
 
       this.newOrder.amount = parseInt(this.total.nativeElement.innerHTML);
+      if (this.newOrder.amount > 0) {
+        this.showOverlay = true;
+      }
     }
     catch (e) {
       this.newOrder.amount = 1;
     }
 
   }
-
-
-
 
   prevent(event, order) {
     event.stopPropagation();
@@ -68,6 +69,7 @@ export class CalculatorComponent implements OnInit {
     this.showOverlay = !this.showOverlay;
     this.upiSelected = false;
     this.newOrder = {};
+    this.payMod = 'reset';
   }
 
   upiList(data) {
@@ -81,6 +83,13 @@ export class CalculatorComponent implements OnInit {
     // this.newOrder.amount =
   }
 
+  createWpLink() {
+    let url = 'whatsapp://send?text=Pay your Last bill @ : https://societystore.co/api/pay/';
+
+    this.http.post("api/orders/payment/link", { amount: this.newOrder.amount }).subscribe((res: any) => {
+      this.window.open(url + res.data._id, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+    });
+  }
 
   isloading(data) {
     this.isloaded = data;
@@ -88,4 +97,7 @@ export class CalculatorComponent implements OnInit {
 
   }
 
+  changePaymentMode(mode) {
+    this.payMod = mode;
+  }
 }

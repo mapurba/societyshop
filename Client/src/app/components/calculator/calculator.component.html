@@ -1,55 +1,51 @@
-<div class='container'>
-    <div id='calculator'>
-
+<div class="container">
+    <div id="calculator">
         <!-- TITLE -->
-
-
 
         <!-- ENTRY BOX -->
 
-        <div id='entrybox' class='text-right'>
-            <div id='entry'>
-                <p id='answer' #total>0</p>
+        <div id="entrybox" class="text-right">
+            <div id="entry">
+                <p id="answer" #total>0</p>
             </div>
-            <div id='history'>
+            <div id="history">
                 <p>0</p>
             </div>
         </div>
 
         <!-- BUTTONS -->
 
-        <div id='buttons'>
+        <div id="buttons">
+            <button class="red" value="ac">AC</button>
+            <button class="red" value="ce">CE</button>
+            <button value="/">&divide;</button>
+            <button value="*">x</button>
 
-            <button class='red' value='ac'>AC</button>
-            <button class='red' value='ce'>CE</button>
-            <button value='/'>&divide;</button>
-            <button value='*'>x</button>
+            <button value="7">7</button>
+            <button value="8">8</button>
+            <button value="9">9</button>
+            <button value="-">-</button>
 
-            <button value='7'>7</button>
-            <button value='8'>8</button>
-            <button value='9'>9</button>
-            <button value='-'>-</button>
+            <button value="4">4</button>
+            <button value="5">5</button>
+            <button value="6">6</button>
+            <button value="+">+</button>
 
-            <button value='4'>4</button>
-            <button value='5'>5</button>
-            <button value='6'>6</button>
-            <button value='+'>+</button>
+            <button value="1">1</button>
+            <button value="2">2</button>
+            <button value="3">3</button>
+            <button class="invisible">N</button>
 
+            <button id="zeroButton" value="0">0</button>
+            <button value=".">.</button>
+            <button id="equalButton" value="=">=</button>
 
-            <button value='1'>1</button>
-            <button value='2'>2</button>
-            <button value='3'>3</button>
-            <button class='invisible'>N</button>
-
-            <button id='zeroButton' value='0'>0</button>
-            <button value='.'>.</button>
-            <button id='equalButton' value='='>=</button>
-
-            <div id='title' class='text-center'>
+            <div id="title" class="text-center">
                 <!-- <h5><b>ELECTRONIC CALCULATOR</b></h5> -->
-                <button class="btn red order create-order" (click)="openConfirmation(120)">Create Order</button>
+                <button class="btn red order create-order" (click)="openConfirmation(120)">
+                    Create Order
+                </button>
             </div>
-
         </div>
         <!-- end buttons -->
         <!-- <div id='tester'> -->
@@ -76,35 +72,48 @@
                 <!-- <items-in-list class="content" *ngFor="let items of orderItems" [item]="items" [disabled]="true"></items-in-list> -->
                 <!-- </div> -->
                 <div class="grid-item-container">
-                    <div class="grid-items" *ngIf="!upiSelected">
-                        <product-search [isFlat]=true [Qurl]="'/api/search/gvpa?ed=3&q='" (searchResult)="upiList($event)"
-                            [placeholder]="'Search/Add  UPI Address'" (isLoading)="isloading($event)"></product-search>
+                    <div class="grid-items payme" *ngIf="payMod=='reset'">
+                        <button class="btn red order" (click)="changePaymentMode('req')">Take Payment</button>
+                        <button class="btn red order" (click)="changePaymentMode('wp')">WhatsApp Pay.</button>
+                    </div>
+                    
+                    <div class="grid-items" *ngIf="payMod=='wp'" style="text-align: center;">
+                        <button class="btn  red order wp-text" (click)="createWpLink()">
+                            <!-- href="{{'whatsapp://send?text=Pay your Last bill @ : https://societystore.co/api/pay/' + newOrder.id}}" -->
+                    
+                            Send
+                            <img [lazyLoad]="'../../../assets/images/wp.svg'">
+                            Link
+                        </button>
+                    </div>
+                    <div class="grid-items" *ngIf="!upiSelected && payMod=='req'">
+                        <product-search [isFlat]="true" [Qurl]="'/api/search/gvpa?ed=3&q='" (searchResult)="upiList($event)"
+                                [placeholder]="'Search/Add  UPI Address'" (isLoading)="isloading($event)"></product-search>
                         <div class="search-list">
                             <ul class="upi-list">
                                 <li *ngFor="let upi of searchResult; let i = index" (click)="selectedUpi(upi)">
-                                    {{upi.name}}
-                                    {{upi.Vpa}}
+                                    {{ upi.name }}
+                                    {{ upi.Vpa }}
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="grid-items confirm" *ngIf="upiSelected">
+                    <div class="grid-items confirm" *ngIf="upiSelected && payMod=='req' ">
                         <ul class="payment-confirm">
-                            <li>
-                                <label>Amoun : </label> {{newOrder.amount}}
-                            </li>
-                            <li>
-                                <label>Name : </label> {{newOrder.upi.name}}
-                            </li>
-                            <li>
-                                <label>Upi Address: </label>{{newOrder.upi.Vpa}}
-                            </li>
+                            <li><label>Amoun : </label> {{ newOrder.amount }}</li>
+                            <li><label>Name : </label> {{ newOrder.upi.name }}</li>
+                            <li><label>Upi Address: </label>{{ newOrder.upi.Vpa }}</li>
                         </ul>
-                    
-                        <button class="btn red order" [disabled]="newOrder?.amount<=0 || newOrder?.amount==''">Take Payment</button>
-                        <a class="btn btn-primary" style="" id="paylink"
+
+                        <button class="btn red order" [disabled]="newOrder?.amount <= 0 || newOrder?.amount == ''">
+                            Take Payment
+                        </button>
+                        <!-- <a class="btn btn-primary" style="" id="paylink"
                             href="upi://pay?pa=8116299165@ybl&pn=apurbamondal&tn=undefined&am=200"><i class="fa fa-money"></i>
-                            <span data-i18n="upiqrc-btn-pay">Pay apurbamondal using UPI</span></a>
+                            <span data-i18n="upiqrc-btn-pay">Pay apurbamondal using UPI</span></a> -->
+                            <!-- <a class="btn btn-primary" id="paylink" href="/api/pay/asmf2pn"><i class="fa fa-money"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span data-i18n="upiqrc-btn-pay">Pay apurbamondal using UPI</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </a> -->
                     </div>
                 </div>
             </div>

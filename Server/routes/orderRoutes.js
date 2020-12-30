@@ -7,5 +7,6 @@ orderRouter.post('/create', orderController.createOrder);
 orderRouter.post("/validate", orderController.validateUpi);
 orderRouter.post("/delivery", orderController.updateOrder);
 orderRouter.use("/payment/responce", orderController.paymentResponce);
+orderRouter.use("/payment/link", orderController.createPaymentRequestLink);
 
 module.exports = orderRouter;
