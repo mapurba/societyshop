@@ -84,10 +84,10 @@ export class CalculatorComponent implements OnInit {
   }
 
   createWpLink() {
-    let url = 'whatsapp://send?text=Pay your Last bill @ : https://societystore.co/api/pay/';
+    let url = 'whatsapp://send?text=Pay your Last bill of ' + this.newOrder.amount + ' to  : https://societystore.co/api/pay/';
 
     this.http.post("api/orders/payment/link", { amount: this.newOrder.amount }).subscribe((res: any) => {
-      this.window.open(url + res.data._id, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+      this.window.open(url + res.data._id.substring(res.data._id.length - 5, res.data._id.length), "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
     });
   }
 
