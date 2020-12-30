@@ -21,13 +21,15 @@ authRouter.get('/google', passport.authenticate('google',
         accessType: 'offline',
         prompt: 'consent'
     }), (req, res) => {
-        console.log("ss");
+        console.log("new login...");
     });
 
-authRouter.get('/google/callback',
-    passport.authenticate('google', {failureRedirect: '/login'}),
-    (req, res) => {
-        res.redirect('/');
-    });
+authRouter.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
+  (req, res) => {
+    res.redirect("/");
+  }
+);
 
 module.exports = authRouter;

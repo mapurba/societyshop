@@ -326,7 +326,7 @@ exports.pay = async (req, res) => {
     $or: [{ id: { $regex: Q } }],
   });
 
-  let upiIntent = JSON.stringify(orderDetail.defaultPayid);
+  let upiIntent = orderDetail.defaultPayid;
 
   if (orderDetail)
     res.render("account/pay", {

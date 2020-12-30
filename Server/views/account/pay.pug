@@ -1,17 +1,35 @@
-
-html
-  head
-    title Pay #{totalAmount} To Store
-    meta(name='description', content="Pay " +totalAmount+" to Store" )
-    meta(property='og:title', content="Pay " + totalAmount+" to Store")
-    meta(property='og:image', content="https://societystore.co/assets/icons/icon.png")
-    
-    if(totalAmount)
-        script(type="text/javascript").
-            alert("pay")
-            var upipay =!{upiIntent};
-            setTimeout(function(){ window.location=upipay},1000);
-
-  body
-  //- input(type='hidden',value=upiIntent,id="upi")
-  .p Welcome to Society .
+doctype html
+head
+  title Pay #{totalAmount} To Store
+  meta(name='description', content="Pay " +totalAmount+" to Store" )
+  meta(property='og:title', content="Pay " + totalAmount+" to Store")
+  meta(property='og:image', content="https://societystore.co/assets/icons/icon.png")
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .modal {
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    padding-bottom: 31px;
+    }
+    a{
+    float: right;
+    }
+#myModal.modal
+  .modal-content
+    p You will be redirected to your default upi app ...
+    a(href=`${upiIntent}`) OK 
