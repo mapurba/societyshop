@@ -127,5 +127,9 @@ li.grid-item > div > p {
 }
 
 .order-footer {
-  display: flex;
+  display: inline-flex;
+}
+
+.wp-pay-link {
+  display: inline-flex;
 }

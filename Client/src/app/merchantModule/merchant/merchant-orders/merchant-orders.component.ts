@@ -21,10 +21,13 @@ export class MerchantOrdersComponent implements OnInit {
   }
 
 
-  openConfirmation(item: ItemSchema[]) {
-    this.showOverlay = true;
-    this.orderItems = item;
-    console.log(this.orderItems);
+  openConfirmation(order: any) {
+    if (order.orderItems.length > 0) {
+      this.showOverlay = true;
+      this.orderItems = order;
+      console.log(this.orderItems);
+    }
+    
   }
 
   prevent(event, order) {

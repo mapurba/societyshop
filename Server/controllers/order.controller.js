@@ -80,7 +80,12 @@ exports.createOrder = async (req, res) => {
         brand: item.brand,
       };
     });
-    const dbItems = await productController.getProductFrommerchant(itemIds);
+    const dbItems = await productController.getProductFrommerchantById(
+      itemIds,
+      user.defaultMer
+    );
+
+
     const totalBill = calculateBill(dbItems, quantityMap);
     const findLastOrder = await Orders.findOneAndUpdate(
       {

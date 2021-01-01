@@ -14,11 +14,7 @@
             <p>Items : {{order.orderItems.length}} items-in-list</p>
           </div>
           <p>Total : ₹{{ order.totalAmount }}</p>
-          <p *ngIf="order?.orderItems?.length==0"> WhatsApp Order link </p>
-          <a
-            href='{{"whatsapp://send?text=Pay your Last bill of "+ order.totalAmount + " to : https://societystore.co/api/pay/"+order._id}}'>
-            Send Again</a>
-          
+          <p *ngIf="order?.orderItems?.length==0"> OFLINE Order</p>
           <div *ngIf="order?.orderItems?.length>0" class="order-footer">
             <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event,{order:order._id})">
               Delivered ?
@@ -26,10 +22,13 @@
             </button>
             <!-- <img src="../../../../assets/images/paymentpaid.png"> -->
             <!-- <span class="btn">
-              Payment :
-              {{ order.paymentStatus == 2 ? "Paid" : "Not Paid" }}
-            </span> -->
+                        Payment :
+                        {{ order.paymentStatus == 2 ? "Paid" : "Not Paid" }}
+                      </span> -->
           </div>
+          <a (click)="prevent($event)" class="btn wp-pay-link"
+            href='{{"whatsapp://send?text=Pay your Last bill of "+ order.totalAmount + " to : https://societystore.co/api/pay/"+order._id}}'>
+            WhatsApp Payment link</a>
         </div>
       </li>
     </ul>
