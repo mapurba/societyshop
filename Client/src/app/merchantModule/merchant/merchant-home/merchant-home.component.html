@@ -12,11 +12,20 @@
     </div>
     <div class="grid-container">
       <div class="grid-item" *ngFor="let item of _list; let id = index">
-        <items-in-list [id]="'item_' + id" [item]="item" (click)="openConfirmation(item)" [viewOnly]="true">
-        </items-in-list>
+        <div>
+          <items-in-list [id]="'item_' + id" [item]="item" (click)="openConfirmation(item,id)" [viewOnly]="true">
+          </items-in-list>
+          <div class="text">
+            <div class="ellipse" [ngClass]="(item.quantity <=9)?'ellipse-red':'' ">
+              <a class="num"> {{item.quantity}}</a>
+            </div>
+            <a class="left" *ngIf="item.quantity >0"> Left</a>
+          </div>
+          </div>
+
       </div>
-    </div>
-  </div>
+      </div>
+      </div>
 
   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" style="margin: 26px 38%;">
     <path fill="#d8c93d"
@@ -40,7 +49,7 @@
         ">Add this item to your online stock</p>
         <div class="product-img">
           <img data-src="{{ newInventoryItem?.image }}" />
-          <form [formGroup]="inventoryForm" (ngSubmit)="addToInvontory()">
+          <form [formGroup]="inventoryForm" (submit)="addToInvontory()">
             <div class="input-group">
               <label> Quantity</label>
               <select formControlName="quantity">
@@ -67,7 +76,7 @@
               </select>
             </div>
             <div class="input-group">
-              <button class="btn" [disabled]="isSubmited">
+              <button class="" [disabled]="isSubmited">
                 Add To Inventory
                 <img [hidden]="!isSubmited" class="tick-icon"
                   src="https://storage.googleapis.com/societystore.appspot.com/cdn/img/tick.png">

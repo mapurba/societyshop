@@ -14,17 +14,17 @@ export class FeedComponent implements OnInit {
   constructor(
     private route: ActivatedRoute
   ) {
+
+
+  }
+
+  ngOnInit() {
     this.route.params.subscribe((params) => {
       console.log(params);
       if (params.search) {
         this.searchListQ = params.search;
       }
     });
-
-  }
-
-  ngOnInit() {
-
   }
 
 

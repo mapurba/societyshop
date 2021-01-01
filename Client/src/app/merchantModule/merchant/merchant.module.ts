@@ -9,6 +9,7 @@ import { MerchantPendingPaymentComponent } from './merchant-pending-payment/merc
 import { MerchantTodayTotalComponent } from './merchant-today-total/merchant-today-total.component';
 import { CalculatorComponent } from 'src/app/components/calculator/calculator.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
 
@@ -56,6 +57,8 @@ const routes: Routes = [
     // ItemListComponent,
     // ItemsInListComponent,
     // ProductSearchComponent,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     LazyLoadImageModule,
     RouterModule.forChild(routes)

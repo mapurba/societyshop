@@ -32,7 +32,7 @@ export class ItemsInListComponent implements OnInit {
       let tit: any = map.get(this.item.itemCode.toString());
       if (tit) {
         this.item.quantity = tit.quantity;
-        console.log('merged');
+        console.log('merged with cart items.');
      }
     }
   }

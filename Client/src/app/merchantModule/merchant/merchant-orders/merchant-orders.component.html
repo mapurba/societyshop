@@ -8,11 +8,18 @@
         <img [lazyLoad]="'../../../assets/images/order.png'" *ngIf="order.paymentStatus != 2" />
         <img [lazyLoad]="'../../../assets/images/paid.png'" *ngIf="order.paymentStatus == 2" />
         <div>
-          <span>Flat : F1403</span>
-          <p>Name : Apurba Mondal </p>
-          <p>Items : {{order.orderItems.length}} items-in-list</p>
+          <div *ngIf="order?.orderItems?.length>0">
+            <span>Flat : F1403</span>
+            <p>Name : Apurba Mondal </p>
+            <p>Items : {{order.orderItems.length}} items-in-list</p>
+          </div>
           <p>Total : ₹{{ order.totalAmount }}</p>
-          <div class="order-footer">
+          <p *ngIf="order?.orderItems?.length==0"> WhatsApp Order link </p>
+          <a
+            href='{{"whatsapp://send?text=Pay your Last bill of "+ order.totalAmount + " to : https://societystore.co/api/pay/"+order._id}}'>
+            Send Again</a>
+          
+          <div *ngIf="order?.orderItems?.length>0" class="order-footer">
             <button class="btn" style="background-color: #c5c772bd" (click)="prevent($event,{order:order._id})">
               Delivered ?
               <span *ngIf="order.orderStatus == 3"> <img [lazyLoad]="'../../../../assets/images/gtick.png'"></span>
