@@ -80,7 +80,7 @@ exports.createOrder = async (req, res) => {
         brand: item.brand,
       };
     });
-    const dbItems = await productController._getProductsByIds(itemIds);
+    const dbItems = await productController.getProductFrommerchant(itemIds);
     const totalBill = calculateBill(dbItems, quantityMap);
     const findLastOrder = await Orders.findOneAndUpdate(
       {
@@ -178,6 +178,9 @@ exports.paymentResponce = async (req, res, next) => {
             { _id: mongoose.Types.ObjectId(req.body.orderId) },
             { paymentStatus: 2, paymentMessage: txnTypes.success }
           );
+
+          // decrement the item count of the orders.
+
           return res.render("account/payment", {
             status: true,
             message: "payment success",

@@ -20,6 +20,26 @@ _getProductsByIds = async (ids) => {
   // });
 };
 
+exports.getProductFrommerchant = async (ids, merId) => {
+  console.log("getting item from merchant..." + merId);
+
+  const idsMap = new Map();
+  ids.forEach((id) => {
+    idsMap.set(id, 1);
+  });
+
+  const muser = await User.findById({ _id: mongoose.Types.ObjectId(merId) });
+
+  const items = [];
+  muser.inventory.forEach((item) => {
+    if (item.itemCode == idsMap.get(item.itemCode)) {
+      items.push(item);
+    }
+  });
+
+  return items;
+};
+
 exports.getProductFrommerchant = async (req, res) => {
   console.log("show items form merchant..." + req.user.defaultMer);
 
@@ -40,7 +60,7 @@ exports.getProductFrommerchant = async (req, res) => {
   user.forEach((user) => {
     if (user.inventory) {
       inventory.push(...user.inventory);
-    } 
+    }
   });
 
   res.send(inventory).status(200);
