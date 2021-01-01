@@ -44,6 +44,12 @@ const userSchema = new mongoose.Schema(
       type: Array,
       default: ["5fde835e4c92f60c39368ae0"],
     },
+    payment: {
+      upi: {
+        vpa: '',
+        name: ''
+      },
+    }
   },
   { timestamps: true }
 );

@@ -21,8 +21,8 @@ calculateBill = (items, quantityMap) => {
       (acc, item2) =>
         acc +
         item2.price.new *
-          quantityMap[item2.itemCode] *
-          (1 - item2.discountPercentage / 100),
+        quantityMap[item2.itemCode] *
+        (1 - item2.discountPercentage / 100),
       0
     );
 
@@ -98,10 +98,6 @@ exports.createOrder = async (req, res) => {
     );
     let respos;
     if (findLastOrder) {
-      // respos = findLastOrder;
-      // respos.orderItems = OrderIds;
-      // respos.totalAmountAfterDiscount = totalBill.totalAmountAfterDiscount;
-      // respos.totalAmount = totalBill.totalAmount;
       console.log("order deleted.....");
     }
     // else {
@@ -303,17 +299,30 @@ exports.createPaymentRequestLink = async (req, res) => {
   const body = req.body;
   const user = req.user;
   const mer = "5fe4ae3de6f7e817e02a536f"; //only one merchent in system
+  let upiPayLink = "upi://pay?refUrl=https://societystore.co/api/orders/payment/upir";
+
+  const linkConstrust = {
+    pa: "", pn: "", tn: '', am: 0
+  };
 
   if (body) {
     // create ablank order in the ssystem for payment traking perpous only
     // order type should be  paymntrequest.
     const original_id = new mongoose.Types.ObjectId();
     const totalAmount = body.amount;
+
+    linkConstrust.am = totalAmount;
+    linkConstrust.pa = user.payment.upi.vpa;
+    linkConstrust.pn = user.profile.name;
+    linkConstrust.tn = 'Pay for Order';
+
+    upiPayLink += '&pa=' + linkConstrust.pa + "&pn=" + linkConstrust.pn + "&tn=" + linkConstrust.tn + "&am=" + linkConstrust.am;
     const newOrder = new Orders({
       totalAmount: totalAmount,
       mer: mer,
       _id: original_id,
       id: original_id.toHexString(),
+      defaultPayid: upiPayLink
     });
     respos = await newOrder.save();
     if (respos) res.send({ data: respos }).status(200);

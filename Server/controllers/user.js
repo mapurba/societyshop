@@ -175,19 +175,19 @@ exports.postUpdateProfile = (req, res, next) => {
     user.profile.gender = req.body.gender || "";
     user.profile.location = req.body.location || "";
     user.profile.website = req.body.website || "";
+    user.payment.upi.vpa = req.body.vpa || "";
+    user.payment.upi.name = user.profile.name;
     user.save((err) => {
       if (err) {
         if (err.code === 11000) {
-          req.flash("errors", {
+          return res.status(489).send({
             msg:
               "The email address you have entered is already associated with an account.",
           });
-          return res.redirect("/account");
         }
-        return next(err);
+        return res.status(489).send({});
       }
-      req.flash("success", { msg: "Profile information has been updated." });
-      res.redirect("/account");
+      res.status(200).send({ "success": { msg: "Profile information has been updated." } });
     });
   });
 };

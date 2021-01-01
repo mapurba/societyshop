@@ -16,7 +16,8 @@ export class AccountComponent implements OnInit {
     email: '',
     location: '',
     gender: '',
-    website: ''
+    website: '',
+    vpa: '',
   };
 
   accountProfileForm = new FormGroup({
@@ -27,6 +28,7 @@ export class AccountComponent implements OnInit {
       Validators.required,
       Validators.email
     ]),
+    vpa: new FormControl(''),
     location: new FormControl(''),
     gender: new FormControl(''),
     website: new FormControl(''),
@@ -39,7 +41,7 @@ export class AccountComponent implements OnInit {
   constructor(private http: HttpClient, private userService: UserService) {
     this.userService.currentUserDetail.subscribe((res: any) => {
       if (res != null) {
-        this.accountProfileForm.patchValue({ 'email': res.email, 'name': res.profile.name, 'location': res.profile.location, 'gender': res.profile.gender, 'website': res.profile.website });
+        this.accountProfileForm.patchValue({ 'email': res.email, 'name': res.profile.name, 'location': res.profile.location, 'gender': res.profile.gender, 'website': res.profile.website, 'vpa': res.payment.upi.vpa });
       }
     })
   }
@@ -49,10 +51,10 @@ export class AccountComponent implements OnInit {
   }
 
   submitProfile() {
-    this.http.post('/api/account/profile', this.accountProfileForm.value).subscribe((res) => {
-      alert('success');
+    this.http.post('/api/user/account/profile', this.accountProfileForm.value).subscribe((res) => {
+      // alert('success');
     }, (err) => {
-      alert('err');
+      // alert('err');
     }
     );
   }
