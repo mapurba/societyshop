@@ -72,7 +72,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
     // this.loadPaymentRelatedJs();
-    console.log(this._setDisplayMode);
+    // console.log(this._setDisplayMode);
 
     // this.createItemForm = new FormGroup({
     //   name: new FormControl("", [Validators.required]),
@@ -90,7 +90,7 @@ export class PaymentComponent implements OnInit {
 
         if (res.id === StateNames.addToCart) {
           let userCart = res.value.get(StateNames.addToCart);
-          console.log('cart changed.');
+          // console.log('cart changed.');
           let cartItems = new Map(retriveItemFromLocalStore("cartValue"));
           this.state = { value: [] };
           cartItems.forEach((value: any, key) => {
@@ -109,7 +109,7 @@ export class PaymentComponent implements OnInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.loading = false;
-      console.log(this.loading);
+      // console.log(this.loading);
     }, 500);
   }
 
@@ -137,36 +137,36 @@ export class PaymentComponent implements OnInit {
   }
 
   handleResponse(data) {
-    console.log(data);
+    // console.log(data);
   }
 
   callback(event) {
     //sample callback to see what response is received
-    console.log("call back passed to sdk called");
-    console.log("event:", event);
+    // console.log("call back passed to sdk called");
+    // console.log("event:", event);
 
     switch (event.name) {
       case cashFreeSDKEventEnums.paymentRequest: {
-        console.log("payment request enum hit");
-        console.log("event:", event);
+        // console.log("payment request enum hit");
+        // console.log("event:", event);
         //do error reporting here
         //.....
         //unfreeze form
         // this.displayResult(event.status, event.message);
-        console.log("event:", event);
+        // console.log("event:", event);
         break;
       }
       case cashFreeSDKEventEnums.paymentResponse: {
         //capture response and send to server
-        console.log("payment response enum hit");
-        console.log("event:", event);
+        // console.log("payment response enum hit");
+        // console.log("event:", event);
         const { response } = event;
         this.handleResponse(JSON.stringify(response));
         break;
       }
       default: {
-        console.log("other event caught");
-        console.log("event:", event);
+        // console.log("other event caught");
+        // console.log("event:", event);
       }
     }
   }
@@ -190,7 +190,7 @@ export class PaymentComponent implements OnInit {
 
     this.http.post("/api/orders/create", { items: this.state.value }).subscribe(
       (res: any) => {
-        console.log({ "order created......": res });
+        // console.log({ "order created......": res });
         this.isOrderCreating = false;
         this.orderId = res.respos._id;
         this.enablePayment = true;
@@ -228,7 +228,7 @@ export class PaymentComponent implements OnInit {
         }
       )
       .subscribe((res: any) => {
-        console.log({ ...res.additionalFields, ...newOrderDetail, ...orderDetail.paymentDetail });
+        // console.log({ ...res.additionalFields, ...newOrderDetail, ...orderDetail.paymentDetail });
         let paymentData = {
           ...res.additionalFields,
           ...newOrderDetail,
@@ -250,7 +250,7 @@ export class PaymentComponent implements OnInit {
           this.initiateCashfree();
           this.window['CashFree'].paySeamless(paymentData, this.callback);
         } catch (e) {
-          console.log(e);
+          // console.log(e);
         }
 
 

@@ -20,7 +20,7 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      console.log(params);
+      // console.log(params);
       if (params.search) {
         this.searchListQ = params.search;
       }

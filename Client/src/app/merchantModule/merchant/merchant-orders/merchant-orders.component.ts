@@ -22,10 +22,9 @@ export class MerchantOrdersComponent implements OnInit {
 
 
   openConfirmation(order: any) {
-    if (order.orderItems.length > 0) {
+    if (order.length > 0) {
       this.showOverlay = true;
       this.orderItems = order;
-      console.log(this.orderItems);
     }
     
   }

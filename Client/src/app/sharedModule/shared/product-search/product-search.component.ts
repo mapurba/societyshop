@@ -134,7 +134,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   gotoProductList(item) {
-    console.log(item);
+    // console.log(item);
     this.route.navigate(['my', { search: item.name }]);
     this.showDowpdown = false;
   }

@@ -41,7 +41,7 @@ export class ChartComponent implements OnInit {
           let userCart = res.value.get(StateNames.addToCart);
           // this.loggedInUserDetails = userDetail.value.user;
           // this.dummylist = userCart.value || retriveItemFromLocalStore("cartValue");
-          console.log('cart changed.');
+          // console.log('cart changed.');
           let cartItems = new Map(retriveItemFromLocalStore("cartValue"));
           this.dummylist = [];
           cartItems.forEach((value: any, key) => {
@@ -95,7 +95,7 @@ export class ChartComponent implements OnInit {
       newCart.forEach((item: ItemSchema) => {
         if (!oldCartMap.get(item.itemCode)) oldCartMap.set(item.itemCode, item);
       });
-      console.log(typeof oldCartMap.entries());
+      // console.log(typeof oldCartMap.entries());
       return Array.from(oldCartMap.values());
     }
   }

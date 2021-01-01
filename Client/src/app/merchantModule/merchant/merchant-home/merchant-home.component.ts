@@ -41,7 +41,7 @@ export class MerchantHomeComponent implements OnInit {
     // need to merge the item
     let userDetail = this.componentService.getStateByStateName(StateNames.userDetail) as State;
     const inventory = userDetail.value.user.inventory;
-    console.log(inventory);
+    // console.log(inventory);
     this._list.forEach(element => {
       if (inventory[element.itemCode]) {
         let item: any = JSON.parse(inventory[element.itemCode]);
@@ -54,13 +54,13 @@ export class MerchantHomeComponent implements OnInit {
   hideOverlay(event) {
     // event.p
     this.hideOverLay = false;
-    console.log(event);
+    // console.log(event);
   }
   openConfirmation(item: ItemSchema, id) {
     this.selectedIndex = id;
     this.hideOverLay = true;
     this.newInventoryItem = item;
-    console.log(item)
+    // console.log(item)
     this.inventoryForm = new FormGroup({
       quantity: new FormControl("1", Validators.required),
       pricePerQuantity: new FormControl(item.price.new, Validators.required)

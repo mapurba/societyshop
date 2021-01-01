@@ -35,7 +35,7 @@ export class StateDB {
     this._stateMechineName = stateMechineName;
     this.subject.pipe(debounceTime(500)).subscribe((res) => {
       // get the search result from this object
-      console.log("state changed..." + this._stateMechineName);
+      // console.log("state changed..." + this._stateMechineName);
     });
   }
 

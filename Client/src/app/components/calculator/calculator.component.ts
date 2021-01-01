@@ -93,7 +93,7 @@ export class CalculatorComponent implements OnInit {
 
   isloading(data) {
     this.isloaded = data;
-    console.log(this.isloaded);
+    // console.log(this.isloaded);
 
   }
 
