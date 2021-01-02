@@ -90,6 +90,11 @@ export class ProductSearchComponent implements OnInit {
       });
   }
 
+  prevent(event) {
+    event.stopPropagation();
+  }
+
+
   onKeyUp(event): void {
     if (event != undefined) {
       const { target } = event;

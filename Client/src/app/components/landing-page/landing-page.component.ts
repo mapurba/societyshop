@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "src/app/shared/services/user.service";
+import { State, StateNames } from "src/app/schemas/componentStateSchema";
+import { ComponentStateService } from "src/app/services/component-state.service";
 
 @Component({
   selector: "app-landing-page",
@@ -9,40 +10,36 @@ import { UserService } from "src/app/shared/services/user.service";
 })
 export class LandingPageComponent implements OnInit {
 
-  currentLoggedinUser: any;
-  constructor(private http: HttpClient, private userService: UserService) { }
+  user: any;
+  userDetailLoading: boolean = false;
+  constructor(private http: HttpClient, private componentStateServie: ComponentStateService) { }
 
   ngOnInit() {
-    this.currentLoggedinUser;
+    // this.currentLoggedinUser;
+    // this.componentStateServie
+    //   .onStateChange(StateNames.userDetail)
+    //   .subscribe((res) => {
+    //     if (res.id === StateNames.userDetail) {
+         
+    //     }
+    //   });
 
-    this.userService.userSub().subscribe((user) => {
-      this.currentLoggedinUser = user;
-    })
+    let usr: any = this.componentStateServie.getStateByStateName(StateNames.userDetail) as State;
+    let userDetail = usr.value;
+    this.user = userDetail.user;
+    this.userDetailLoading = true;
+    console.log("usr loaded 1 ...");
+  }
+
+  ngAfterViewInit() {
+
+    // this.userService.userSub().subscribe((user) => {
+    //   this.currentLoggedinUser = user;
+    //   console.log("hello");
+    //   console.log(this.currentLoggedinUser);
+    // });
   }
 
   userSignup() {
-    // set user header
-
-
-    
- 
-    // fetch("/api/auth/google", {
-    //   headers: {
-    //     "accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-    //     "accept-language": "en-US,en;q=0.9",
-    //     "cache-control": "no-cache",
-    //     "pragma": "no-cache",
-    //     "sec-fetch-dest": "document",
-    //     "sec-fetch-mode": "navigate",
-    //     "sec-fetch-site": "same-origin",
-    //     "sec-fetch-user": "?1",
-    //     "upgrade-insecure-requests": "1",
-    //     "userType":"merchant_new"
-    //   },
-    //   body: null,
-    //   method: "GET",
-    //   mode: "cors",
-    //   credentials: "include",
-    // });
   }
 }

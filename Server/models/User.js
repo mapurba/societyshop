@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema(
         vpa: '',
         name: ''
       },
+    },
+    isMer: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }

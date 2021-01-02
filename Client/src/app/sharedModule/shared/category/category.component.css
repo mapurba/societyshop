@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  text-align: center;
+  /* padding-right: 5px;
+    
+    padding-left: 5px; */
+  padding: 7px;
+}
+
+.flex-rows {
+  padding: 5px;
+  font-size: 15px;
+  margin-left: auto;
+  flex: 100%;
+  background-color: white;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  width: inherit;
+  padding-top: 20px;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .flex-rows {
+    flex: 100%;
+  }
+}
+
+.delivery-slot-alert {
+  font-size: 19px;
+  font-weight: 600;
+  text-align: initial;
+  line-height: 2;
+}
+
+.grid-container-three {
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+  grid-template-columns: auto auto auto;
+  grid-gap: 1px;
+  padding: 10px;
+  box-shadow: 0 0px 1px 0 rgba(0,0,0,.55);
+}
+
+.grid-container-two {
+  display: grid;
+  -ms-grid-columns: auto auto;
+  grid-template-columns: auto auto;
+  grid-gap: 1px;
+  padding: 10px;
+}
+
+.grid-container-two > div,
+.grid-container-three > div {
+  text-align: center;
+  padding: 5px 0;
+  padding-right: 5px;
+  grid-gap: 2px;
+  font-size: 30px;
+  border-right: 1px solid #f2eaea;
+  cursor: pointer;
+}
+
+.grid-container-two > div > a > img,
+.grid-container-three > div > a > img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.section-header {
+  border: 1px solid red;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.section-header > .banner-art {
+  width: 8%;
+}
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+
+.section-header > .header-text {
+  width: 80%;
+  display: inline-block;
+}

@@ -7,6 +7,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -16,7 +17,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     ItemsInListComponent,
     ItemListComponent,
     ProductSearchComponent,
-    PaymentComponent
+    PaymentComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     ItemsInListComponent,
     ItemListComponent,
     ProductSearchComponent,
-    PaymentComponent
+    PaymentComponent,
+    CategoryComponent
   ]
 })
 export class SharedModule { }

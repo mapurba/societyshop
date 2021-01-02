@@ -1,5 +1,5 @@
 .main {
-  margin-top: 18px;
+  margin-top: 70px;
 }
 
 .footer-nav {
@@ -45,7 +45,7 @@
     padding: 0 !important;
   }
   .main {
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
 }
 .container {
@@ -81,15 +81,9 @@
 }
 
 .pre-loader > img {
-  width: 300px;
+  width: 20px;
 }
 
 .menu > p {
   margin-top: -7px;
 }
-
-
-
-
-
-

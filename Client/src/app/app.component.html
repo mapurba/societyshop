@@ -1,21 +1,14 @@
 <div calss="container" (click)="fullscreenmodes($event)">
-  <div class="main mb-2 container">
+  <div class="main ">
     <app-nav [isScrolling]="scrollStop"></app-nav>
   </div>
-  <div class="pre-loader" *ngIf="!removeLoader">
-    <img src="../assets/images/earth.png" />
+  <br>
+  <div class="container pre-loader" *ngIf="!removeLoader">
+    <img src="../assets/images/devil.png" />
   </div>
-  <div class="main mb-2 container" *ngIf="!userDetailLoading && removeLoader">
+  <div class=" container pages" *ngIf="!userDetailLoading && removeLoader">
     <router-outlet></router-outlet>
   </div>
-
-  <!-- fix this -->
-  <br />
-  <br />
-  <!-- <crousal> </crousal> -->
-  <!-- 
-  <h1 style="text-align: center">welcome you your personal store</h1>
-  <p style="text-align: center;text-transform: capitalize;">{{ user?.profile?.name }}</p> -->
 
   <footer class="nav-footer-main">
     <div class="footer-nav" *ngIf="!user?.isMer">
@@ -25,7 +18,7 @@
         <p>Home</p>
       </div>
 
-      <div class="menu" routerLink="my">
+      <div class="menu" routerLink="my/categ">
         <img _ngcontent-vdb-c45="" src="../assets/images/bag.png" style="width: 27px; padding: 0; margin-top: -7px" />
         <p>Category</p>
       </div>
@@ -37,7 +30,6 @@
       <div class="menu" routerLink="my/cart">
         <img _ngcontent-vdb-c45="" src="../assets/images/cart2.png" style="width: 27px; padding: 0; margin-top: -7px" />
         <p>Cart</p>
-        <!-- <a class="fa fa-shopping-cart icon" routerLink="cart">Cart</a> -->
       </div>
     </div>
 

@@ -1,7 +1,7 @@
 <!-- using this search bx for few routes only 
 #todo route bases back callbak to be sent to the apporiate parent comonenetS
 -->
-<div class="search-box" id="#search-box">
+<div class="search-box" id="#search-box" [ngClass]="!isFalt ? 'flat-design' : ''">
   <div class="input">
     <i class="fa fa-search" aria-hidden="true" *ngIf="!isloading"> </i>
     <svg xmlns="http://www.w3.org/2000/svg" *ngIf="isloading" width="50" height="50" viewBox="0 0 50 50" class="isLoading">
@@ -12,9 +12,9 @@
       </path>
     </svg>
     <div class="text" contenteditable="true" #searchQ (click)="clearText($event)" (keyup)="onKeyUp($event)">
-      <div class="placeholder ">
-        {{ placeholder || "Search all the products" }}
-      <span class="blink_me">|</span>
+      <div class="placeholder">
+        {{ placeholder || "Search all the products" | sanitizeme }}
+        <span class="blink_me">|</span>
       </div>
     </div>
   </div>
@@ -23,17 +23,18 @@
   </div>
   <span></span>
 </div>
-
-<div class="floating-dropdown" *ngIf="!isFalt">
-  <div class="search-dropdown" *ngIf="showDowpdown" (mouseleave)="mouseLeave($event)">
-    <div class="fa item" *ngFor="let searchTerms of dropdownsearchResul; let i = index"
-      (click)="gotoProductList(searchTerms)">
-      <div class="search-bar">
-        <img data-src="{{ searchTerms.image }}" />
-        {{ searchTerms.name | sanitizeme }}
+<div class="search-mobile" *ngIf="showDowpdown && !isFalt" (click)="mouseLeave($event)">
+  <div class="floating-dropdown" *ngIf="!isFalt" (click)="prevent($event)">
+    <div class="search-dropdown" *ngIf="showDowpdown" (mouseleave)="mouseLeave($event)">
+      <div class="fa item" *ngFor="let searchTerms of dropdownsearchResul; let i = index"
+        (click)="gotoProductList(searchTerms)">
+        <div class="search-bar">
+          <img [lazyLoad]="searchTerms.image" />
+          {{ searchTerms.name | sanitizeme }}
+        </div>
       </div>
-    </div>
 
-    <div class="fa item last" (click)="mouseLeave($event)"></div>
+      <!-- <div class="fa item last" (click)="mouseLeave($event)"></div> -->
+      </div>
   </div>
 </div>

@@ -46,17 +46,15 @@
             <div></div>
             <div></div>
           </div>
-
           <a href="#" class="main-twxt-portion" [hidden]="!hideProfileDropDown||hideLogo">
             <!-- <img src="assets/images/bsc_logo.gif" alt="BSC Logo" /> -->
             Your Local Store
           </a>
         </div>
-
         <product-search class="container col-10 search-box" *ngIf="!loggedInUserDetails?.isMer"></product-search>
       </div>
 
-      <div class="col-2 text-right top-menu-right navigation-container header profile-dropdown">
+      <div class="col-2 text-right top-menu-right navigation-container header profile-dropdown" [hidden]="hideLogo">
         <div class="dropdown avatar">
           <img *ngIf="userLoggedin && !loadingUser" [src]="loggedInUserDetails?.profile?.picture" alt="Avatar" />
           <!-- <span class="profile_menu_image" *ngIf="loadingUser">...</span> -->
@@ -75,7 +73,7 @@
       <!-- </div> -->
 
       <div class="col-8 text-right top-menu-user">
-      
+
       </div>
     </div>
 

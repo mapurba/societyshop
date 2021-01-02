@@ -94,17 +94,9 @@ export class AppComponent {
       .onStateChange(StateNames.addToCart)
       .subscribe((res) => {
         if (res.id === StateNames.addToCart) {
-          // this.searchQRef.nativeElement.click();
-          // #Todo cleanup
-          ///store item to local storage if needed
-          // update session store
-          //update local store
+
           if (res.value.get(StateNames.addToCart).value) {
             try {
-              // localStorage.setItem(
-              //   "cartValue",
-              //   JSON.stringify(res.value.get(StateNames.addToCart).value)
-              // );
               setTimeout(() => {
                 console.log("....update serrion.");
                 this.updateSessionStateByProperty(
@@ -118,38 +110,20 @@ export class AppComponent {
           }
         }
         if (res.id === StateNames.UserSession) {
-          // this.searchQRef.nativeElement.click();
           let userSession = res.value.get(StateNames.UserSession);
-          console.log(userSession);
-
           // use session service to persist the date to db
           this.sessionService.updateStateTodb(userSession);
-
           console.info(
             "user session uodate need to send these to server from here"
           );
-          // #Todo cleanup
-          ///store item to local storage if needed
-          // localStorage.setItem(
-          //   "UserSession",
-          //   JSON.stringify(res.value.get("UserSession").value)
-          // );
         }
         if (res.id === StateNames.userDetail) {
-          // this.searchQRef.nativeElement.click();
-          // this.user = res.user;
           let userDetail = res.value.get(StateNames.userDetail);
-
           console.log("usr loaded...");
           this.user = userDetail.value.user;
           this.userDetailLoading = false;
         }
       });
-
-    // this.userDetail.getUserDetailV2().subscribe((res) => {
-    //   this.user = res.user;
-    //   this.userDetailLoading = false;
-    // });
 
     // this.autofullscreen();
   }

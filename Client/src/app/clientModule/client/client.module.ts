@@ -7,6 +7,8 @@ import { FeedComponent } from './feed/feed.component';
 import { PaymentComponent } from 'src/app/sharedModule/shared/payment/payment.component';
 import { SubscribeMerchantComponent } from './subscribe-merchant/subscribe-merchant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CategoryComponent } from 'src/app/sharedModule/shared/category/category.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,13 @@ const routes: Routes = [
     component: FeedComponent,
 
   },
+  {
+    path: "categ",
+    pathMatch: "full",
+    component: CategoryComponent,
+
+  },
+
   {
     path: "cart",
     pathMatch: "full",
@@ -37,13 +46,14 @@ const clientRoutes = RouterModule.forChild(routes);
   declarations: [
     FeedComponent,
     ChartComponent,
-    SubscribeMerchantComponent
+    SubscribeMerchantComponent,
   ],
   imports: [
     CommonModule,
     clientRoutes,
     SharedModule,
     FormsModule,
+    LazyLoadImageModule,
     ReactiveFormsModule,
 
   ]

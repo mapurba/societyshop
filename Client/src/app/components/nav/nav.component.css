@@ -211,8 +211,8 @@ header .sub_menu .sub_menu_pos .activeTab {
 }
 
 .main-twxt-portion {
-  line-height: 2;
-  font-size: 17px;
+  line-height: 1;
+  font-size: 14px;
   color: #464000;
 }
 

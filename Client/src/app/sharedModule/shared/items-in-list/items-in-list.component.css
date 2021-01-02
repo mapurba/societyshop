@@ -177,3 +177,34 @@ p {
     rgba(0, 0, 0, 0)
   ); */
 }
+
+.at-item {
+
+  animation-name: scale-in-center;
+  animation-duration: 0.099s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+@keyframes scale-in-center {
+  0%{
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100%{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
