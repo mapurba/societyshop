@@ -67,6 +67,8 @@ try {
       console.log("connected it seams");
     },
     (err) => {
+      console.log("erroe");
+
       console.log(err);
     }
   );
@@ -173,18 +175,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-/* #todo
- remove all the server side rendereing code so all the routes from the server is hedden
-*/
-// app.use('/', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
-// app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), { maxAge: 31557600000 }));
-// app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'), { maxAge: 31557600000 }));
-// app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
-// app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), { maxAge: 31557600000 }));
-
-/**
- * API examples routes.
- */
 
 app.use("/api/", apiRoutes);
 
@@ -260,6 +250,11 @@ app.listen(app.get("port"), () => {
     app.get("env")
   );
   console.log("  Press CTRL-C to stop\n");
+});
+
+process.on('unhandledRejection', (reason, p) => {
+  console.error('Unhandled Rejection at:', p, 'reason:', reason)
+  //process.exit(1)
 });
 
 module.exports = app;

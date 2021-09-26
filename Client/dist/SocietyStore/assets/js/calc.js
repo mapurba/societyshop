@@ -1,4 +1,4 @@
-$(document).ready(function () {
+window.onload = function () {
   var entry = "";
   var ans = "";
   var current = "";
@@ -207,4 +207,4 @@ $(document).ready(function () {
   $(".create-order").click(function () {
     window["current"] = current;
   });
-}); // end doc ready function
+}; // end doc ready function

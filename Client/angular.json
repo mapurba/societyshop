@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "SocietyStore"
+  "defaultProject": "SocietyStore",
+  "cli": {
+    "analytics": false
+  }
 }
