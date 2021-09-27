@@ -1,12 +1,5 @@
 const functions = require("firebase-functions");
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-
-/**
- * Module dependencies.
- */
  const express = require("express");
  const compression = require("compression");
  const session = require("express-session");
@@ -25,21 +18,19 @@ const functions = require("firebase-functions");
  const passport = require("passport");
  const expressValidator = require("express-validator");
  const expressStatusMonitor = require("express-status-monitor");
- const sass = require("node-sass");
  const autoIncrement = require("mongoose-auto-increment");
  const http = require("https");
  /**
   * Load environment variables from .env file, where API keys and passwords are configured.
   */
- dotenv.load({ path: "../.env.example" });
+ dotenv.load({ path: ".env.example" });
  
  /**
   * import routes
   *
   */
  
- const apiRoutes = require("../routes/routeAdmin");
- const { collection } = require("../models/User");
+ const apiRoutes = require("./route/routeAdmin");
  /**
   * Create Express server.
   */
@@ -48,7 +39,7 @@ const functions = require("firebase-functions");
  /**
   * Connect to MongoDB.
   */
- console.log(process.env.MONGODB_URI);
+//  console.log(process.env.MONGODB_URI);
  
  mongoose.set("useFindAndModify", false);
  mongoose.set("useCreateIndex", true);
@@ -80,10 +71,6 @@ const functions = require("firebase-functions");
    console.log(err);
  }
  
- 
- 
- 
- 
  mongoose.connection.on("error", (err) => {
    console.error(err);
    console.log(
@@ -96,25 +83,21 @@ const functions = require("firebase-functions");
  
  /**
   * Express configuration.
-  */
- app.set("host", process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0");
- app.set("port", process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8089);
+//   */
+//  app.set("host", process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0");
+//  app.set("port", process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8089);
  app.set("views", path.join(__dirname, "views"));
  app.set("view engine", "pug");
  app.use(expressStatusMonitor());
  app.use(compression());
- app.use(
-   sass({
-     src: path.join(__dirname, "public"),
-     dest: path.join(__dirname, "public"),
-   })
- );
+
  app.use(logger("dev"));
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({ extended: true }));
  app.use(expressValidator());
  app.use(
    session({
+    'name'  : '__session',
      resave: true,
      saveUninitialized: true,
      secret: process.env.SESSION_SECRET,
@@ -173,29 +156,15 @@ const functions = require("firebase-functions");
    }
    next();
  });
- // @ts-ignore
- app.use(function (req, res, next) {
-   // res.header('Content-Type', 'application/json');
-   next();
- });
- 
- /* #todo
-  remove all the server side rendereing code so all the routes from the server is hedden
- */
- // app.use('/', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
- // app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), { maxAge: 31557600000 }));
- // app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'), { maxAge: 31557600000 }));
- // app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
- // app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), { maxAge: 31557600000 }));
- 
- /**
-  * API examples routes.
-  */
- 
- app.use("/api/", apiRoutes);
+
  
  
- app.get("/api/data", function (req, res) {
+ app.use("/api", apiRoutes);
+ 
+//  app.use("/", homeController.index);
+ 
+ 
+ app.get("/data", function (req, res) {
    // console.log(req.query)
  
    var params = "";
@@ -270,4 +239,4 @@ const functions = require("firebase-functions");
  
 //  module.exports = app;
  
-exports.app = functions.https.onRequest(app);
+exports.api = functions.https.onRequest(app);

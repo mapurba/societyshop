@@ -1,0 +1,18 @@
+
+.success-page(style='width: 100%;font-size: 44px;display: inline-block;')
+    if status
+        img.center(src='https://societystore.co/assets/images/tick.gif', alt='', style='width: 121px;display: inline-block;')
+        h2(style='display: inline-block;padding: 0;vertical-align: top;margin-top: 21px;') Payment Successful !
+    else 
+        img.center(src='https://societystore.co/assets/images/redTick.png', alt='', style='width: 121px;display: inline-block;')
+        h2(style='display: inline-block;padding: 0;vertical-align: top;margin-top: 21px;') Payment Failed !
+        p  Do You know why ?
+        a.btn-view-orders(href='https://societystore.co/my/orders',style='display: inline-block') Retry?
+        a.btn-view-orders(href='https://societystore.co',style="color:red;margin-left:20px;") Close
+        p  
+        
+    img.center(src='https://societystore.co/assets/icons/icon.png', alt='', style='width: 32px;display: inline-block;')
+    img.center(src='https://societystore.co/assets/icons/icon.png', alt='', style='width: 32px;display: inline-block;')
+    p(style="display: contents;width:auto;") We are delighted to inform you that we received your payments
+
+

@@ -1,0 +1,16 @@
+{
+  "enviornment": "prod",
+  "appIdTest": "46214749ea974b6ff04be5d9741264",
+  "appId": "91453f6958b9b63a1863eac0735419",
+  "secretKeyTest": "97c82b87f79403bfde90fd468761527a8be62505",
+  "secretKey": "1313bb579f1ba4c17168af83daf65a8a3ed1c930",
+  "paths": {
+    "test": {
+      "cashfreePayUrl": "https://test.cashfree.com/billpay/checkout/post/submit"
+    },
+    "prod": {
+      "cashfreePayUrl": "https://www.cashfree.com/checkout/post/submit"
+    },
+    "returnUrl": "https://us-central1-societystore.cloudfunctions.net/payment/responce/"
+  }
+}
